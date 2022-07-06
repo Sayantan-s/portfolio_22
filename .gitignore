@@ -10,7 +10,9 @@
 
 # next.js
 /.next/
+.swc
 /out/
+tsconfig.tsbuildinfo
 
 # production
 /build
