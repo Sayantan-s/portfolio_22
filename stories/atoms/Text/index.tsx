@@ -5,24 +5,30 @@ export const Text = <TElement extends ElementType = "p">({
   as,
   isAnimated = true,
   className = "",
-  fontSize,
-  color,
+  fontSize = "text-sm",
+  color = "text-gray-400",
+  fontWeight = "font-normal",
+  textAlign,
   bgColor,
-  strength,
+  p,
+  m,
+  rounded,
+  maxW,
+  w,
   ...rest
 }: Props<TElement>) => {
-  const TextStyleConfiguration = {
-    fontSize: `text-${fontSize}`,
-    textColor: `text-${color || "emerald"}-${strength || "50"}`,
-    bgColor: bgColor ? `bg-${bgColor}-${strength || "50"}` : "",
-  };
+  const styles = [
+    fontSize,
+    color,
+    bgColor || "",
+    fontWeight,
+    textAlign || "",
+    p || "",
+    m || "",
+    maxW || "",
+    w || "",
+  ];
+
   const Component = as || "p";
-  return (
-    <Component
-      className={`${Object.values(TextStyleConfiguration).join(
-        " "
-      )} ${className}`}
-      {...rest}
-    />
-  );
+  return <Component className={`${styles.join(" ")} ${className}`} {...rest} />;
 };

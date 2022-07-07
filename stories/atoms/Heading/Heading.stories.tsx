@@ -24,7 +24,6 @@ const Component: ComponentStory<typeof Heading> = (args) => (
 export const Default = Component.bind({});
 Default.args = {
   children: "There was brown cat",
-  as: "h1",
   level: "1",
 };
 

@@ -1,9 +1,18 @@
-import { TraditionalType, TypographyProps } from "@ts/traditional.types";
+import {
+  BorderProps,
+  LayoutProps,
+  SpacingProps,
+  TraditionalType,
+  TypographyProps,
+} from "@ts/traditional.types";
 
 export type Level = "1" | "2" | "3" | "4" | "5" | "6";
 
 export interface HeadingProps
-  extends TypographyProps,
+  extends Omit<TypographyProps, "fontSize">,
+    SpacingProps,
+    LayoutProps,
+    BorderProps,
     Omit<
       React.DetailedHTMLProps<
         React.HTMLAttributes<HTMLHeadingElement>,

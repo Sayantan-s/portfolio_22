@@ -1,4 +1,4 @@
-import { LandingPage } from "@stories/pages";
+import { LandingPage } from "@stories/views";
 import type { NextPage } from "next";
 import Head from "next/head";
 

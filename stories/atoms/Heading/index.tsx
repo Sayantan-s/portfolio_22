@@ -1,6 +1,7 @@
 import { motion } from "framer-motion";
 import React from "react";
 import { Props } from "./Heading.interface";
+import { FontSize } from "@ts/tailwind.types";
 
 export const Heading = React.forwardRef(
   (
@@ -9,27 +10,46 @@ export const Heading = React.forwardRef(
       as = `h${level}`,
       isAnimated = false,
       className = "",
-      color,
+      color = "text-gray-400",
       bgColor,
-      strength,
+      m,
+      p,
+      fontWeight = "font-semibold",
+      textAlign,
+      rounded,
+      maxW,
+      w,
       ...rest
     }: Props,
     ref?: React.Ref<HTMLHeadingElement>
   ) => {
-    const HeadingStyleConfiguration = {
-      fontSize: `text-${level === "1" ? "" : level || as[1]}xl`,
-      textColor: `text-${color || "orange"}-${strength || "50"}`,
-      bgColor: bgColor ? `bg-${bgColor}-${strength || "50"}` : "",
-    };
+    const HeadingLevel: FontSize[] = [
+      "text-6xl",
+      "text-5xl",
+      "text-4xl",
+      "text-3xl",
+      "text-2xl",
+      "text-xl",
+    ];
 
     const Component = isAnimated ? motion[as || "h1"] : (as as any);
 
+    const styles = [
+      HeadingLevel[+level],
+      color,
+      bgColor || "",
+      textAlign || "",
+      fontWeight,
+      m || "",
+      p || "",
+      rounded || "",
+      maxW || "",
+      w || "",
+    ];
     return (
       <Component
-        className={`${Object.values(HeadingStyleConfiguration).join(
-          " "
-        )}  ${className}`}
         {...rest}
+        className={`${styles.join(" ")}  ${className}`}
         ref={ref}
       />
     );

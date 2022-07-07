@@ -1,1 +1,1 @@
-export * from "./home.page";
+export * from "./landingpage.view";
