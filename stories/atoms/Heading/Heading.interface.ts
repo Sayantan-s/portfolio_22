@@ -1,6 +1,7 @@
 import {
   BorderProps,
   LayoutProps,
+  PositionProps,
   SpacingProps,
   TraditionalType,
   TypographyProps,
@@ -13,6 +14,7 @@ export interface HeadingProps
     SpacingProps,
     LayoutProps,
     BorderProps,
+    PositionProps,
     Omit<
       React.DetailedHTMLProps<
         React.HTMLAttributes<HTMLHeadingElement>,

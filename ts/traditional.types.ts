@@ -16,6 +16,7 @@ import {
   MinHeight,
   MinWidth,
   PaddingSpacing,
+  Position,
   StackSpacing,
   TextAlign,
   Width,
@@ -69,4 +70,8 @@ export interface DisplayProps {
 
 export interface BorderProps {
   rounded?: BorderRadius;
+}
+
+export interface PositionProps {
+  position?: Position;
 }

@@ -23,6 +23,7 @@ export const Stack = <TElement extends ElementType = "div">({
   alignItems,
   justifyContent,
   rounded,
+  position,
   ...rest
 }: Props<TElement>) => {
   const styles = [
@@ -45,6 +46,7 @@ export const Stack = <TElement extends ElementType = "div">({
     alignItems,
     justifyContent,
     rounded,
+    position,
   ].map((style) => style || "");
   const Component = as || "div";
 

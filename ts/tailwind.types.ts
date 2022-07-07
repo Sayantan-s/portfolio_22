@@ -44,7 +44,7 @@ export type StackSpacing = `space-${Extract<
   Direction,
   "x" | "y"
 >}-${SpaceSize}`;
-export type MarginSpacing = `m${MPDirection}-${SpaceSize}`;
+export type MarginSpacing = `m${MPDirection}-${SpaceSize | "auto"}`;
 export type PaddingSpacing = `p${MPDirection}-${SpaceSize}`;
 
 // TYPOGRAPHY
@@ -181,3 +181,7 @@ export type AlignItems =
 type Rounded = "none" | "sm" | "md" | "full" | "lg" | "xl" | "2xl" | "3xl";
 
 export type BorderRadius = `rounded-${Rounded}`;
+
+// POSITION
+
+export type Position = "relative" | "absolute" | "fixed" | "sticky" | "static";

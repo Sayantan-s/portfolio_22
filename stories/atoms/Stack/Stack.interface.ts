@@ -3,6 +3,7 @@ import {
   BorderProps,
   DisplayProps,
   LayoutProps,
+  PositionProps,
   StackSpacingProps,
   TypographyProps,
 } from "@ts/traditional.types";
@@ -13,7 +14,8 @@ export interface StackProps
     LayoutProps,
     DisplayProps,
     StackSpacingProps,
-    BorderProps {}
+    BorderProps,
+    PositionProps {}
 
 export type Props<C extends ElementType = "div"> = PolymorphicComponentProps<
   C,

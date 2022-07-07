@@ -19,6 +19,7 @@ export const Heading = React.forwardRef(
       rounded,
       maxW,
       w,
+      position,
       ...rest
     }: Props,
     ref?: React.Ref<HTMLHeadingElement>
@@ -45,6 +46,7 @@ export const Heading = React.forwardRef(
       rounded || "",
       maxW || "",
       w || "",
+      position || "",
     ];
     return (
       <Component

@@ -2,6 +2,7 @@ import type { PolymorphicComponentProps } from "@ts/polymorphic.types";
 import {
   BorderProps,
   LayoutProps,
+  PositionProps,
   SpacingProps,
   TypographyProps,
 } from "@ts/traditional.types";
@@ -11,7 +12,8 @@ export interface TextProps
   extends TypographyProps,
     SpacingProps,
     LayoutProps,
-    BorderProps {}
+    BorderProps,
+    PositionProps {}
 
 export type Props<C extends ElementType = "p"> = PolymorphicComponentProps<
   C,
