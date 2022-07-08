@@ -5,7 +5,7 @@ import { Props } from "./interface";
 export const AppLayout = ({ children }: Props) => {
   return (
     <React.Fragment>
-      <Navbar />
+      {/* <Navbar /> */}
       {children}
     </React.Fragment>
   );

@@ -35,12 +35,14 @@ export type TraditionalType<TAnimated extends boolean = true> =
         isAnimated?: TAnimated;
       };
 
-export interface TypographyProps {
-  color?: Colors;
+export interface TypographyProps extends ColorProps {
   fontSize?: FontSize;
-  bgColor?: BgColors;
   fontWeight?: FontWeights;
   textAlign?: TextAlign;
+}
+export interface ColorProps {
+  color?: Colors;
+  bgColor?: BgColors;
 }
 
 export interface SpacingProps {

@@ -44,8 +44,11 @@ export type StackSpacing = `space-${Extract<
   Direction,
   "x" | "y"
 >}-${SpaceSize}`;
-export type MarginSpacing = `m${MPDirection}-${SpaceSize | "auto"}`;
-export type PaddingSpacing = `p${MPDirection}-${SpaceSize}`;
+export type MarginSpacing = `m${MPDirection}-${SpaceSize | "auto"}${
+  | ` m${MPDirection}-${SpaceSize}`
+  | ""}`;
+export type PaddingSpacing =
+  `p${MPDirection}-${SpaceSize} p${MPDirection}-${SpaceSize}`;
 
 // TYPOGRAPHY
 
