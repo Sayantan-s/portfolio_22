@@ -11,7 +11,7 @@ export const Button = React.forwardRef(
       color = "text-gray-50",
       bgColor = "bg-gray-800",
       m,
-      p = "px-8 py-3",
+      p = "px-5 py-2",
       rounded = "rounded-full",
       ...rest
     }: Props,

@@ -1,3 +1,11 @@
+export type Responsive<TElement extends string> = [
+  `sm:${TElement}`,
+  `md:${TElement}`,
+  `lg:${TElement}`,
+  `xl:${TElement}`,
+  `2xl:${TElement}`
+];
+
 // SPACING
 type SpaceSize =
   | "0"
@@ -40,10 +48,13 @@ type SpaceSize =
 type Direction = "x" | "y" | "t" | "b" | "r" | "l";
 type MPDirection = Direction | "";
 
-export type StackSpacing = `space-${Extract<
+export type NRStackSpacing = `space-${Extract<
   Direction,
   "x" | "y"
 >}-${SpaceSize}`;
+
+export type StackSpacing = NRStackSpacing | Responsive<NRStackSpacing>;
+
 export type MarginSpacing = `m${MPDirection}-${SpaceSize | "auto"}${
   | ` m${MPDirection}-${SpaceSize}`
   | ""}`;

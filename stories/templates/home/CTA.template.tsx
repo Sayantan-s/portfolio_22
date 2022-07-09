@@ -1,8 +1,27 @@
 import { Heading, Text, Stack, View, Button } from "@stories/atoms";
-import React from "react";
+import React, { useRef } from "react";
 import Image from "next/image";
+import { Player, PlayerEvent } from "@lottiefiles/react-lottie-player";
 
 export const CTA = () => {
+  const talkEmojiRef = useRef<Player | null>(null);
+
+  const handleEmojiPlayer = (eve: PlayerEvent) => {
+    // console.log(eve);
+    // if (eve === PlayerEvent.Pause) {
+    //   talkEmojiRef.current?.play();
+    // }
+
+    if (eve === PlayerEvent.Frame) {
+      talkEmojiRef.current?.state.instance?.currentFrame! > 23 &&
+        talkEmojiRef.current?.pause();
+      // talkEmojiRef.current!.setPlayerDirection(-1);
+    } else {
+      // talkEmojiRef.current?.play();
+    }
+    console.log(talkEmojiRef.current?.state.instance?.currentFrame, eve);
+  };
+
   return (
     <View h="h-screen" className="ctagradient">
       <Stack
@@ -197,24 +216,27 @@ export const CTA = () => {
           fontWeight="font-medium"
           fontSize="text-base"
         >
-          A Software Engineer based in Bengaluru, Karnataka whom you might find
-          bridging the gap between design and code or maybe writing serverside
-          logic. I enjoy fooling around with various scripting language such as
-          CPP, Go & Javascript.
+          A Software Engineer based in Bengaluru, Karnataka whose job primarily
+          involves bridging the gap between design and code or maybe writing
+          server-side logic. My baller side has also makes me cry over,&quot;Why
+          Messi left Barca!&quot;
         </Text>
         <Button
           m="mt-6"
           isAnimated
           whileTap={{ scale: 0.98 }}
           className="flex items-center"
+          onClick={() => talkEmojiRef.current?.play()}
         >
-          <View className="transform translate-y-[3px] mr-1">
-            <Image
-              src="/talk.png"
-              width={20}
-              height={20}
-              alt="cta_dp_image"
-              layout="intrinsic"
+          <View className="transform mr-1">
+            <Player
+              ref={talkEmojiRef}
+              onEvent={handleEmojiPlayer}
+              autoplay={false}
+              controls={true}
+              src="https://assets1.lottiefiles.com/packages/lf20_ltf45w.json"
+              style={{ height: "32px", width: "32px" }}
+              // speed={20000}
             />
           </View>
           <Text
@@ -222,7 +244,7 @@ export const CTA = () => {
             fontWeight="font-semibold"
             fontSize="text-base"
             as="span"
-            className="transform translate-y-[0.5px]"
+            className="transform translate-y-[0.3px]"
           >
             Let&apos;s Talk
           </Text>
