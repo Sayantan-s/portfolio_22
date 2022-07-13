@@ -1,4 +1,5 @@
-import { Heading, Stack, View } from "@stories/atoms";
+import { Heading, Stack, Text, View } from "@stories/atoms";
+import Image from "next/image";
 import React from "react";
 
 export const Blogs = () => {
@@ -7,23 +8,10 @@ export const Blogs = () => {
       <Stack
         h="h-full"
         display="flex"
-        alignItems="items-center"
-        justifyContent="justify-center"
-        flexDirection="flex-col"
         maxW="max-w-screen-2xl"
         position="relative"
         m="mx-auto"
-      >
-        <Heading
-          maxW="max-w-xl"
-          textAlign="text-center"
-          color="text-gray-700"
-          fontWeight="font-medium"
-          level="3"
-        >
-          Stuff I&apos;ve Written
-        </Heading>
-      </Stack>
+      ></Stack>
     </View>
   );
 };

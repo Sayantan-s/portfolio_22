@@ -16,6 +16,7 @@ export const Text = <TElement extends ElementType = "p">({
   maxW,
   w,
   position,
+  display,
   ...rest
 }: Props<TElement>) => {
   const styles = [
@@ -29,6 +30,7 @@ export const Text = <TElement extends ElementType = "p">({
     maxW || "",
     w || "",
     position || "",
+    display || "",
   ];
 
   const Component = as || "p";

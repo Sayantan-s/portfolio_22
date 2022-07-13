@@ -18,6 +18,7 @@ export const View = <TElement extends ElementType = "div">({
   h,
   maxH,
   minH,
+  position,
   ...rest
 }: Props<TElement>) => {
   const Component = as || "div";
@@ -35,6 +36,7 @@ export const View = <TElement extends ElementType = "div">({
     h,
     maxH,
     minH,
+    position,
   ].map((style) => style || "");
   return <Component className={`${styles.join(" ")} ${className}`} {...rest} />;
 };
