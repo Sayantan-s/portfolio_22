@@ -1,9 +1,9 @@
-import React, { ElementType } from "react";
-import { Props } from "./Stack.interface";
+import React, { ElementType } from 'react';
+import { Props } from './Stack.interface';
 
-export const Stack = <TElement extends ElementType = "div">({
+export const Stack = <TElement extends ElementType = 'div'>({
   as,
-  className = "",
+  className = '',
   fontSize,
   color,
   bgColor,
@@ -46,9 +46,9 @@ export const Stack = <TElement extends ElementType = "div">({
     alignItems,
     justifyContent,
     rounded,
-    position,
-  ].map((style) => style || "");
-  const Component = as || "div";
+    position
+  ].map(style => style || '');
+  const Component = as || 'div';
 
-  return <Component {...rest} className={`${styles.join(" ")} ${className}`} />;
+  return <Component {...rest} className={`${styles.join(' ')} ${className}`} />;
 };

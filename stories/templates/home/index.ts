@@ -1,2 +1,2 @@
-export * from "./CTA.template";
-export * from "./Blogs.template";
+export * from './CTA.template';
+export * from './Blogs.template';

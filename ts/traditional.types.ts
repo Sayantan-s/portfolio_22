@@ -1,4 +1,4 @@
-import { MotionProps } from "framer-motion";
+import { MotionProps } from 'framer-motion';
 import {
   AlignItems,
   BgColors,
@@ -19,21 +19,20 @@ import {
   Position,
   StackSpacing,
   TextAlign,
-  Width,
-} from "./tailwind.types";
+  Width
+} from './tailwind.types';
 
 export interface PassComponentType<E extends React.ElementType> {
   as?: E;
 }
 
-export type TraditionalType<TAnimated extends boolean = true> =
-  TAnimated extends true
-    ? {
-        isAnimated?: TAnimated;
-      } & MotionProps
-    : {
-        isAnimated?: TAnimated;
-      };
+export type TraditionalType<TAnimated extends boolean = true> = TAnimated extends true
+  ? {
+      isAnimated?: TAnimated;
+    } & MotionProps
+  : {
+      isAnimated?: TAnimated;
+    };
 
 export interface TypographyProps extends ColorProps {
   fontSize?: FontSize;

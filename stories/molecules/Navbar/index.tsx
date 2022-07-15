@@ -1,5 +1,5 @@
-import { Stack } from "@stories/atoms";
-import React from "react";
+import { Stack } from '@stories/atoms';
+import React from 'react';
 
 const Navbar = () => {
   return (

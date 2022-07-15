@@ -1,7 +1,12 @@
 {
-  "name": "porfolio-blogs",
+  "name": "sayantan-samanta-portfolio",
   "version": "0.1.0",
   "private": true,
+  "engines": {
+    "node": ">=16.0.0",
+    "yarn": ">=1.22.17",
+    "npm": "please-use-yarn"
+  },
   "scripts": {
     "dev": "next dev -p 5001",
     "build": "next build",
@@ -10,7 +15,8 @@
     "storybook": "start-storybook -p 6006",
     "build-storybook": "build-storybook",
     "prepare": "husky install",
-    "jest": "jest"
+    "jest": "jest",
+    "prettier": "prettier --write ."
   },
   "dependencies": {
     "@mdx-js/loader": "^2.1.2",
@@ -18,6 +24,7 @@
     "classnames": "^2.3.1",
     "framer-motion": "^6.4.1",
     "next": "12.2.0",
+    "next-themes": "^0.2.0",
     "react": "18.2.0",
     "react-dom": "18.2.0"
   },
@@ -40,6 +47,8 @@
     "@types/node": "18.0.1",
     "@types/react": "18.0.14",
     "@types/react-dom": "18.0.5",
+    "@typescript-eslint/eslint-plugin": "^5.30.6",
+    "@typescript-eslint/parser": "^5.30.6",
     "autoprefixer": "^10.4.7",
     "babel-loader": "^8.2.5",
     "eslint": "8.19.0",
@@ -48,6 +57,7 @@
     "husky": "^8.0.0",
     "jest": "^28.1.2",
     "postcss": "^8.4.14",
+    "prettier": "^2.7.1",
     "storybook-css-modules-preset": "^1.1.1",
     "stylelint": "^14.9.1",
     "stylelint-config-standard": "^26.0.0",

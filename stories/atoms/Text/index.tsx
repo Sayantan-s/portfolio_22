@@ -1,13 +1,13 @@
-import React, { ElementType } from "react";
-import { Props } from "./Text.interface";
+import React, { ElementType } from 'react';
+import { Props } from './Text.interface';
 
-export const Text = <TElement extends ElementType = "p">({
+export const Text = <TElement extends ElementType = 'p'>({
   as,
   isAnimated = true,
-  className = "",
-  fontSize = "text-sm",
-  color = "text-gray-400",
-  fontWeight = "font-normal",
+  className = '',
+  fontSize = 'text-sm',
+  color = 'text-gray-400',
+  fontWeight = 'font-normal',
   textAlign,
   bgColor,
   p,
@@ -22,17 +22,17 @@ export const Text = <TElement extends ElementType = "p">({
   const styles = [
     fontSize,
     color,
-    bgColor || "",
+    bgColor || '',
     fontWeight,
-    textAlign || "",
-    p || "",
-    m || "",
-    maxW || "",
-    w || "",
-    position || "",
-    display || "",
+    textAlign || '',
+    p || '',
+    m || '',
+    maxW || '',
+    w || '',
+    position || '',
+    display || ''
   ];
 
-  const Component = as || "p";
-  return <Component className={`${styles.join(" ")} ${className}`} {...rest} />;
+  const Component = as || 'p';
+  return <Component className={`${styles.join(' ')} ${className}`} {...rest} />;
 };

@@ -1,6 +1,9 @@
 /* stylelint-disable number-leading-zero */
 /* stylelint-disable value-keyword-case */
 /* stylelint-disable function-no-unknown */
+
+@import '/font/stylesheet.css';
+
 @tailwind base;
 @tailwind components;
 @tailwind utilities;
@@ -28,11 +31,7 @@ body {
 @layer utilities {
   .ctagradient {
     background-color: hsla(0, 0%, 100%, 1);
-    background-image: radial-gradient(
-        at 100% 0%,
-        hsla(32, 98%, 83%, 0.4) 0px,
-        transparent 50%
-      ),
+    background-image: radial-gradient(at 100% 0%, hsla(32, 98%, 83%, 0.4) 0px, transparent 50%),
       radial-gradient(at 40% 1%, hsla(32, 98%, 83%, 0.2) 0px, transparent 50%),
       radial-gradient(at 70% 60%, hsla(152, 75%, 80%, 0.3) 0px, transparent 50%),
       radial-gradient(at 0% 1%, hsla(152, 75%, 80%, 0.4) 0px, transparent 50%),

@@ -1,48 +1,45 @@
-const path = require("path");
+const path = require('path');
 
 module.exports = {
-  stories: [
-    "../stories/**/*.stories.mdx",
-    "../stories/**/*.stories.@(js|jsx|ts|tsx)",
-  ],
-  staticDirs: ["../public"],
+  stories: ['../stories/**/*.stories.mdx', '../stories/**/*.stories.@(js|jsx|ts|tsx)'],
+  staticDirs: ['../public'],
   addons: [
-    "@storybook/addon-links",
-    "@storybook/addon-essentials",
-    "@storybook/addon-interactions",
-    "storybook-css-modules-preset",
+    '@storybook/addon-links',
+    '@storybook/addon-essentials',
+    '@storybook/addon-interactions',
+    'storybook-css-modules-preset',
     {
-      name: "@storybook/addon-postcss",
+      name: '@storybook/addon-postcss',
       options: {
         postcssLoaderOptions: {
-          implementation: require("postcss"),
-        },
-      },
-    },
+          implementation: require('postcss')
+        }
+      }
+    }
   ],
-  framework: "@storybook/react",
+  framework: '@storybook/react',
   core: {
-    builder: "@storybook/builder-webpack5",
+    builder: '@storybook/builder-webpack5'
   },
   features: {
-    interactionDebugger: true,
+    interactionDebugger: true
   },
   typescript: {
     check: true,
-    reactDocgen: "react-docgen",
+    reactDocgen: 'react-docgen'
   },
-  webpackFinal: async (config) => {
+  webpackFinal: async config => {
     config = {
       ...config,
       resolve: {
         ...config.resolve,
         alias: {
           ...config.resolve.alias,
-          "@styles": path.resolve(__dirname, "../styles"),
-          "@stories": path.resolve(__dirname, "../stories"),
-        },
-      },
+          '@styles': path.resolve(__dirname, '../styles'),
+          '@stories': path.resolve(__dirname, '../stories')
+        }
+      }
     };
     return config;
-  },
+  }
 };

@@ -1,40 +1,30 @@
-import React, { ComponentProps } from "react";
-import { Props } from "./Button.interface";
-import { motion } from "framer-motion";
+import React from 'react';
+import { motion } from 'framer-motion';
+import { ButtonPropsWithNoMotion, Props } from './Button.interface';
 
 export const Button = React.forwardRef(
-  (
+  <TAnimated extends { isAnimated?: boolean }>(
     {
-      isAnimated = false,
-      className = "",
-      fontWeight = "font-semibold",
-      color = "text-gray-50",
-      bgColor = "bg-gray-800",
+      isAnimated,
+      className = '',
+      fontWeight = 'font-semibold',
+      color = 'text-gray-50',
+      bgColor = 'bg-gray-800',
       m,
-      p = "px-5 py-2",
-      rounded = "rounded-full",
+      p = 'px-5 py-2',
+      rounded = 'rounded-full',
       ...rest
-    }: Props,
+    }: Props<TAnimated>,
     ref?: React.Ref<HTMLButtonElement>
   ) => {
-    const styles = [fontWeight || "", color, bgColor, p, m, rounded];
+    const styles = [fontWeight || '', color, bgColor, p, m, rounded];
+    const props = { className: `${styles.join(' ')} ${className || ''}`, ref };
     return isAnimated ? (
-      <motion.button
-        {...(rest as ComponentProps<typeof motion.button>)}
-        className={`${styles.join(" ")} ${className || ""}`}
-        ref={ref}
-      />
+      <motion.button {...props} {...rest} />
     ) : (
-      <button
-        className={`${styles.join(" ")} ${className || ""}`}
-        ref={ref}
-        {...(rest as React.DetailedHTMLProps<
-          React.ButtonHTMLAttributes<HTMLButtonElement>,
-          HTMLButtonElement
-        >)}
-      />
+      <button {...props} {...(rest as ButtonPropsWithNoMotion)} />
     );
   }
 );
 
-Button.displayName = "Button";
+Button.displayName = 'Button';

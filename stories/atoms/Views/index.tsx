@@ -1,10 +1,10 @@
-import React, { ElementType } from "react";
-import { Props } from "./View.interface";
+import React, { ElementType } from 'react';
+import { Props } from './View.interface';
 
-export const View = <TElement extends ElementType = "div">({
+export const View = <TElement extends ElementType = 'div'>({
   as,
   isAnimated = true,
-  className = "",
+  className = '',
   fontSize,
   color,
   bgColor,
@@ -21,7 +21,7 @@ export const View = <TElement extends ElementType = "div">({
   position,
   ...rest
 }: Props<TElement>) => {
-  const Component = as || "div";
+  const Component = as || 'div';
   const styles = [
     fontSize,
     color,
@@ -36,7 +36,7 @@ export const View = <TElement extends ElementType = "div">({
     h,
     maxH,
     minH,
-    position,
-  ].map((style) => style || "");
-  return <Component className={`${styles.join(" ")} ${className}`} {...rest} />;
+    position
+  ].map(style => style || '');
+  return <Component className={`${styles.join(' ')} ${className}`} {...rest} />;
 };

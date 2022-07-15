@@ -1,6 +1,6 @@
-import { LandingPage } from "@stories/views";
-import type { NextPage } from "next";
-import Head from "next/head";
+import { LandingPage } from '@stories/views';
+import type { NextPage } from 'next';
+import Head from 'next/head';
 
 const Home: NextPage = () => {
   return (

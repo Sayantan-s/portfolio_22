@@ -1,6 +1,6 @@
-import { Heading, Stack, Text, View } from "@stories/atoms";
-import Image from "next/image";
-import React from "react";
+import { Heading, Stack, Text, View } from '@stories/atoms';
+import Image from 'next/image';
+import React from 'react';
 
 export const Blogs = () => {
   return (

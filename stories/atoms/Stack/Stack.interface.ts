@@ -1,13 +1,13 @@
-import type { PolymorphicComponentProps } from "@ts/polymorphic.types";
+import type { PolymorphicComponentProps } from '@ts/polymorphic.types';
 import {
   BorderProps,
   DisplayProps,
   LayoutProps,
   PositionProps,
   StackSpacingProps,
-  TypographyProps,
-} from "@ts/traditional.types";
-import { ElementType } from "react";
+  TypographyProps
+} from '@ts/traditional.types';
+import { ElementType } from 'react';
 
 export interface StackProps
   extends TypographyProps,
@@ -17,7 +17,4 @@ export interface StackProps
     BorderProps,
     PositionProps {}
 
-export type Props<C extends ElementType = "div"> = PolymorphicComponentProps<
-  C,
-  StackProps
->;
+export type Props<C extends ElementType = 'div'> = PolymorphicComponentProps<C, StackProps>;
