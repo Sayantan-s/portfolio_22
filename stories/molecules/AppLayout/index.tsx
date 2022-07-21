@@ -3,7 +3,7 @@ import { motion } from 'framer-motion';
 import Image from 'next/image';
 import React, { useState } from 'react';
 import Navbar from '../Navbar';
-import { Props } from './interface';
+import type { Props } from './interface';
 
 export const AppLayout = ({ children }: Props) => {
   const [toggleMode, setToggle] = useState<boolean>(false);

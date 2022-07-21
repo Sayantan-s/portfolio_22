@@ -1,6 +1,6 @@
 import React from 'react';
 import { motion } from 'framer-motion';
-import { ButtonPropsWithNoMotion, Props } from './Button.interface';
+import type { ButtonPropsWithNoMotion, Props } from './Button.interface';
 
 export const Button = React.forwardRef(
   <TAnimated extends { isAnimated?: boolean }>(
