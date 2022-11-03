@@ -1,11 +1,14 @@
 import '../styles/globals.css';
 import type { AppProps } from 'next/app';
 import { ThemeProvider } from 'next-themes';
+import { AppLayout } from '@stories/molecules';
 
 function MyApp({ Component, pageProps }: AppProps) {
   return (
-    <ThemeProvider defaultTheme="system" storageKey="theme">
-      <Component {...pageProps} />
+    <ThemeProvider>
+      <AppLayout>
+        <Component {...pageProps} />
+      </AppLayout>
     </ThemeProvider>
   );
 }

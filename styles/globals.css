@@ -12,13 +12,11 @@ html,
 body {
   padding: 0;
   margin: 0;
+  background-color: white;
 }
 
 * {
   box-sizing: border-box;
-}
-
-@layer components {
 }
 
 @layer base {
@@ -30,17 +28,16 @@ body {
 
 @layer utilities {
   .ctagradient {
-    background-color: hsla(0, 0%, 100%, 1);
-    background-image: radial-gradient(at 100% 0%, hsla(32, 98%, 83%, 0.4) 0px, transparent 50%),
-      radial-gradient(at 40% 1%, hsla(32, 98%, 83%, 0.2) 0px, transparent 50%),
-      radial-gradient(at 70% 60%, hsla(152, 75%, 80%, 0.3) 0px, transparent 50%),
-      radial-gradient(at 0% 1%, hsla(152, 75%, 80%, 0.4) 0px, transparent 50%),
-      radial-gradient(at 30% 40%, hsla(32, 98%, 83%, 0.3) 0px, transparent 30%);
+    /* background: radial-gradient(at 100% 0%, rgba(254, 214, 169, 0.933) 0px, transparent 50%),
+      radial-gradient(at 40% 1%, rgb(254, 214, 169) 0px, transparent 50%),
+      radial-gradient(at 70% 60%, rgb(166, 242, 207) 0px, transparent 50%),
+      radial-gradient(at 0% 1%, rgb(166, 242, 207) 0px, transparent 50%),
+      radial-gradient(at 30% 40%, rgb(254, 214, 169) 0px, transparent 30%); */
   }
 
-  .truncate_3 {
+  /* .truncate_3 {
     display: -webkit-box;
     -webkit-line-clamp: 3;
     -webkit-box-orient: vertical;
-  }
+  } */
 }

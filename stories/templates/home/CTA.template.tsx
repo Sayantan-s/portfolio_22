@@ -1,24 +1,8 @@
-import { Heading, Text, Stack, View, Button } from '@stories/atoms';
-import React, { useRef } from 'react';
+import { Button, Heading, Stack, Text, View } from '@stories/atoms';
+import { motion } from 'framer-motion';
 import Image from 'next/image';
-import { Player, PlayerEvent, PlayerState } from '@lottiefiles/react-lottie-player';
-// import { Github, Instagram, LinkedIn, Twitter } from "@stories/icons/socials";
 
 export const CTA = () => {
-  const talkEmojiRef = useRef<Player | null>(null);
-
-  const handleEmojiPlayer = (eve: PlayerEvent) => {
-    // let playAfterPause = false;
-    if (eve === PlayerEvent.Frame) {
-      if (talkEmojiRef.current?.state.instance?.currentFrame! > 23) {
-        talkEmojiRef.current?.pause();
-        // playAfterPause = false;
-        return;
-      }
-      if (talkEmojiRef.current?.state.playerState === PlayerState.Playing) return;
-    }
-  };
-
   return (
     <View h="h-screen" className="ctagradient">
       <Stack
@@ -222,34 +206,33 @@ export const CTA = () => {
             &quot;Why Leo left Barca!&quot;
           </Text>{' '}
         </Text>
-        <Button
-          m="mt-6"
-          isAnimated
-          whileTap={{ scale: 0.98 }}
-          className="flex items-center"
-          onClick={() => talkEmojiRef.current?.play()}
-        >
-          <View className="transform mr-1">
-            <Player
-              ref={talkEmojiRef}
-              onEvent={handleEmojiPlayer}
-              autoplay={false}
-              controls={true}
-              src="https://assets1.lottiefiles.com/packages/lf20_ltf45w.json"
-              style={{ height: '32px', width: '32px' }}
-            />
-          </View>
-          <Text
-            color="text-gray-50"
-            fontWeight="font-semibold"
-            fontSize="text-base"
-            as="span"
-            className="transform translate-y-[0.3px]"
+        <Stack m="mt-6" display="flex" spacing="space-x-2" alignItems="items-center">
+          <Button isAnimated whileTap={{ scale: 0.98 }} className="flex items-center">
+            <Text
+              color="text-gray-50"
+              fontWeight="font-semibold"
+              fontSize="text-base"
+              as="span"
+              className="transform translate-y-[0.3px]"
+            >
+              Let&apos;s Talk
+            </Text>
+          </Button>
+          <motion.button
+            whileTap={{ scale: 0.98, rotate: 360, transition: { duration: 0.3 } }}
+            className="aspect-square rounded-full p-1.5 border-2 border-gray-100"
           >
-            Let&apos;s Talk
-          </Text>
-        </Button>
-        <Stack display="flex" spacing="space-x-1" alignItems="items-end"></Stack>
+            <View
+              as="span"
+              position="relative"
+              w="w-full"
+              h="h-full"
+              className="flex items-center justify-center"
+            >
+              <Image src="/logo.png" width={24} height={24} alt="cta_dp_image" layout="intrinsic" />
+            </View>
+          </motion.button>
+        </Stack>
       </Stack>
     </View>
   );
