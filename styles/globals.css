@@ -1,8 +1,9 @@
+/* stylelint-disable-next-line string-quotes */
+@import '/font/stylesheet.css';
+
 /* stylelint-disable number-leading-zero */
 /* stylelint-disable value-keyword-case */
 /* stylelint-disable function-no-unknown */
-
-@import '/font/stylesheet.css';
 
 @tailwind base;
 @tailwind components;
@@ -13,6 +14,7 @@ body {
   padding: 0;
   margin: 0;
   background-color: white;
+  position: relative;
 }
 
 * {
@@ -24,20 +26,4 @@ body {
     font-family: Fellix, sans-serif;
     font-weight: 500;
   }
-}
-
-@layer utilities {
-  .ctagradient {
-    /* background: radial-gradient(at 100% 0%, rgba(254, 214, 169, 0.933) 0px, transparent 50%),
-      radial-gradient(at 40% 1%, rgb(254, 214, 169) 0px, transparent 50%),
-      radial-gradient(at 70% 60%, rgb(166, 242, 207) 0px, transparent 50%),
-      radial-gradient(at 0% 1%, rgb(166, 242, 207) 0px, transparent 50%),
-      radial-gradient(at 30% 40%, rgb(254, 214, 169) 0px, transparent 30%); */
-  }
-
-  /* .truncate_3 {
-    display: -webkit-box;
-    -webkit-line-clamp: 3;
-    -webkit-box-orient: vertical;
-  } */
 }

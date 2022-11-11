@@ -1,29 +1,15 @@
-import { Button, Heading, Stack, Text, View } from '@stories/atoms';
 import { motion } from 'framer-motion';
 import Image from 'next/image';
 
-export const CTA = () => {
+interface Props {
+  onConnectClick: () => void;
+}
+
+export const CTA = ({ onConnectClick }: Props) => {
   return (
-    <View h="h-screen" className="ctagradient">
-      <Stack
-        h="h-full"
-        display="flex"
-        alignItems="items-center"
-        justifyContent="justify-center"
-        flexDirection="flex-col"
-        maxW="max-w-screen-2xl"
-        position="relative"
-        m="mx-auto"
-      >
-        <Stack
-          w="w-28"
-          h="h-28"
-          display="flex"
-          alignItems="items-center"
-          justifyContent="justify-center"
-          bgColor="bg-orange-100"
-          rounded="rounded-full"
-        >
+    <div className="h-screen ctagradient p-10">
+      <div className="h-full flex items-center justify-center flex-col max-w-screen-2xl relative mx-auto">
+        <div className="w-28 h-28 flex items-center justify-center bg-orange-100 rounded-full">
           <Image
             src="/face.png"
             width={120}
@@ -32,19 +18,9 @@ export const CTA = () => {
             layout="intrinsic"
             className="transform translate-x-1 translate-y-1"
           />
-        </Stack>
-        <Heading
-          m="mt-4"
-          level="5"
-          color="text-gray-400"
-          fontWeight="font-medium"
-          textAlign="text-center"
-        >
-          Hi, I am{' '}
-          <Text as="span" fontSize="text-xl" color="text-gray-600" fontWeight="font-medium">
-            Sayantan
-          </Text>
-          .{''}
+        </div>
+        <h5 className="mt-4 text-gray-400 font-medium text-center">
+          Hi, I am <span className="text-xl text-gray-600 font-medium">Sayantan</span>.{''}
           <Image
             src="/cta_hand.png"
             width={26}
@@ -52,23 +28,10 @@ export const CTA = () => {
             alt="cta_hand_image"
             layout="intrinsic"
           />
-        </Heading>
-        <Heading
-          maxW="max-w-xl"
-          textAlign="text-center"
-          color="text-gray-700"
-          m="mt-6"
-          fontWeight="font-medium"
-        >
+        </h5>
+        <h1 className="max-w-xl text-5xl textAlign text-center text-gray-700 mt-6 font-medium">
           Building
-          <Text
-            position="relative"
-            as="span"
-            fontSize="text-5xl"
-            fontWeight="font-medium"
-            color="text-gray-700"
-            w="w-max"
-          >
+          <span className="relative text-5xl font-medium text-gray-700 w-max">
             <svg
               className="absolute -top-7 -right-14"
               width={32 * 0.35}
@@ -109,16 +72,9 @@ export const CTA = () => {
               />
             </svg>{' '}
             Delightful
-          </Text>
+          </span>
           <br />
-          <Text
-            position="relative"
-            as="span"
-            fontSize="text-5xl"
-            fontWeight="font-medium"
-            color="text-gray-700"
-            w="w-max"
-          >
+          <span className="relative text-5xl font-medium text-gray-700 w-max">
             <svg
               className="absolute -top-7 -left-14"
               width={32 * 0.35}
@@ -159,16 +115,9 @@ export const CTA = () => {
               />
             </svg>
             Experiences
-          </Text>{' '}
+          </span>{' '}
           for Mobile and
-          <Text
-            position="relative"
-            as="span"
-            fontSize="text-5xl"
-            fontWeight="font-medium"
-            color="text-gray-700"
-            w="w-max"
-          >
+          <span className="relative text-5xl font-medium text-gray-700 w-max">
             <svg
               className="absolute -bottom-4 right-3 transform rotate-3"
               width={100}
@@ -185,55 +134,37 @@ export const CTA = () => {
               />
             </svg>{' '}
             Web.
-          </Text>
-        </Heading>
-        <Text
-          m="mt-6"
-          maxW="max-w-2xl"
-          textAlign="text-center"
-          color="text-gray-400"
-          fontWeight="font-normal"
-          fontSize="text-base"
-        >
-          A{' '}
-          <Text as="span" color="text-gray-500" fontWeight="font-medium" fontSize="text-base">
-            Software Engineer
-          </Text>{' '}
-          based in India whose job primarily involves bridging the gap between design and code or
-          maybe writing server-side logic. Apart from Engineering, there is a baller side which
-          cries over,{' '}
-          <Text as="span" color="text-gray-500" fontWeight="font-medium" fontSize="text-base">
+          </span>
+        </h1>
+        <span className="mt-6 max-w-2xl text-center text-gray-400 font-normal text-base">
+          A <span className="text-gray-500 font-medium text-base">Software Engineer</span> based in
+          India whose job primarily involves bridging the gap between design and code or maybe
+          writing server-side logic. Apart from Engineering, there is a baller side which cries
+          over,{' '}
+          <span className="text-gray-500 font-medium text-base">
             &quot;Why Leo left Barca!&quot;
-          </Text>{' '}
-        </Text>
-        <Stack m="mt-6" display="flex" spacing="space-x-2" alignItems="items-center">
-          <Button isAnimated whileTap={{ scale: 0.98 }} className="flex items-center">
-            <Text
-              color="text-gray-50"
-              fontWeight="font-semibold"
-              fontSize="text-base"
-              as="span"
-              className="transform translate-y-[0.3px]"
-            >
-              Let&apos;s Talk
-            </Text>
-          </Button>
+          </span>{' '}
+        </span>
+        <div className="mt-6 flex space-x-2 items-center">
           <motion.button
-            whileTap={{ scale: 0.98, rotate: 360, transition: { duration: 0.3 } }}
+            whileTap={{ scale: 0.98 }}
+            className="flex items-center bg-slate-900 px-5 py-2 rounded-full"
+            onClick={onConnectClick}
+          >
+            <span className="text-gray-50 font-semibold text-base transform translate-y-[0.3px]">
+              Let&apos;s Talk
+            </span>
+          </motion.button>
+          <motion.button
+            whileHover={{ scale: 0.98, rotate: 360, transition: { duration: 0.3 } }}
             className="aspect-square rounded-full p-1.5 border-2 border-gray-100"
           >
-            <View
-              as="span"
-              position="relative"
-              w="w-full"
-              h="h-full"
-              className="flex items-center justify-center"
-            >
+            <span className="flex items-center justify-center w-full h-full relative">
               <Image src="/logo.png" width={24} height={24} alt="cta_dp_image" layout="intrinsic" />
-            </View>
+            </span>
           </motion.button>
-        </Stack>
-      </Stack>
-    </View>
+        </div>
+      </div>
+    </div>
   );
 };

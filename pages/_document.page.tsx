@@ -1,12 +1,12 @@
-import React from 'react';
-import NextDocument, { Html, Head, Main, NextScript } from 'next/document';
+import NextDocument, { Head, Html, Main, NextScript } from 'next/document';
 
 export default class Document extends NextDocument {
   render() {
     return (
       <Html lang="en">
-        <Head>{/* <link href="/font/stylesheet.css" rel="stylesheet" /> */}</Head>
+        <Head></Head>
         <body>
+          <div id="modals" />
           <Main />
           <NextScript />
         </body>
