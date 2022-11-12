@@ -47,20 +47,20 @@ const ContactModal = ({ show, onHide }: Props) => {
                 initial={{ y: '-40%', x: '-50%', opacity: 0 }}
                 animate={{ y: '-50%', x: '-50%', opacity: 1 }}
                 exit={{ y: '-40%', x: '-50%', opacity: 0 }}
-                className="max-w-md absolute top-1/2 left-1/2 transform -translate-x-1/2 -translate-y-1/2 z-50 bg-white p-8 shadow-2xl shadow-gray-900/20 rounded-xl"
+                className="max-w-md overflow-hidden absolute top-1/2 left-1/2 transform -translate-x-1/2 -translate-y-1/2 z-50 bg-white px-8 pt-16 pb-10 shadow-2xl shadow-gray-900/20 rounded-xl"
               >
-                {/* <div className="relative w-full">
+                <div className="absolute left-0 top-0 w-full h-40 overflow-hidden">
                   <svg
-                    className="absolute left-1/2 top-0 transform -translate-x-1/2 "
-                    width={420}
-                    height={420}
+                    width={440}
+                    height={440}
+                    className="absolute left-1/2 -top-[110px] transform -translate-x-1/2 "
                     viewBox="0 0 4276 4276"
                     fill="none"
                     xmlns="http://www.w3.org/2000/svg"
                   >
                     <path
                       d="M2138 4103.09C3223.29 4103.09 4103.09 3223.29 4103.09 2138C4103.09 1052.71 3223.29 172.912 2138 172.912C1052.71 172.912 172.912 1052.71 172.912 2138C172.912 3223.29 1052.71 4103.09 2138 4103.09Z"
-                      className="stroke-slate-500"
+                      className="stroke-slate-300/80"
                       strokeWidth={5}
                       strokeLinecap="round"
                       strokeLinejoin="round"
@@ -68,7 +68,7 @@ const ContactModal = ({ show, onHide }: Props) => {
 
                     <path
                       d="M2138 3593.23C2941.7 3593.23 3593.23 2941.7 3593.23 2138C3593.23 1334.3 2941.7 682.774 2138 682.774C1334.3 682.774 682.775 1334.3 682.775 2138C682.775 2941.7 1334.3 3593.23 2138 3593.23Z"
-                      className="stroke-slate-500"
+                      className="stroke-slate-300/80"
                       strokeWidth={5}
                       strokeLinecap="round"
                       strokeLinejoin="round"
@@ -76,66 +76,70 @@ const ContactModal = ({ show, onHide }: Props) => {
 
                     <path
                       d="M2138 3083.43C2660.14 3083.43 3083.43 2660.15 3083.43 2138C3083.43 1615.85 2660.14 1192.57 2138 1192.57C1615.85 1192.57 1192.57 1615.85 1192.57 2138C1192.57 2660.15 1615.85 3083.43 2138 3083.43Z"
-                      className="stroke-slate-500"
+                      className="stroke-slate-300/80"
                       strokeWidth={5}
                       strokeLinecap="round"
                       strokeLinejoin="round"
                     />
                   </svg>
-                </div> */}
-                <div className="flex w-max mx-auto">
-                  <div className="mx-auto rounded-full bg-orange-100 flex items-center justify-center w-20 h-20 border-2 border-white">
-                    <Image
-                      src="/think.png"
-                      width={120}
-                      height={120}
-                      alt="cta_dp_image"
-                      className="transform translate-y-1"
-                    />
-                  </div>
-                  <div className="mx-auto rounded-full bg-orange-100 flex items-center justify-center w-20 h-20 -ml-8 z-10 border-2 border-white">
-                    <Image
-                      src="/unknown.png"
-                      width={120}
-                      height={120}
-                      alt="cta_dp_image"
-                      className="transform translate-x-1"
-                    />
-                  </div>
                 </div>
-                <div className="mt-6">
-                  <div className="flex-[0.5] text-center">
-                    <h5 className="text-slate-900 font-semibold text-xl">
-                      Write me your thoughts!{' '}
-                    </h5>
-                    <h6 className="text-slate-400 text-sm font-normal max-w-[320px] mx-auto mt-2">
-                      Feel free to write me a letter letting me know what you think! I would love to
-                      hear from you!
-                    </h6>
+                <div className="bg-gradient-to-b absolute left-0 top-0 w-full h-40 overflow-hidden from-white/20 to-white" />
+                <div className="z-50">
+                  <div className="flex w-max mx-auto">
+                    <div className="mx-auto rounded-full bg-orange-100 flex items-center justify-center w-20 h-20 z-10 border-2 border-white">
+                      <Image
+                        src="/think.png"
+                        width={120}
+                        height={120}
+                        alt="cta_dp_image"
+                        className="transform translate-y-1"
+                      />
+                    </div>
+                    <div className="mx-auto rounded-full bg-orange-100 flex items-center justify-center w-20 h-20 -ml-8 z-10 border-2 border-white">
+                      <Image
+                        src="/unknown.png"
+                        width={120}
+                        height={120}
+                        alt="cta_dp_image"
+                        className="transform translate-x-1"
+                      />
+                    </div>
                   </div>
-                  <form className="flex-[0.5] mt-8 space-y-3" onSubmit={handleSubmit}>
-                    <input
-                      className="font-normal text-base w-full bg-white px-4 py-2 border border-slate-200/80 rounded-xl placeholder-slate-300 focus:outline-none focus:border-slate-200 text-slate-600"
-                      placeholder={`johnwhosnow@xy...`}
-                      name="email"
-                      value={form.email}
-                      onChange={handleChange}
-                    />
-                    <textarea
-                      className="font-normal text-base w-full resize-none bg-white px-4 py-2 border border-slate-200/80 rounded-xl placeholder-slate-300 focus:outline-none focus:border-slate-200 text-slate-600"
-                      placeholder={`There was a brown cro... `}
-                      name="content"
-                      rows={2}
-                      value={form.content}
-                      onChange={handleChange}
-                    />
-                    <motion.button
-                      whileTap={{ scale: 0.98 }}
-                      className=" bg-slate-900 px-5 py-2 rounded-full w-full font-semibold text-base"
-                    >
-                      Send
-                    </motion.button>
-                  </form>
+                  <div className="mt-6">
+                    <div className="flex-[0.5] text-center">
+                      <h5 className="text-slate-900 font-semibold text-xl">
+                        Write me your thoughts!{' '}
+                      </h5>
+                      <h6 className="text-slate-400 text-sm font-normal max-w-[320px] mx-auto mt-2">
+                        Feel free to write me a letter letting me know what you think! I would love
+                        to hear from you!
+                      </h6>
+                    </div>
+                    <form className="flex-[0.5] mt-8 space-y-3" onSubmit={handleSubmit}>
+                      <input
+                        className="font-normal text-sm w-full bg-white px-4 py-2 border border-slate-200/80 rounded-xl placeholder-slate-300 focus:outline-none focus:border-slate-200 text-slate-600"
+                        placeholder={`Ken Adams...`}
+                        name="email"
+                        value={form.email}
+                        onChange={handleChange}
+                      />
+                      <textarea
+                        className="font-normal text-sm w-full resize-none bg-white px-4 py-2 border border-slate-200/80 rounded-xl placeholder-slate-300 focus:outline-none focus:border-slate-200 text-slate-600"
+                        placeholder={`They don't know that we know that they know!`}
+                        name="content"
+                        rows={3}
+                        value={form.content}
+                        onChange={handleChange}
+                      />
+                      <motion.button
+                        disabled={form.content.trim() === '' || form.email.trim() === ''}
+                        whileTap={{ scale: 0.98 }}
+                        className="bg-slate-900 disabled:bg-slate-800 px-5 py-2 rounded-full w-full font-semibold text-base"
+                      >
+                        Send
+                      </motion.button>
+                    </form>
+                  </div>
                 </div>
               </motion.div>
               <div
