@@ -7,7 +7,7 @@ interface Props {
 
 export const CTA = ({ onConnectClick }: Props) => {
   return (
-    <div className="h-screen ctagradient p-10">
+    <div className="h-screen ctagradient p-10 bg-white">
       <div className="h-full flex items-center justify-center flex-col max-w-screen-2xl relative mx-auto">
         <div className="w-28 h-28 flex items-center justify-center bg-orange-100 rounded-full">
           <Image
@@ -15,18 +15,18 @@ export const CTA = ({ onConnectClick }: Props) => {
             width={120}
             height={120}
             alt="cta_dp_image"
-            layout="intrinsic"
+            priority
             className="transform translate-x-1 translate-y-1"
           />
         </div>
-        <h5 className="mt-4 text-gray-400 font-medium text-center">
+        <h5 className="mt-6 text-gray-400 font-medium text-center">
           Hi, I am <span className="text-xl text-gray-600 font-medium">Sayantan</span>.{''}
           <Image
             src="/cta_hand.png"
             width={26}
             height={26}
             alt="cta_hand_image"
-            layout="intrinsic"
+            className="inline-block transform -translate-y-2"
           />
         </h5>
         <h1 className="max-w-xl text-5xl textAlign text-center text-gray-700 mt-6 font-medium">
