@@ -26,8 +26,8 @@ export const CTA = ({ onConnectClick }: Props) => {
         link: 'https://github.com/Sayantan-s',
         icon: (
           <svg
-            width={20}
-            height={20}
+            width={17}
+            height={17}
             viewBox="0 0 36 36"
             fill="none"
             xmlns="http://www.w3.org/2000/svg"
@@ -45,8 +45,8 @@ export const CTA = ({ onConnectClick }: Props) => {
         link: 'https://www.instagram.com/sayantan__s/',
         icon: (
           <svg
-            width={20}
-            height={20}
+            width={17}
+            height={17}
             viewBox="0 0 35 35"
             fill="none"
             xmlns="http://www.w3.org/2000/svg"
@@ -62,8 +62,8 @@ export const CTA = ({ onConnectClick }: Props) => {
         link: 'https://www.linkedin.com/in/sayantan-samanta-554bb117a/',
         icon: (
           <svg
-            width={20}
-            height={20}
+            width={17}
+            height={17}
             viewBox="0 0 34 34"
             fill="none"
             xmlns="http://www.w3.org/2000/svg"
@@ -82,8 +82,8 @@ export const CTA = ({ onConnectClick }: Props) => {
         download: 'resume_sayantan',
         icon: (
           <svg
-            width={20}
-            height={20}
+            width={17}
+            height={17}
             viewBox="0 0 29 28"
             fill="none"
             xmlns="http://www.w3.org/2000/svg"
@@ -119,7 +119,18 @@ export const CTA = ({ onConnectClick }: Props) => {
   return (
     <div className="h-screen ctagradient p-10 bg-white">
       <div className="h-full flex items-center justify-center flex-col max-w-screen-2xl relative mx-auto">
-        <div className="w-28 h-28 flex items-center justify-center bg-orange-100 rounded-full">
+        <motion.div
+          initial={{ y: 25, opacity: 0 }}
+          animate={{
+            y: 0,
+            opacity: 1,
+            transition: {
+              delay: 0,
+              duration: 0.5
+            }
+          }}
+          className="w-28 h-28 flex items-center justify-center bg-orange-100 rounded-full"
+        >
           <Image
             src="/face.png"
             width={120}
@@ -128,8 +139,19 @@ export const CTA = ({ onConnectClick }: Props) => {
             priority
             className="transform translate-x-1 translate-y-1"
           />
-        </div>
-        <h5 className="mt-6 text-gray-400 font-medium text-center">
+        </motion.div>
+        <motion.h5
+          initial={{ y: 25, opacity: 0 }}
+          animate={{
+            y: 0,
+            opacity: 1,
+            transition: {
+              delay: 0.03,
+              duration: 0.5
+            }
+          }}
+          className="mt-6 text-gray-400 font-medium text-center"
+        >
           Hi, I am <span className="text-xl text-gray-600 font-medium">Sayantan</span>.{''}
           <Image
             src="/cta_hand.png"
@@ -138,53 +160,77 @@ export const CTA = ({ onConnectClick }: Props) => {
             alt="cta_hand_image"
             className="inline-block transform -translate-y-2"
           />
-        </h5>
-        <h1 className="max-w-xl text-5xl textAlign text-center text-gray-700 mt-6 font-medium">
-          Building
-          <span className="relative text-5xl font-medium text-gray-700 w-max">
-            <svg
-              className="absolute -top-7 -right-14"
-              width={32 * 0.35}
-              height={32 * 0.35}
-              viewBox="0 0 32 32"
-              fill="none"
-              xmlns="http://www.w3.org/2000/svg"
+        </motion.h5>
+        <motion.div className="max-w-xl md:text-5xl text-4xl textAlign text-center text-gray-700 mt-6 font-medium">
+          <div>
+            <motion.h1
+              initial={{ y: 25, opacity: 0 }}
+              animate={{
+                y: 0,
+                opacity: 1,
+                transition: {
+                  delay: 0.06,
+                  duration: 0.5
+                }
+              }}
             >
-              <path
-                d="M16.0406 32C15.536 32 15.1094 31.6346 14.9872 31.145C14.5976 29.5845 13.8519 27.925 12.75 26.1667C11.4444 24.0555 9.58333 22.0973 7.16667 20.2917C5.06478 18.703 2.9629 17.6197 0.861021 17.0418C0.363208 16.905 0 16.4635 0 15.9472C0 15.4411 0.349237 15.0047 0.835957 14.8657C2.89672 14.2774 4.88195 13.3221 6.79166 12C8.98611 10.4722 10.8194 8.63888 12.2917 6.5C13.5941 4.59464 14.4881 2.71021 14.9738 0.846731C15.101 0.358552 15.5308 0 16.0354 0C16.5454 0 16.9782 0.366493 17.1024 0.861328C17.3827 1.97846 17.8208 3.12192 18.4166 4.29166C19.1667 5.73611 20.125 7.12499 21.2917 8.45834C22.4861 9.76389 23.8195 10.9444 25.2917 12C27.2155 13.3637 29.1712 14.3218 31.159 14.8742C31.6467 15.0097 32 15.4439 32 15.95C32 16.4637 31.636 16.9014 31.1406 17.0373C29.8806 17.3827 28.5837 17.9398 27.2501 18.7083C25.6389 19.6528 24.1389 20.7778 22.7499 22.0834C21.3611 23.3611 20.2222 24.7083 19.3333 26.125C18.2293 27.8869 17.4827 29.5592 17.0939 31.1422C16.9733 31.6333 16.5461 32 16.0406 32Z"
-                className="fill-yellow-300/90"
-              />
-            </svg>
-            <svg
-              className="absolute -top-12 -right-8"
-              width={32 * 0.4}
-              height={32 * 0.4}
-              viewBox="0 0 32 32"
-              fill="none"
-              xmlns="http://www.w3.org/2000/svg"
-            >
-              <path
-                d="M16.0406 32C15.536 32 15.1094 31.6346 14.9872 31.145C14.5976 29.5845 13.8519 27.925 12.75 26.1667C11.4444 24.0555 9.58333 22.0973 7.16667 20.2917C5.06478 18.703 2.9629 17.6197 0.861021 17.0418C0.363208 16.905 0 16.4635 0 15.9472C0 15.4411 0.349237 15.0047 0.835957 14.8657C2.89672 14.2774 4.88195 13.3221 6.79166 12C8.98611 10.4722 10.8194 8.63888 12.2917 6.5C13.5941 4.59464 14.4881 2.71021 14.9738 0.846731C15.101 0.358552 15.5308 0 16.0354 0C16.5454 0 16.9782 0.366493 17.1024 0.861328C17.3827 1.97846 17.8208 3.12192 18.4166 4.29166C19.1667 5.73611 20.125 7.12499 21.2917 8.45834C22.4861 9.76389 23.8195 10.9444 25.2917 12C27.2155 13.3637 29.1712 14.3218 31.159 14.8742C31.6467 15.0097 32 15.4439 32 15.95C32 16.4637 31.636 16.9014 31.1406 17.0373C29.8806 17.3827 28.5837 17.9398 27.2501 18.7083C25.6389 19.6528 24.1389 20.7778 22.7499 22.0834C21.3611 23.3611 20.2222 24.7083 19.3333 26.125C18.2293 27.8869 17.4827 29.5592 17.0939 31.1422C16.9733 31.6333 16.5461 32 16.0406 32Z"
-                className="fill-yellow-300/80"
-              />
-            </svg>
-            <svg
-              className="absolute -top-5 -right-6"
-              width={32 * 0.45}
-              height={32 * 0.45}
-              viewBox="0 0 32 32"
-              fill="none"
-              xmlns="http://www.w3.org/2000/svg"
-            >
-              <path
-                d="M16.0406 32C15.536 32 15.1094 31.6346 14.9872 31.145C14.5976 29.5845 13.8519 27.925 12.75 26.1667C11.4444 24.0555 9.58333 22.0973 7.16667 20.2917C5.06478 18.703 2.9629 17.6197 0.861021 17.0418C0.363208 16.905 0 16.4635 0 15.9472C0 15.4411 0.349237 15.0047 0.835957 14.8657C2.89672 14.2774 4.88195 13.3221 6.79166 12C8.98611 10.4722 10.8194 8.63888 12.2917 6.5C13.5941 4.59464 14.4881 2.71021 14.9738 0.846731C15.101 0.358552 15.5308 0 16.0354 0C16.5454 0 16.9782 0.366493 17.1024 0.861328C17.3827 1.97846 17.8208 3.12192 18.4166 4.29166C19.1667 5.73611 20.125 7.12499 21.2917 8.45834C22.4861 9.76389 23.8195 10.9444 25.2917 12C27.2155 13.3637 29.1712 14.3218 31.159 14.8742C31.6467 15.0097 32 15.4439 32 15.95C32 16.4637 31.636 16.9014 31.1406 17.0373C29.8806 17.3827 28.5837 17.9398 27.2501 18.7083C25.6389 19.6528 24.1389 20.7778 22.7499 22.0834C21.3611 23.3611 20.2222 24.7083 19.3333 26.125C18.2293 27.8869 17.4827 29.5592 17.0939 31.1422C16.9733 31.6333 16.5461 32 16.0406 32Z"
-                className="fill-yellow-300"
-              />
-            </svg>{' '}
-            Delightful
-          </span>
-          <br />
-          <span className="relative text-5xl font-medium text-gray-700 w-max">
+              Building
+              <span className="relative md:text-5xl text-4xl font-medium text-gray-700 w-max">
+                <svg
+                  className="absolute -top-7 -right-14"
+                  width={32 * 0.35}
+                  height={32 * 0.35}
+                  viewBox="0 0 32 32"
+                  fill="none"
+                  xmlns="http://www.w3.org/2000/svg"
+                >
+                  <path
+                    d="M16.0406 32C15.536 32 15.1094 31.6346 14.9872 31.145C14.5976 29.5845 13.8519 27.925 12.75 26.1667C11.4444 24.0555 9.58333 22.0973 7.16667 20.2917C5.06478 18.703 2.9629 17.6197 0.861021 17.0418C0.363208 16.905 0 16.4635 0 15.9472C0 15.4411 0.349237 15.0047 0.835957 14.8657C2.89672 14.2774 4.88195 13.3221 6.79166 12C8.98611 10.4722 10.8194 8.63888 12.2917 6.5C13.5941 4.59464 14.4881 2.71021 14.9738 0.846731C15.101 0.358552 15.5308 0 16.0354 0C16.5454 0 16.9782 0.366493 17.1024 0.861328C17.3827 1.97846 17.8208 3.12192 18.4166 4.29166C19.1667 5.73611 20.125 7.12499 21.2917 8.45834C22.4861 9.76389 23.8195 10.9444 25.2917 12C27.2155 13.3637 29.1712 14.3218 31.159 14.8742C31.6467 15.0097 32 15.4439 32 15.95C32 16.4637 31.636 16.9014 31.1406 17.0373C29.8806 17.3827 28.5837 17.9398 27.2501 18.7083C25.6389 19.6528 24.1389 20.7778 22.7499 22.0834C21.3611 23.3611 20.2222 24.7083 19.3333 26.125C18.2293 27.8869 17.4827 29.5592 17.0939 31.1422C16.9733 31.6333 16.5461 32 16.0406 32Z"
+                    className="fill-yellow-300/90"
+                  />
+                </svg>
+                <svg
+                  className="absolute -top-12 -right-8"
+                  width={32 * 0.4}
+                  height={32 * 0.4}
+                  viewBox="0 0 32 32"
+                  fill="none"
+                  xmlns="http://www.w3.org/2000/svg"
+                >
+                  <path
+                    d="M16.0406 32C15.536 32 15.1094 31.6346 14.9872 31.145C14.5976 29.5845 13.8519 27.925 12.75 26.1667C11.4444 24.0555 9.58333 22.0973 7.16667 20.2917C5.06478 18.703 2.9629 17.6197 0.861021 17.0418C0.363208 16.905 0 16.4635 0 15.9472C0 15.4411 0.349237 15.0047 0.835957 14.8657C2.89672 14.2774 4.88195 13.3221 6.79166 12C8.98611 10.4722 10.8194 8.63888 12.2917 6.5C13.5941 4.59464 14.4881 2.71021 14.9738 0.846731C15.101 0.358552 15.5308 0 16.0354 0C16.5454 0 16.9782 0.366493 17.1024 0.861328C17.3827 1.97846 17.8208 3.12192 18.4166 4.29166C19.1667 5.73611 20.125 7.12499 21.2917 8.45834C22.4861 9.76389 23.8195 10.9444 25.2917 12C27.2155 13.3637 29.1712 14.3218 31.159 14.8742C31.6467 15.0097 32 15.4439 32 15.95C32 16.4637 31.636 16.9014 31.1406 17.0373C29.8806 17.3827 28.5837 17.9398 27.2501 18.7083C25.6389 19.6528 24.1389 20.7778 22.7499 22.0834C21.3611 23.3611 20.2222 24.7083 19.3333 26.125C18.2293 27.8869 17.4827 29.5592 17.0939 31.1422C16.9733 31.6333 16.5461 32 16.0406 32Z"
+                    className="fill-yellow-300/80"
+                  />
+                </svg>
+                <svg
+                  className="absolute -top-5 -right-6"
+                  width={32 * 0.45}
+                  height={32 * 0.45}
+                  viewBox="0 0 32 32"
+                  fill="none"
+                  xmlns="http://www.w3.org/2000/svg"
+                >
+                  <path
+                    d="M16.0406 32C15.536 32 15.1094 31.6346 14.9872 31.145C14.5976 29.5845 13.8519 27.925 12.75 26.1667C11.4444 24.0555 9.58333 22.0973 7.16667 20.2917C5.06478 18.703 2.9629 17.6197 0.861021 17.0418C0.363208 16.905 0 16.4635 0 15.9472C0 15.4411 0.349237 15.0047 0.835957 14.8657C2.89672 14.2774 4.88195 13.3221 6.79166 12C8.98611 10.4722 10.8194 8.63888 12.2917 6.5C13.5941 4.59464 14.4881 2.71021 14.9738 0.846731C15.101 0.358552 15.5308 0 16.0354 0C16.5454 0 16.9782 0.366493 17.1024 0.861328C17.3827 1.97846 17.8208 3.12192 18.4166 4.29166C19.1667 5.73611 20.125 7.12499 21.2917 8.45834C22.4861 9.76389 23.8195 10.9444 25.2917 12C27.2155 13.3637 29.1712 14.3218 31.159 14.8742C31.6467 15.0097 32 15.4439 32 15.95C32 16.4637 31.636 16.9014 31.1406 17.0373C29.8806 17.3827 28.5837 17.9398 27.2501 18.7083C25.6389 19.6528 24.1389 20.7778 22.7499 22.0834C21.3611 23.3611 20.2222 24.7083 19.3333 26.125C18.2293 27.8869 17.4827 29.5592 17.0939 31.1422C16.9733 31.6333 16.5461 32 16.0406 32Z"
+                    className="fill-yellow-300"
+                  />
+                </svg>{' '}
+                Delightful
+              </span>
+            </motion.h1>
+          </div>
+          <motion.h1
+            initial={{ y: 25, opacity: 0 }}
+            animate={{
+              y: 0,
+              opacity: 1,
+              transition: {
+                delay: 0.09,
+                duration: 0.5
+              }
+            }}
+            className="relative md:text-5xl text-4xl font-medium text-gray-700 w-max"
+          >
             <svg
               className="absolute -top-7 -left-14"
               width={32 * 0.35}
@@ -224,14 +270,23 @@ export const CTA = ({ onConnectClick }: Props) => {
                 className="fill-yellow-300"
               />
             </svg>
-            Experiences
-          </span>{' '}
-          for Mobile and
-          <span className="relative text-5xl font-medium text-gray-700 w-max">
+            Experiences for Mobile
+          </motion.h1>{' '}
+          <motion.h1
+            initial={{ y: 25, opacity: 0 }}
+            animate={{
+              y: 0,
+              opacity: 1,
+              transition: {
+                delay: 0.12,
+                duration: 0.5
+              }
+            }}
+            className="relative md:text-5xl text-4xl text-center font-medium text-gray-700 w-max mx-auto"
+          >
+            and
             <svg
-              className="absolute -bottom-4 right-3 transform rotate-3"
-              width={100}
-              height={24}
+              className="absolute md:w-[100px] w-[80px] h-[24px] md:-bottom-4 md:right-3 -bottom-4 -right-0 transform rotate-3"
               viewBox="0 0 146 24"
               fill="none"
               xmlns="http://www.w3.org/2000/svg"
@@ -244,22 +299,71 @@ export const CTA = ({ onConnectClick }: Props) => {
               />
             </svg>{' '}
             Web.
-          </span>
-        </h1>
-        <span className="mt-6 max-w-2xl text-center text-gray-400 font-normal text-base">
-          A <span className="text-gray-500 font-medium text-base">Software Engineer</span> based in
-          India whose job primarily involves bridging the gap between design and code or maybe
-          writing server-side logic. Apart from Engineering, there is a baller side which cries
-          over,{' '}
-          <span className="text-gray-500 font-medium text-base">
-            &quot;Why Leo left Barca!&quot;
-          </span>{' '}
-        </span>
+          </motion.h1>
+        </motion.div>
+        <motion.div className="md:text-base text-sm mt-6 md:max-w-2xl max-w-md text-center text-gray-400 font-normal">
+          <motion.p
+            initial={{ y: 10, opacity: 0 }}
+            animate={{
+              y: 0,
+              opacity: 1,
+              transition: {
+                delay: 0.15,
+                duration: 0.5
+              }
+            }}
+            className="inline"
+          >
+            A <span className="text-gray-500 font-medium text-base">Software Engineer</span> based
+            in India whose job primarily involves bridging the gap between
+          </motion.p>{' '}
+          <motion.p
+            className="inline"
+            initial={{ y: 10, opacity: 0 }}
+            animate={{
+              y: 0,
+              opacity: 1,
+              transition: {
+                delay: 0.18,
+                duration: 0.5
+              }
+            }}
+          >
+            design and code or maybe writing server-side logic. Apart from Engineering, there is a
+            baller
+          </motion.p>{' '}
+          <motion.p
+            className="inline"
+            initial={{ y: 10, opacity: 0 }}
+            animate={{
+              y: 0,
+              opacity: 1,
+              transition: {
+                delay: 0.21,
+                duration: 0.5
+              }
+            }}
+          >
+            side which cries over,{' '}
+            <span className="text-gray-500 font-medium text-base">
+              &quot;Why Leo left Barca!&quot;
+            </span>
+          </motion.p>{' '}
+        </motion.div>
         <div className="mt-6 flex space-x-2 items-center">
           <motion.button
             whileTap={{ scale: 0.98 }}
             className="flex items-center bg-slate-900 px-5 py-2 rounded-full"
             onClick={onConnectClick}
+            initial={{ y: 10, opacity: 0 }}
+            animate={{
+              y: 0,
+              opacity: 1,
+              transition: {
+                delay: 0.24,
+                duration: 0.5
+              }
+            }}
           >
             <span className="text-gray-50 font-semibold text-base transform translate-y-[0.3px]">
               Let&apos;s Talk
@@ -267,6 +371,15 @@ export const CTA = ({ onConnectClick }: Props) => {
           </motion.button>
           <div className="relative" ref={ref}>
             <motion.button
+              initial={{ y: 10, opacity: 0 }}
+              animate={{
+                y: 0,
+                opacity: 1,
+                transition: {
+                  delay: 0.27,
+                  duration: 0.5
+                }
+              }}
               onClick={() => setHovered(prevState => !prevState)}
               whileHover={{ scale: 0.98, rotate: 360, transition: { duration: 0.3 } }}
               className="aspect-square rounded-full p-1.5 border-2 border-gray-100 z-50"
@@ -284,11 +397,13 @@ export const CTA = ({ onConnectClick }: Props) => {
             <div className="z-10">
               {svgArr.map(({ icon, link, ...rest }, index) => (
                 <motion.a
+                  {...rest}
                   href={link}
                   target={'_blank'}
                   whileTap={{ scale: 0.9 }}
                   className="cursor-pointer absolute top-1/2 left-1/2 bg-white w-10 h-10 rounded-full flex justify-center items-center shadow-lg shadow-slate-500/10"
                   key={index}
+                  initial={{ x: '-50%', y: '-50%', scale: 0 }}
                   animate={{
                     x: isHovered ? -100 + index * 50 : '-50%',
                     y: isHovered ? -70 : '-50%',

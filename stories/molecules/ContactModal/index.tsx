@@ -93,6 +93,7 @@ const ContactModal = ({ show, onHide }: Props) => {
                         height={120}
                         alt="cta_dp_image"
                         className="transform translate-y-1"
+                        priority
                       />
                     </div>
                     <div className="mx-auto rounded-full bg-orange-100 flex items-center justify-center w-20 h-20 -ml-8 z-10 border-2 border-white">
@@ -102,6 +103,7 @@ const ContactModal = ({ show, onHide }: Props) => {
                         height={120}
                         alt="cta_dp_image"
                         className="transform translate-x-1"
+                        priority
                       />
                     </div>
                   </div>
