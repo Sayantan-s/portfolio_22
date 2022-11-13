@@ -47,7 +47,7 @@ const ContactModal = ({ show, onHide }: Props) => {
                 initial={{ y: '-40%', x: '-50%', opacity: 0 }}
                 animate={{ y: '-50%', x: '-50%', opacity: 1 }}
                 exit={{ y: '-40%', x: '-50%', opacity: 0 }}
-                className="max-w-md overflow-hidden absolute top-1/2 left-1/2 transform -translate-x-1/2 -translate-y-1/2 z-50 bg-white px-8 pt-16 pb-10 shadow-2xl shadow-gray-900/20 rounded-xl"
+                className="max-w-md min-w-[380px] overflow-hidden absolute top-1/2 left-1/2 transform -translate-x-1/2 -translate-y-1/2 z-50 bg-white px-8 pt-16 pb-10 shadow-2xl shadow-gray-900/20 rounded-xl"
               >
                 <div className="absolute left-0 top-0 w-full h-40 overflow-hidden">
                   <svg

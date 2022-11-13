@@ -1,3 +1,4 @@
+import { useWindowSize } from '@lib/hooks';
 import { motion } from 'framer-motion';
 import Image from 'next/image';
 import { useEffect, useMemo, useRef, useState } from 'react';
@@ -10,6 +11,10 @@ export const CTA = ({ onConnectClick }: Props) => {
   const [isHovered, setHovered] = useState(false);
 
   const ref = useRef<HTMLDivElement>(null);
+
+  const windowSize = useWindowSize();
+
+  console.log(windowSize);
 
   useEffect(() => {
     const handleDocumentClick = (eve: MouseEvent) =>
@@ -117,7 +122,14 @@ export const CTA = ({ onConnectClick }: Props) => {
   );
 
   return (
-    <div className="h-screen ctagradient p-10 bg-white">
+    <div
+      className="h-screen ctagradient md:p-10 p-4 bg-white select-none"
+      style={{
+        backgroundColor: ' rgb(255, 255, 255)',
+        backgroundImage:
+          'radial-gradient(at 100% 0%, hsla(32, 98%, 83%, 0.4) 0px, transparent 50%),radial-gradient(at 40% 1%, hsla(32, 98%, 83%, 0.2) 0px, transparent 50%),radial-gradient(at 70% 60%, hsla(152, 75%, 80%, 0.3) 0px, transparent 50%),radial-gradient(at 0% 1%, hsla(152, 75%, 80%, 0.4) 0px, transparent 50%),radial-gradient(at 30% 40%, hsla(32, 98%, 83%, 0.3) 0px, transparent 30%)'
+      }}
+    >
       <div className="h-full flex items-center justify-center flex-col max-w-screen-2xl relative mx-auto">
         <motion.div
           initial={{ y: 25, opacity: 0 }}
@@ -129,7 +141,7 @@ export const CTA = ({ onConnectClick }: Props) => {
               duration: 0.5
             }
           }}
-          className="w-28 h-28 flex items-center justify-center bg-orange-100 rounded-full"
+          className="sm:w-28 sm:h-28 w-20 h-20 flex items-center justify-center bg-orange-100 rounded-full"
         >
           <Image
             src="/face.png"
@@ -150,18 +162,19 @@ export const CTA = ({ onConnectClick }: Props) => {
               duration: 0.5
             }
           }}
-          className="mt-6 text-gray-400 font-medium text-center"
+          className="mt-6 text-gray-400 md:text-base text-sm font-medium text-center bg-gradient-to-br from-white to-slate-50 px-4 py-2 rounded-full shadow-2xl shadow-slate-700/30"
         >
-          Hi, I am <span className="text-xl text-gray-600 font-medium">Sayantan</span>.{''}
+          Hi, I am <span className="md:text-xl text-base text-gray-600 font-medium">Sayantan</span>.
+          {''}
           <Image
+            width={windowSize.width < 768 ? 20 : 26}
+            height={windowSize.width < 768 ? 20 : 26}
             src="/cta_hand.png"
-            width={26}
-            height={26}
             alt="cta_hand_image"
-            className="inline-block transform -translate-y-2"
+            className="inline-block transform -translate-y-1 md:w-[26px] md:h-[26px] w-18px h-18px"
           />
         </motion.h5>
-        <motion.div className="max-w-xl md:text-5xl text-4xl textAlign text-center text-gray-700 mt-6 font-medium">
+        <motion.div className="max-w-xl md:text-5xl sm:text-4xl text-3xl textAlign text-center text-gray-700 mt-6 font-medium">
           <div>
             <motion.h1
               initial={{ y: 25, opacity: 0 }}
@@ -175,11 +188,9 @@ export const CTA = ({ onConnectClick }: Props) => {
               }}
             >
               Building
-              <span className="relative md:text-5xl text-4xl font-medium text-gray-700 w-max">
+              <span className="relative md:text-5xl sm:text-4xl text-3xl font-medium text-gray-700 w-max">
                 <svg
-                  className="absolute -top-7 -right-14"
-                  width={32 * 0.35}
-                  height={32 * 0.35}
+                  className="absolute -top-7 -right-14 w-[11.2px] h-[11.2px]"
                   viewBox="0 0 32 32"
                   fill="none"
                   xmlns="http://www.w3.org/2000/svg"
@@ -190,9 +201,7 @@ export const CTA = ({ onConnectClick }: Props) => {
                   />
                 </svg>
                 <svg
-                  className="absolute -top-12 -right-8"
-                  width={32 * 0.4}
-                  height={32 * 0.4}
+                  className="absolute -top-12 -right-8 w-[12.8px] h-[12.8px]"
                   viewBox="0 0 32 32"
                   fill="none"
                   xmlns="http://www.w3.org/2000/svg"
@@ -203,9 +212,7 @@ export const CTA = ({ onConnectClick }: Props) => {
                   />
                 </svg>
                 <svg
-                  className="absolute -top-5 -right-6"
-                  width={32 * 0.45}
-                  height={32 * 0.45}
+                  className="absolute -top-5 -right-6 w-[14.4px] h-[14.4px]"
                   viewBox="0 0 32 32"
                   fill="none"
                   xmlns="http://www.w3.org/2000/svg"
@@ -229,12 +236,10 @@ export const CTA = ({ onConnectClick }: Props) => {
                 duration: 0.5
               }
             }}
-            className="relative md:text-5xl text-4xl font-medium text-gray-700 w-max"
+            className="relative md:text-5xl sm:text-4xl text-3xl font-medium text-gray-700 w-max"
           >
             <svg
-              className="absolute -top-7 -left-14"
-              width={32 * 0.35}
-              height={32 * 0.35}
+              className="absolute -top-7 -left-14 w-[11.2px] h-[11.2px]"
               viewBox="0 0 32 32"
               fill="none"
               xmlns="http://www.w3.org/2000/svg"
@@ -245,9 +250,7 @@ export const CTA = ({ onConnectClick }: Props) => {
               />
             </svg>
             <svg
-              className="absolute -top-12 -left-8"
-              width={32 * 0.4}
-              height={32 * 0.4}
+              className="absolute -top-12 -left-8 w-[12.8px] h-[12.8px]"
               viewBox="0 0 32 32"
               fill="none"
               xmlns="http://www.w3.org/2000/svg"
@@ -258,9 +261,7 @@ export const CTA = ({ onConnectClick }: Props) => {
               />
             </svg>
             <svg
-              className="absolute -top-5 -left-6"
-              width={32 * 0.45}
-              height={32 * 0.45}
+              className="absolute -top-5 -left-6 w-[14.4px] h-[14.4px]"
               viewBox="0 0 32 32"
               fill="none"
               xmlns="http://www.w3.org/2000/svg"
@@ -282,7 +283,7 @@ export const CTA = ({ onConnectClick }: Props) => {
                 duration: 0.5
               }
             }}
-            className="relative md:text-5xl text-4xl text-center font-medium text-gray-700 w-max mx-auto"
+            className="relative md:text-5xl sm:text-4xl text-3xl text-center font-medium text-gray-700 w-max mx-auto"
           >
             and
             <svg
@@ -301,7 +302,18 @@ export const CTA = ({ onConnectClick }: Props) => {
             Web.
           </motion.h1>
         </motion.div>
-        <motion.div className="md:text-base text-sm mt-6 md:max-w-2xl max-w-md text-center text-gray-400 font-normal">
+        <motion.div
+          initial={{ y: 10, opacity: 0 }}
+          animate={{
+            y: 0,
+            opacity: 1,
+            transition: {
+              delay: 0.15,
+              duration: 0.5
+            }
+          }}
+          className="md:text-base text-sm mt-6 md:max-w-2xl sm:max-w-lg max-w-md text-center text-gray-400 font-normal"
+        >
           <motion.p
             initial={{ y: 10, opacity: 0 }}
             animate={{
@@ -312,6 +324,7 @@ export const CTA = ({ onConnectClick }: Props) => {
                 duration: 0.5
               }
             }}
+            className="md:block inline"
           >
             A <span className="text-gray-500 font-medium text-base">Software Engineer</span> based
             in India whose job primarily involves bridging the gap between
@@ -326,6 +339,7 @@ export const CTA = ({ onConnectClick }: Props) => {
                 duration: 0.5
               }
             }}
+            className="md:block inline"
           >
             design and code or maybe writing server-side logic. Apart from Engineering, there is a
             baller
@@ -340,6 +354,7 @@ export const CTA = ({ onConnectClick }: Props) => {
                 duration: 0.5
               }
             }}
+            className="md:block inline"
           >
             side which cries over,{' '}
             <span className="text-gray-500 font-medium text-base">
@@ -362,7 +377,7 @@ export const CTA = ({ onConnectClick }: Props) => {
               }
             }}
           >
-            <span className="text-gray-50 font-semibold text-base transform translate-y-[0.3px]">
+            <span className="text-gray-50 font-semibold sm:text-base text-sm transform translate-y-[0.3px]">
               Let&apos;s Talk
             </span>
           </motion.button>
@@ -379,16 +394,10 @@ export const CTA = ({ onConnectClick }: Props) => {
               }}
               onClick={() => setHovered(prevState => !prevState)}
               whileHover={{ scale: 0.98, rotate: 360, transition: { duration: 0.3 } }}
-              className="aspect-square rounded-full p-1.5 border-2 border-gray-100 z-50"
+              className="aspect-square rounded-full p-1.5 border-2 border-slate-100 z-50 bg-white/80"
             >
               <span className="flex items-center justify-center w-full h-full relative">
-                <Image
-                  src="/logo.png"
-                  width={24}
-                  height={24}
-                  alt="cta_dp_image"
-                  layout="intrinsic"
-                />
+                <Image src="/logo.png" width={24} height={24} alt="cta_dp_image" priority />
               </span>
             </motion.button>
             <div className="z-10">

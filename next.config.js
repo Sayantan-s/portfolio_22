@@ -16,7 +16,7 @@ const nextConfig = withMDX({
     domains: ['images.unsplash.com']
   },
   compiler: {
-    removeConsole: process.env.NODE_ENV === 'development'
+    removeConsole: process.env.NODE_ENV === 'production'
   }
 });
 

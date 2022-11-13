@@ -7,11 +7,11 @@ export const LandingPage = () => {
 
   const handleShow = useCallback(() => {
     setShowModal(true);
-  }, [showModal]);
+  }, []);
 
   const handleHide = useCallback(() => {
     setShowModal(false);
-  }, [setShowModal]);
+  }, []);
 
   return (
     <React.Fragment>
