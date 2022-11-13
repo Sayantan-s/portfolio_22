@@ -312,13 +312,11 @@ export const CTA = ({ onConnectClick }: Props) => {
                 duration: 0.5
               }
             }}
-            className="inline"
           >
             A <span className="text-gray-500 font-medium text-base">Software Engineer</span> based
             in India whose job primarily involves bridging the gap between
           </motion.p>{' '}
           <motion.p
-            className="inline"
             initial={{ y: 10, opacity: 0 }}
             animate={{
               y: 0,
@@ -333,7 +331,6 @@ export const CTA = ({ onConnectClick }: Props) => {
             baller
           </motion.p>{' '}
           <motion.p
-            className="inline"
             initial={{ y: 10, opacity: 0 }}
             animate={{
               y: 0,
