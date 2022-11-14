@@ -4,12 +4,17 @@ const defaultTheme = require('tailwindcss/defaultTheme');
 module.exports = {
   content: ['./stories/**/*.{ts,tsx}'],
   theme: {
+    ...defaultTheme.theme,
     extend: {
       colors: {}
     },
-    theme: {
-      ...defaultTheme.theme,
-      xss: '500px'
+    screens: {
+      xs: '470px',
+      sm: '640px',
+      md: '768px',
+      lg: '1024px',
+      xl: '1280px',
+      '2xl': '1536px'
     }
   },
   plugins: []

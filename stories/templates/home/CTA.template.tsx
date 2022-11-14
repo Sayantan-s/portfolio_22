@@ -118,9 +118,8 @@ export const CTA = ({ onConnectClick }: Props) => {
 
   return (
     <div
-      className="h-screen ctagradient md:p-10 p-4 bg-white select-none"
+      className="h-screen md:p-10 xs:p-4 p-2 bg-white select-none"
       style={{
-        backgroundColor: ' rgb(255, 255, 255)',
         backgroundImage:
           'radial-gradient(at 100% 0%, hsla(32, 98%, 83%, 0.4) 0px, transparent 50%),radial-gradient(at 40% 1%, hsla(32, 98%, 83%, 0.2) 0px, transparent 50%),radial-gradient(at 70% 60%, hsla(152, 75%, 80%, 0.3) 0px, transparent 50%),radial-gradient(at 0% 1%, hsla(152, 75%, 80%, 0.4) 0px, transparent 50%),radial-gradient(at 30% 40%, hsla(32, 98%, 83%, 0.3) 0px, transparent 30%)'
       }}
@@ -169,7 +168,7 @@ export const CTA = ({ onConnectClick }: Props) => {
             className="inline-block transform -translate-y-[6px] md:w-[22px] md:h-[22px] w-18px h-18px"
           />
         </motion.h5>
-        <motion.div className="max-w-xl md:text-5xl sm:text-4xl text-3xl textAlign text-center text-gray-700 mt-6 font-medium">
+        <motion.div className="max-w-xl md:text-5xl sm:text-4xl xs:text-3xl text-2xl text-center text-gray-700 mt-6 font-medium">
           <div>
             <motion.h1
               initial={{ y: 25, opacity: 0 }}
@@ -183,9 +182,9 @@ export const CTA = ({ onConnectClick }: Props) => {
               }}
             >
               Building
-              <span className="relative md:text-5xl sm:text-4xl text-3xl font-medium text-gray-700 w-max">
+              <span className="relative md:text-5xl sm:text-4xl xs:text-3xl text-2xl font-medium text-gray-700 w-max">
                 <svg
-                  className="absolute -top-7 -right-14 w-[11.2px] h-[11.2px]"
+                  className="absolute -top-7 xs:-right-14 -right-8 xs:w-[11.2px] xs:h-[11.2px] w-[9.6px] h-[9.6px]"
                   viewBox="0 0 32 32"
                   fill="none"
                   xmlns="http://www.w3.org/2000/svg"
@@ -196,7 +195,7 @@ export const CTA = ({ onConnectClick }: Props) => {
                   />
                 </svg>
                 <svg
-                  className="absolute -top-12 -right-8 w-[12.8px] h-[12.8px]"
+                  className="absolute -top-12 xs:-right-8 -right-4 xs:w-[12.8px] xs:h-[12.8px] w-[11.2px] h-[11.2px]"
                   viewBox="0 0 32 32"
                   fill="none"
                   xmlns="http://www.w3.org/2000/svg"
@@ -207,7 +206,7 @@ export const CTA = ({ onConnectClick }: Props) => {
                   />
                 </svg>
                 <svg
-                  className="absolute -top-5 -right-6 w-[14.4px] h-[14.4px]"
+                  className="absolute xs:-top-5 -top-6 xs:-right-6 -right-2 xs:w-[14.4px] xs:h-[14.4px] w-[12.8px] h-[12.8px]"
                   viewBox="0 0 32 32"
                   fill="none"
                   xmlns="http://www.w3.org/2000/svg"
@@ -231,10 +230,10 @@ export const CTA = ({ onConnectClick }: Props) => {
                 duration: 0.5
               }
             }}
-            className="relative md:text-5xl sm:text-4xl text-3xl font-medium text-gray-700 w-max"
+            className="relative md:text-5xl sm:text-4xl xs:text-3xl text-2xl font-medium text-gray-700 w-max"
           >
             <svg
-              className="absolute -top-7 -left-14 w-[11.2px] h-[11.2px]"
+              className="absolute -top-7 xs:-left-14 -left-8 xs:w-[11.2px] xs:h-[11.2px] w-[9.6px] h-[9.6px]"
               viewBox="0 0 32 32"
               fill="none"
               xmlns="http://www.w3.org/2000/svg"
@@ -245,7 +244,7 @@ export const CTA = ({ onConnectClick }: Props) => {
               />
             </svg>
             <svg
-              className="absolute -top-12 -left-8 w-[12.8px] h-[12.8px]"
+              className="absolute -top-12 xs:-left-8 -left-4 xs:w-[12.8px] xs:h-[12.8px] w-[11.2px] h-[11.2px]"
               viewBox="0 0 32 32"
               fill="none"
               xmlns="http://www.w3.org/2000/svg"
@@ -256,7 +255,7 @@ export const CTA = ({ onConnectClick }: Props) => {
               />
             </svg>
             <svg
-              className="absolute -top-5 -left-6 w-[14.4px] h-[14.4px]"
+              className="absolute xs:-top-5 -top-6 xs:-left-6 -left-2 xs:w-[14.4px] xs:h-[14.4px] w-[12.8px] h-[12.8px]"
               viewBox="0 0 32 32"
               fill="none"
               xmlns="http://www.w3.org/2000/svg"
@@ -278,7 +277,7 @@ export const CTA = ({ onConnectClick }: Props) => {
                 duration: 0.5
               }
             }}
-            className="relative md:text-5xl sm:text-4xl text-3xl text-center font-medium text-gray-700 w-max mx-auto"
+            className="relative md:text-5xl sm:text-4xl xs:text-3xl text-2xl text-center font-medium text-gray-700 w-max mx-auto"
           >
             and
             <svg
@@ -307,7 +306,7 @@ export const CTA = ({ onConnectClick }: Props) => {
               duration: 0.5
             }
           }}
-          className="md:text-base text-sm mt-6 md:max-w-2xl sm:max-w-lg max-w-md text-center text-gray-400 font-normal"
+          className="md:text-base text-sm mt-6 md:max-w-2xl sm:max-w-lg xs:max-w-md max-w-[340px] text-center text-gray-400 font-normal"
         >
           <motion.p
             initial={{ y: 10, opacity: 0 }}
@@ -389,7 +388,7 @@ export const CTA = ({ onConnectClick }: Props) => {
               }}
               onClick={() => setHovered(prevState => !prevState)}
               whileHover={{ scale: 0.98, rotate: 360, transition: { duration: 0.3 } }}
-              className="aspect-square rounded-full p-1.5 border-2 border-slate-200/80 z-50 bg-white"
+              className="aspect-square rounded-full p-1.5 border border-slate-200/90 z-50 bg-white"
             >
               <span className="flex items-center justify-center w-full h-full relative">
                 <Image src="/logo.png" width={24} height={24} alt="cta_dp_image" priority />
