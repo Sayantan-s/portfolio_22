@@ -118,7 +118,7 @@ export const CTA = ({ onConnectClick }: Props) => {
 
   return (
     <div
-      className="h-screen md:p-10 xs:p-4 p-2 bg-white select-none"
+      className="h-screen md:p-10 xs:p-4 p-3 bg-white select-none"
       style={{
         backgroundImage:
           'radial-gradient(at 100% 0%, hsla(32, 98%, 83%, 0.4) 0px, transparent 50%),radial-gradient(at 40% 1%, hsla(32, 98%, 83%, 0.2) 0px, transparent 50%),radial-gradient(at 70% 60%, hsla(152, 75%, 80%, 0.3) 0px, transparent 50%),radial-gradient(at 0% 1%, hsla(152, 75%, 80%, 0.4) 0px, transparent 50%),radial-gradient(at 30% 40%, hsla(32, 98%, 83%, 0.3) 0px, transparent 30%)'
@@ -281,7 +281,7 @@ export const CTA = ({ onConnectClick }: Props) => {
           >
             and
             <svg
-              className="absolute md:w-[100px] w-[80px] h-[24px] md:-bottom-4 md:right-3 -bottom-4 -right-0 transform rotate-3"
+              className="absolute md:w-[100px] sm:w-[80px] xs:w-[70px] w-[60px] h-[24px] md:right-3 right-0 xs:-bottom-4 -bottom-3 transform rotate-3"
               viewBox="0 0 146 24"
               fill="none"
               xmlns="http://www.w3.org/2000/svg"
