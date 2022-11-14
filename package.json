@@ -21,6 +21,7 @@
   "dependencies": {
     "@mdx-js/loader": "^2.1.2",
     "@next/mdx": "^12.2.2",
+    "@supabase/supabase-js": "^2.1.0",
     "framer-motion": "^6.4.1",
     "next": "^13.0.3",
     "next-themes": "^0.2.0",
