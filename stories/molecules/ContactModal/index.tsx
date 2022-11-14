@@ -83,7 +83,25 @@ const ContactModal = ({ show, onHide }: Props) => {
                     />
                   </svg>
                 </div>
-                <div className="bg-gradient-to-b absolute left-0 top-0 w-full h-40 overflow-hidden from-white/20 to-white" />
+                <div className="bg-gradient-to-b absolute left-0 top-0 w-full h-40 p-4 overflow-hidden from-white/20 to-white">
+                  <motion.button
+                    onClick={onHide}
+                    whileTap={{ scale: 0.9 }}
+                    className="bg-slate-50 hover:bg-slate-100 float-right rounded-full"
+                  >
+                    <svg
+                      xmlns="http://www.w3.org/2000/svg"
+                      className="xs:w-8 xs:h-8 w-6 h-6"
+                      viewBox="0 0 24 24"
+                      fill="none"
+                    >
+                      <path
+                        d="m13.06 12 2.3-2.3c.29-.29.29-.77 0-1.06a.754.754 0 0 0-1.06 0l-2.3 2.3-2.3-2.3a.754.754 0 0 0-1.06 0c-.29.29-.29.77 0 1.06l2.3 2.3-2.3 2.3c-.29.29-.29.77 0 1.06.15.15.34.22.53.22s.38-.07.53-.22l2.3-2.3 2.3 2.3c.15.15.34.22.53.22s.38-.07.53-.22c.29-.29.29-.77 0-1.06l-2.3-2.3Z"
+                        className="fill-slate-400"
+                      />
+                    </svg>
+                  </motion.button>
+                </div>
                 <div className="z-50">
                   <div className="flex w-max mx-auto">
                     <div className="mx-auto rounded-full bg-orange-100 flex items-center justify-center xs:w-20 xs:h-20 w-[70px] h-[70px] z-10 border-2 border-white">
@@ -145,7 +163,7 @@ const ContactModal = ({ show, onHide }: Props) => {
                 </div>
               </motion.div>
               <div
-                className="fixed top-0 left-0 w-full h-full bg-slate-900/40 z-40"
+                className="fixed top-0 left-0 w-full h-full bg-slate-900/40 z-40 backdrop-blur-md"
                 onClick={onHide}
               />
             </>
