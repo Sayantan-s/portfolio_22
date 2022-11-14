@@ -385,7 +385,8 @@ export const CTA = ({ onConnectClick }: Props) => {
                 }
               }}
               onClick={() => setHovered(prevState => !prevState)}
-              whileHover={{ scale: 0.98, rotate: 360, transition: { duration: 0.3 } }}
+              whileTap={{ rotate: 360, transition: { duration: 0.3 } }}
+              whileHover={{ rotate: 360, transition: { duration: 0.3 } }}
               className="w-[36px] h-[36px] rounded-full p-1.5 border border-slate-200/90 z-50 bg-white"
             >
               <span className="flex items-center justify-center w-full h-full relative">
