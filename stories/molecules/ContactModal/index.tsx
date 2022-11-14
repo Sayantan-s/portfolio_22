@@ -47,7 +47,7 @@ const ContactModal = ({ show, onHide }: Props) => {
                 initial={{ y: '-40%', x: '-50%', opacity: 0 }}
                 animate={{ y: '-50%', x: '-50%', opacity: 1 }}
                 exit={{ y: '-40%', x: '-50%', opacity: 0 }}
-                className="max-w-md min-w-[380px] overflow-hidden absolute top-1/2 left-1/2 transform -translate-x-1/2 -translate-y-1/2 z-50 bg-white px-8 pt-16 pb-12 shadow-2xl shadow-gray-900/20 rounded-xl"
+                className="max-w-md xs:min-w-[380px] min-w-[300px] overflow-hidden absolute top-1/2 left-1/2 transform -translate-x-1/2 -translate-y-1/2 z-50 bg-white sm:px-8 xs:px-6 px-5 pt-16 sm:pb-12 pb-6 shadow-2xl shadow-gray-900/20 rounded-xl"
               >
                 <div className="absolute left-0 top-0 w-full h-40 overflow-hidden">
                   <svg
@@ -86,7 +86,7 @@ const ContactModal = ({ show, onHide }: Props) => {
                 <div className="bg-gradient-to-b absolute left-0 top-0 w-full h-40 overflow-hidden from-white/20 to-white" />
                 <div className="z-50">
                   <div className="flex w-max mx-auto">
-                    <div className="mx-auto rounded-full bg-orange-100 flex items-center justify-center w-20 h-20 z-10 border-2 border-white">
+                    <div className="mx-auto rounded-full bg-orange-100 flex items-center justify-center xs:w-20 xs:h-20 w-[70px] h-[70px] z-10 border-2 border-white">
                       <Image
                         src="/think.png"
                         width={120}
@@ -96,7 +96,7 @@ const ContactModal = ({ show, onHide }: Props) => {
                         priority
                       />
                     </div>
-                    <div className="mx-auto rounded-full bg-orange-100 flex items-center justify-center w-20 h-20 -ml-8 z-10 border-2 border-white">
+                    <div className="mx-auto rounded-full bg-orange-100 flex items-center justify-center xs:w-20 xs:h-20 w-[70px] h-[70px] -ml-8 z-10 border-2 border-white">
                       <Image
                         src="/unknown.png"
                         width={120}
@@ -109,24 +109,24 @@ const ContactModal = ({ show, onHide }: Props) => {
                   </div>
                   <div className="mt-6">
                     <div className="flex-[0.5] text-center">
-                      <h5 className="text-slate-900 font-semibold text-xl">
+                      <h5 className="text-slate-900 font-semibold xs:text-xl text-lg">
                         Write me your thoughts!{' '}
                       </h5>
-                      <h6 className="text-slate-400 text-sm font-normal max-w-[320px] mx-auto mt-2">
+                      <h6 className="text-slate-400 xs:text-sm text-xs font-normal max-w-[320px] mx-auto mt-2">
                         Feel free to write me a letter letting me know what you think! I would love
                         to hear from you!
                       </h6>
                     </div>
-                    <form className="flex-[0.5] mt-8 space-y-3" onSubmit={handleSubmit}>
+                    <form className="flex-[0.5] xs:mt-8 mt-5 space-y-3" onSubmit={handleSubmit}>
                       <input
-                        className="font-normal text-sm w-full bg-white px-4 py-2 border border-slate-200/80 rounded-xl placeholder-slate-300 focus:outline-none focus:border-slate-200 text-slate-600"
+                        className="font-normal xs:text-sm text-xs w-full bg-white px-4 py-2 border border-slate-200/80 rounded-xl placeholder-slate-300 focus:outline-none focus:border-slate-200 text-slate-600"
                         placeholder={`Ken Adams...`}
                         name="email"
                         value={form.email}
                         onChange={handleChange}
                       />
                       <textarea
-                        className="font-normal text-sm w-full resize-none bg-white px-4 py-2 border border-slate-200/80 rounded-xl placeholder-slate-300 focus:outline-none focus:border-slate-200 text-slate-600"
+                        className="font-normal xs:text-sm text-xs w-full resize-none bg-white px-4 py-2 border border-slate-200/80 rounded-xl placeholder-slate-300 focus:outline-none focus:border-slate-200 text-slate-600"
                         placeholder={`They don't know that we know that they know!`}
                         name="content"
                         rows={3}
@@ -136,7 +136,7 @@ const ContactModal = ({ show, onHide }: Props) => {
                       <motion.button
                         disabled={form.content.trim() === '' || form.email.trim() === ''}
                         whileTap={{ scale: 0.98 }}
-                        className="bg-slate-900 disabled:bg-slate-800 px-5 py-2 rounded-full w-full font-semibold text-base"
+                        className="bg-slate-900 disabled:bg-slate-800 px-5 py-2 rounded-full w-full font-semibold xs:text-base text-sm"
                       >
                         Send
                       </motion.button>
