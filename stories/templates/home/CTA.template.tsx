@@ -1,4 +1,3 @@
-import { useWindowSize } from '@lib/hooks';
 import { motion } from 'framer-motion';
 import Image from 'next/image';
 import { useEffect, useMemo, useRef, useState } from 'react';
@@ -11,10 +10,6 @@ export const CTA = ({ onConnectClick }: Props) => {
   const [isHovered, setHovered] = useState(false);
 
   const ref = useRef<HTMLDivElement>(null);
-
-  const windowSize = useWindowSize();
-
-  console.log(windowSize);
 
   useEffect(() => {
     const handleDocumentClick = (eve: MouseEvent) =>
@@ -167,11 +162,11 @@ export const CTA = ({ onConnectClick }: Props) => {
           Hi, I am <span className="md:text-xl text-base text-gray-600 font-medium">Sayantan</span>.
           {''}
           <Image
-            width={windowSize.width < 768 ? 20 : 26}
-            height={windowSize.width < 768 ? 20 : 26}
+            width={20}
+            height={20}
             src="/cta_hand.png"
             alt="cta_hand_image"
-            className="inline-block transform -translate-y-1 md:w-[26px] md:h-[26px] w-18px h-18px"
+            className="inline-block transform -translate-y-[6px] md:w-[22px] md:h-[22px] w-18px h-18px"
           />
         </motion.h5>
         <motion.div className="max-w-xl md:text-5xl sm:text-4xl text-3xl textAlign text-center text-gray-700 mt-6 font-medium">
@@ -394,7 +389,7 @@ export const CTA = ({ onConnectClick }: Props) => {
               }}
               onClick={() => setHovered(prevState => !prevState)}
               whileHover={{ scale: 0.98, rotate: 360, transition: { duration: 0.3 } }}
-              className="aspect-square rounded-full p-1.5 border-2 border-slate-100 z-50 bg-white/80"
+              className="aspect-square rounded-full p-1.5 border-2 border-slate-200/80 z-50 bg-white"
             >
               <span className="flex items-center justify-center w-full h-full relative">
                 <Image src="/logo.png" width={24} height={24} alt="cta_dp_image" priority />
