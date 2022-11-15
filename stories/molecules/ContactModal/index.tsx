@@ -1,4 +1,5 @@
 import supabase from '@lib/services/supabase';
+import { Player } from '@lottiefiles/react-lottie-player';
 import { AnimatePresence, motion } from 'framer-motion';
 import Image from 'next/image';
 import { ChangeEventHandler, FormEventHandler, useEffect, useRef, useState } from 'react';
@@ -163,9 +164,20 @@ const ContactModal = ({ show, onHide }: Props) => {
                       <motion.button
                         disabled={form.content.trim() === '' || form.email.trim() === ''}
                         whileTap={{ scale: 0.98 }}
-                        className="bg-slate-900 disabled:bg-slate-800 px-5 py-2 rounded-full w-full font-semibold xs:text-base text-sm"
+                        className="relative h-10 bg-slate-900 disabled:bg-slate-800 px-5 py-2 rounded-full w-full font-semibold xs:text-base text-sm"
                       >
-                        {isLoading ? 'Sending...' : 'Send'}
+                        <motion.span className="absolute left-1/2 right-1/2 transform -translate-x-1/2 -translate-y-1/2 w-full">
+                          {isLoading ? (
+                            <Player
+                              autoplay
+                              loop
+                              src="/loading.json"
+                              style={{ height: '32px', width: '32px' }}
+                            />
+                          ) : (
+                            'Send'
+                          )}
+                        </motion.span>
                       </motion.button>
                     </form>
                   </div>
