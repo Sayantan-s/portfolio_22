@@ -1,3 +1,4 @@
+import supabase from '@lib/services/supabase';
 import { AnimatePresence, motion } from 'framer-motion';
 import Image from 'next/image';
 import { ChangeEventHandler, FormEventHandler, useEffect, useRef, useState } from 'react';
@@ -15,19 +16,27 @@ const ContactModal = ({ show, onHide }: Props) => {
     email: '',
     content: ''
   });
+  const [isLoading, setLoading] = useState(false);
 
   useEffect(() => {
     ref.current = document.querySelector<HTMLElement>('#modals');
     setMounted(true);
   }, [mounted]);
 
-  const handleSubmit: FormEventHandler<HTMLFormElement> = eve => {
+  const handleSubmit: FormEventHandler<HTMLFormElement> = async eve => {
     eve.preventDefault();
-    setForm({
-      email: '',
-      content: ''
-    });
-    onHide();
+    setLoading(true);
+    const { status } = await supabase.from('feedback').insert([form]);
+    setLoading(false);
+    if (status === 201) {
+      setForm({
+        email: '',
+        content: ''
+      });
+      setTimeout(() => {
+        onHide();
+      }, 300);
+    }
   };
 
   const handleChange: ChangeEventHandler<HTMLTextAreaElement | HTMLInputElement> = eve => {
@@ -156,7 +165,7 @@ const ContactModal = ({ show, onHide }: Props) => {
                         whileTap={{ scale: 0.98 }}
                         className="bg-slate-900 disabled:bg-slate-800 px-5 py-2 rounded-full w-full font-semibold xs:text-base text-sm"
                       >
-                        Send
+                        {isLoading ? 'Sending...' : 'Send'}
                       </motion.button>
                     </form>
                   </div>
