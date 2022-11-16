@@ -168,7 +168,7 @@ export const CTA = ({ onConnectClick }: Props) => {
             className="inline-block transform -translate-y-[6px] md:w-[22px] md:h-[22px] w-18px h-18px"
           />
         </motion.h5>
-        <motion.div className="max-w-xl md:text-5xl sm:text-4xl xs:text-3xl text-2xl text-center text-gray-700 mt-6 font-medium">
+        <motion.div className="max-w-xl md:text-5xl sm:text-4xl xs:text-3xl text-2xl text-center text-gray-700 mt-6 xs:font-medium font-semibold">
           <div>
             <motion.h1
               initial={{ y: 25, opacity: 0 }}
@@ -182,7 +182,7 @@ export const CTA = ({ onConnectClick }: Props) => {
               }}
             >
               Building&nbsp;
-              <span className="relative md:text-5xl sm:text-4xl xs:text-3xl text-2xl font-medium text-gray-700 w-max">
+              <span className="relative md:text-5xl sm:text-4xl xs:text-3xl text-2xl xs:font-medium font-semibold text-gray-700 w-max">
                 <svg
                   className="absolute -top-7 xs:-right-14 -right-8 xs:w-[11.2px] xs:h-[11.2px] w-[9.6px] h-[9.6px]"
                   viewBox="0 0 32 32"
@@ -230,7 +230,7 @@ export const CTA = ({ onConnectClick }: Props) => {
                 duration: 0.5
               }
             }}
-            className="relative md:text-5xl sm:text-4xl xs:text-3xl text-2xl font-medium text-gray-700 w-max"
+            className="relative md:text-5xl sm:text-4xl xs:text-3xl text-2xl xs:font-medium font-semibold text-gray-700 w-max"
           >
             <svg
               className="absolute -top-7 xs:-left-14 -left-8 xs:w-[11.2px] xs:h-[11.2px] w-[9.6px] h-[9.6px]"
@@ -277,7 +277,7 @@ export const CTA = ({ onConnectClick }: Props) => {
                 duration: 0.5
               }
             }}
-            className="relative md:text-5xl sm:text-4xl xs:text-3xl text-2xl text-center font-medium text-gray-700 w-max mx-auto"
+            className="relative md:text-5xl sm:text-4xl xs:text-3xl text-2xl text-center xs:font-medium font-semibold text-gray-700 w-max mx-auto"
           >
             and
             <svg
