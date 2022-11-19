@@ -152,7 +152,7 @@ export const CTA = ({ onConnectClick }: Props) => {
             y: 0,
             opacity: 1,
             transition: {
-              delay: 0.03,
+              delay: 0.05,
               duration: 0.5
             }
           }}
@@ -176,7 +176,7 @@ export const CTA = ({ onConnectClick }: Props) => {
                 y: 0,
                 opacity: 1,
                 transition: {
-                  delay: 0.06,
+                  delay: 0.1,
                   duration: 0.5
                 }
               }}
@@ -226,7 +226,7 @@ export const CTA = ({ onConnectClick }: Props) => {
               y: 0,
               opacity: 1,
               transition: {
-                delay: 0.09,
+                delay: 0.15,
                 duration: 0.5
               }
             }}
@@ -273,7 +273,7 @@ export const CTA = ({ onConnectClick }: Props) => {
               y: 0,
               opacity: 1,
               transition: {
-                delay: 0.12,
+                delay: 0.2,
                 duration: 0.5
               }
             }}
@@ -302,7 +302,7 @@ export const CTA = ({ onConnectClick }: Props) => {
             y: 0,
             opacity: 1,
             transition: {
-              delay: 0.15,
+              delay: 0.25,
               duration: 0.5
             }
           }}
@@ -314,7 +314,7 @@ export const CTA = ({ onConnectClick }: Props) => {
               y: 0,
               opacity: 1,
               transition: {
-                delay: 0.15,
+                delay: 0.3,
                 duration: 0.5
               }
             }}
@@ -329,7 +329,7 @@ export const CTA = ({ onConnectClick }: Props) => {
               y: 0,
               opacity: 1,
               transition: {
-                delay: 0.18,
+                delay: 0.35,
                 duration: 0.5
               }
             }}
@@ -344,7 +344,7 @@ export const CTA = ({ onConnectClick }: Props) => {
               y: 0,
               opacity: 1,
               transition: {
-                delay: 0.21,
+                delay: 0.4,
                 duration: 0.5
               }
             }}
@@ -366,7 +366,7 @@ export const CTA = ({ onConnectClick }: Props) => {
               y: 0,
               opacity: 1,
               transition: {
-                delay: 0.24,
+                delay: 0.45,
                 duration: 0.5
               }
             }}
@@ -380,7 +380,7 @@ export const CTA = ({ onConnectClick }: Props) => {
                 y: 0,
                 opacity: 1,
                 transition: {
-                  delay: 0.27,
+                  delay: 0.5,
                   duration: 0.5
                 }
               }}
