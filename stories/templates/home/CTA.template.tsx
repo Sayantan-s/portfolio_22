@@ -138,12 +138,12 @@ export const CTA = ({ onConnectClick }: Props) => {
           className="sm:w-28 sm:h-28 w-20 h-20 flex items-center justify-center bg-orange-100 rounded-full"
         >
           <Image
-            src="/face.png"
+            src="/me/face.png"
             width={120}
             height={120}
             alt="cta_dp_image"
             priority
-            className="transform translate-x-1 translate-y-1"
+            className="transform -translate-x-1 translate-y-1"
           />
         </motion.div>
         <motion.h5

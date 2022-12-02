@@ -116,7 +116,7 @@ const ContactModal = ({ show, onHide }: Props) => {
                   <div className="flex w-max mx-auto">
                     <div className="mx-auto rounded-full bg-orange-100 flex items-center justify-center xs:w-20 xs:h-20 w-[70px] h-[70px] z-10 border-2 border-white">
                       <Image
-                        src="/think.png"
+                        src="/me/think.png"
                         width={120}
                         height={120}
                         alt="cta_dp_image"
