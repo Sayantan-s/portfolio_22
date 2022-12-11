@@ -143,7 +143,7 @@ export const CTA = ({ onConnectClick }: Props) => {
             height={120}
             alt="cta_dp_image"
             priority
-            className="transform -translate-x-1 translate-y-1"
+            className="transform translate-x-1 translate-y-1"
           />
         </motion.div>
         <motion.h5
