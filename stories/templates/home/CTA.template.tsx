@@ -59,7 +59,7 @@ export const CTA = ({ onConnectClick }: Props) => {
         )
       },
       {
-        link: 'https://www.linkedin.com/in/sayantan-samanta-554bb117a/',
+        link: 'https://www.linkedin.com/in/sayantan-s-554bb117a/',
         icon: (
           <svg
             width={17}
@@ -118,7 +118,7 @@ export const CTA = ({ onConnectClick }: Props) => {
 
   return (
     <div
-      className="h-screen md:p-10 xs:p-4 p-3 bg-white select-none"
+      className="h-screen md:p-10 xs:p-4 p-3 bg-white dark:bg-slate-900 select-none"
       style={{
         backgroundImage:
           'radial-gradient(at 100% 0%, hsla(32, 98%, 83%, 0.4) 0px, transparent 50%),radial-gradient(at 40% 1%, hsla(32, 98%, 83%, 0.2) 0px, transparent 50%),radial-gradient(at 70% 60%, hsla(152, 75%, 80%, 0.3) 0px, transparent 50%),radial-gradient(at 0% 1%, hsla(152, 75%, 80%, 0.4) 0px, transparent 50%),radial-gradient(at 30% 40%, hsla(32, 98%, 83%, 0.3) 0px, transparent 30%)'
