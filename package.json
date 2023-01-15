@@ -1,0 +1,16 @@
+{
+  "name": "root",
+  "private": true,
+  "version": "1.0.0",
+  "workspaces": [
+    "packages/*"
+  ],
+  "devDependencies": {
+    "concurrently": "^7.6.0",
+    "lerna": "^6.4.1",
+    "wsrun": "^5.2.4"
+  },
+  "scripts": {
+    "start": "concurrently \"wsrun --parallel dev\""
+  }
+}
