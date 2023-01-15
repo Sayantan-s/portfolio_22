@@ -21,6 +21,9 @@ const io = new IO(server);
 
 io.init((socket) => {
   console.log(`${socket.id} Connected to client server...`);
+  socket.on("create_jweet", (data) => {
+    console.log(data);
+  });
   socket.on("disconnect", () => {
     console.log(`${socket.id} Disconnected from client server...`);
   });

@@ -7,6 +7,8 @@ declare global {
       ORIGIN: string;
       CLIENT_ORIGIN: string;
     }
+
+    interface Global {}
   }
 }
 

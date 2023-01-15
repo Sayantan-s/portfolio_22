@@ -1,1 +1,1 @@
-export * from "./useWebS";
+export {};

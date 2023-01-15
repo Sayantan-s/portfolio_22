@@ -4,7 +4,7 @@
 
 @layer base {
   * {
-    @apply text-slate-400;
+    @apply text-slate-400 font-display;
   }
   #root {
     @apply overflow-hidden h-screen w-full;
