@@ -1,5 +1,6 @@
 import { ORIGIN, PORT } from "@config";
 import { IO } from "@services/io";
+import prisma from "@services/prisma";
 import cors from "cors";
 import express from "express";
 import http from "http";
@@ -19,10 +20,23 @@ app.use(
 
 const io = new IO(server);
 
+interface ICreateTweetRequestPayload {
+  _id: string;
+  payload: string;
+}
+
 io.init((socket) => {
   console.log(`${socket.id} Connected to client server...`);
-  socket.on("create_jweet", (data) => {
-    console.log(data);
+  socket.on("create_jweet", async (data: ICreateTweetRequestPayload) => {
+    const res = await prisma.jweet.create({
+      data: {
+        title: "For Job",
+        body: data.payload,
+        slug: "xyz",
+        userId: "63c4ff90ce1d2b18238a5ddb",
+      },
+    });
+    socket.emit("created_tweet", res);
   });
   socket.on("disconnect", () => {
     console.log(`${socket.id} Disconnected from client server...`);
