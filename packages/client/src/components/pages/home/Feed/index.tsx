@@ -35,8 +35,8 @@ export const Feed = () => {
   return (
     <div className="flex-[0.5]">
       <div className="mt-6">
-        <h1 className="text-slate-600 text-xl font-semibold">
-          Hey, <span className="text-xl">Sayantan</span>
+        <h1 className="text-slate-800 text-xl font-semibold">
+          Hey, <span className="text-xl text-slate-300">Sayantan</span>
         </h1>
         <PostTool />
         <div>

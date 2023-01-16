@@ -1,5 +1,5 @@
 import { useWebS } from "@context/Ws";
-import { EditorContent, useEditor } from "@tiptap/react";
+import { BubbleMenu, EditorContent, useEditor } from "@tiptap/react";
 import StarterKit from "@tiptap/starter-kit";
 import { useState } from "react";
 
@@ -31,11 +31,20 @@ export const PostTool = () => {
 
   return (
     <div className="bg-slate-100 rounded-xl mt-2">
+      {editor ? (
+        <BubbleMenu
+          className="bg-slate-50 shadow-md p-1 flex"
+          editor={editor}
+          tippyOptions={{ duration: 200 }}
+        >
+          <button>B</button>
+        </BubbleMenu>
+      ) : null}
       <EditorContent editor={editor} />
       <div className="p-3 flex justify-between">
         <div />
         <button
-          className="bg-sky-500 text-slate-50 font-medium w-16 shadow-lg shadow-sky-400/20 p-2 rounded-full"
+          className="bg-gradient-to-br from-sky-400 to-teal-400 disabled:opacity-75 text-slate-50 font-medium w-16 shadow-lg shadow-teal-400/30 p-2 rounded-full"
           disabled={!allowToPost}
           onClick={handleCreateTweet}
         >

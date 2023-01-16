@@ -5,6 +5,7 @@
 @layer base {
   * {
     @apply text-slate-400 font-display text-sm;
+    font-display: optional;
   }
   #root {
     @apply overflow-hidden h-screen w-full;
