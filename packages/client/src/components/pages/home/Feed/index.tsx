@@ -1,22 +1,50 @@
 import { useWebS } from "@context/Ws";
-import { useEffect } from "react";
+import { useEffect, useState } from "react";
 import { PostTool } from "./PostTool";
 
+interface IJweet {
+  id: string;
+  slug: string;
+  title: string;
+  body: string;
+  userId: string;
+}
+
 export const Feed = () => {
+  const [jweets, setJweets] = useState<IJweet[]>([]);
+
   const { socket } = useWebS();
 
   useEffect(() => {
-    socket.on("created_tweet", (data) => {
-      console.log(data);
+    async function getJweets() {
+      const res = await fetch(
+        `${import.meta.env.VITE_SERVER_ORIGIN}/api/jweets`
+      );
+      const { data } = await res.json();
+      setJweets(data);
+    }
+    getJweets();
+  }, []);
+
+  useEffect(() => {
+    socket.on("created_jweet", (data) => {
+      setJweets((prevState) => [data, ...prevState]);
     });
   }, []);
 
   return (
     <div className="flex-[0.5]">
-      <h1 className="text-slate-600 text-xl font-semibold">
-        Hey, <span>Sayantan</span>
-      </h1>
-      <PostTool />
+      <div className="mt-6">
+        <h1 className="text-slate-600 text-xl font-semibold">
+          Hey, <span className="text-xl">Sayantan</span>
+        </h1>
+        <PostTool />
+        <div>
+          {jweets.map((jweet) => (
+            <div key={jweet.id}>{JSON.stringify(jweet)}</div>
+          ))}
+        </div>
+      </div>
     </div>
   );
 };

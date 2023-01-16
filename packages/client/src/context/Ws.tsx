@@ -12,7 +12,7 @@ interface IContextProps {
   isConnected: boolean;
 }
 
-const socket = io(import.meta.env.VITE_SOCKETSERVER_ORIGIN);
+const socket = io(import.meta.env.VITE_SERVER_ORIGIN);
 const WSContext = createContext<IContextProps | null>(null);
 
 export const WsProvider = ({ children }: PropsWithChildren) => {

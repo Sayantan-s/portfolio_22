@@ -1,14 +1,18 @@
 import { WsProvider } from "@context/Ws";
 import { AppRoutes } from "@pages/AppRoutes";
+import { store } from "@store";
+import { Provider } from "react-redux";
 import { BrowserRouter } from "react-router-dom";
 
 function App() {
   return (
-    <BrowserRouter>
-      <WsProvider>
-        <AppRoutes />
-      </WsProvider>
-    </BrowserRouter>
+    <Provider store={store}>
+      <BrowserRouter>
+        <WsProvider>
+          <AppRoutes />
+        </WsProvider>
+      </BrowserRouter>
+    </Provider>
   );
 }
 

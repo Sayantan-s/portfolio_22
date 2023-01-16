@@ -15,7 +15,7 @@ export const PostTool = () => {
         setAllowToPost(true);
       },
       attributes: {
-        class: "focus:outline-none h-28 p-4",
+        class: "focus:outline-none h-16 max-w-2xl p-4",
       },
     },
   });
@@ -30,11 +30,12 @@ export const PostTool = () => {
   };
 
   return (
-    <div className="border border-slate-100 rounded-xl mt-2">
+    <div className="bg-slate-100 rounded-xl mt-2">
       <EditorContent editor={editor} />
-      <div className="p-4">
+      <div className="p-3 flex justify-between">
+        <div />
         <button
-          className="bg-sky-500 text-slate-50 font-medium p-2 rounded-full"
+          className="bg-sky-500 text-slate-50 font-medium w-16 shadow-lg shadow-sky-400/20 p-2 rounded-full"
           disabled={!allowToPost}
           onClick={handleCreateTweet}
         >
