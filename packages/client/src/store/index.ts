@@ -1,7 +1,10 @@
 import { configureStore } from "@reduxjs/toolkit";
+import jweetsReducer from "./slices/tweets";
 
 export const store = configureStore({
-  reducer: {},
+  reducer: {
+    jweets: jweetsReducer,
+  },
 });
 
 export type RootState = ReturnType<typeof store.getState>;

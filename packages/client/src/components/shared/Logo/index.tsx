@@ -1,6 +1,6 @@
 export const Logo = () => {
   return (
-    <div className="flex items-center space-x-2 w-max">
+    <div className="flex items-center space-x-3 w-max">
       <svg
         width={28}
         height={28}

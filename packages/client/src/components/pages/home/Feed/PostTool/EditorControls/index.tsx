@@ -1,6 +1,6 @@
 import { IEditorControls } from "./types";
 
-export const EditorControls: IEditorControls = ({ children, editor }) => {
+export const EditorControls: IEditorControls = ({ editor }) => {
   const handleBold = () => {
     editor?.chain().focus().toggleBold().run();
   };

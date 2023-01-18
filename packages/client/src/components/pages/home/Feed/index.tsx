@@ -33,17 +33,15 @@ export const Feed = () => {
   }, []);
 
   return (
-    <div className="flex-[0.5]">
-      <div className="mt-6">
-        <h1 className="text-slate-800 text-xl font-semibold">
-          Hey, <span className="text-xl text-slate-300">Sayantan</span>
-        </h1>
-        <PostTool />
-        <div>
-          {jweets.map((jweet) => (
-            <div key={jweet.id}>{JSON.stringify(jweet)}</div>
-          ))}
-        </div>
+    <div className="mt-6">
+      <h1 className="text-slate-800 text-xl font-semibold">
+        Hey, <span className="text-xl text-slate-300">Sayantan</span>
+      </h1>
+      <PostTool />
+      <div>
+        {jweets.map((jweet) => (
+          <div key={jweet.id}>{JSON.stringify(jweet)}</div>
+        ))}
       </div>
     </div>
   );

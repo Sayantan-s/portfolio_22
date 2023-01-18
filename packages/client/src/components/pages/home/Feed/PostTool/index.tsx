@@ -30,7 +30,7 @@ export const PostTool = () => {
   };
 
   return (
-    <div className="bg-slate-100 rounded-xl mt-2">
+    <div className="bg-slate-100 rounded-xl mt-4">
       {editor ? (
         <BubbleMenu
           className="bg-slate-50 shadow-md p-1 flex"
