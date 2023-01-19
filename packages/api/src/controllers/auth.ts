@@ -18,12 +18,14 @@ export const loginOrCreate = async (req: Request, res: Response) => {
     },
   });
   if (user) {
+    req.session.user = user;
     res.status(200).send();
     return;
   }
-  await prisma.user.create({
+  const newUser = await prisma.user.create({
     data: req.body,
   });
+  req.session.user = newUser;
   res.status(201).send();
 };
 
@@ -36,7 +38,7 @@ export const tokenVerify = async (req: Request, res: Response) => {
         session_duration_minutes: 5,
       }
     );
-    console.log("SESSION TOKEN", sessionToken);
+    console.log("SESSION TOKEN", { ...sessionToken, user: req.session.user });
     res.send({ data: sessionToken });
   } catch (err) {
     console.log(err);
