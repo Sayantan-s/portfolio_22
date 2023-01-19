@@ -16,6 +16,7 @@ export class IO {
       cors: {
         origin: CLIENT_ORIGIN,
         methods: ["GET", "POST"],
+        credentials: true,
       },
     });
   }

@@ -6,6 +6,8 @@ declare global {
       PWD: string;
       ORIGIN: string;
       CLIENT_ORIGIN: string;
+      STYTCH_PROJECT_ID: string;
+      STYTCH_SECRET: string;
     }
 
     interface Global {}

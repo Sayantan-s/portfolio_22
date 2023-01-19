@@ -11,6 +11,8 @@ const server = http.createServer(app);
 
 if (process.env.NODE_ENV !== "production") app.use(morgan("dev"));
 
+app.use(express.json());
+app.use(express.urlencoded({ extended: false }));
 app.use(
   cors({
     origin: CLIENT_ORIGIN,
@@ -18,11 +20,16 @@ app.use(
   })
 );
 
+app.post("/test", (req, res) => {
+  console.log(req.body);
+  res.send({ test: "messages" });
+});
+
+app.use("/api", router);
+
 const io = new IO(server);
 
 io.init(IO.execute);
-
-app.use("/api", router);
 
 server.listen(PORT, () => {
   console.log(`SERVER RUNNING ON ${ORIGIN}`);
