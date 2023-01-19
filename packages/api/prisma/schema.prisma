@@ -24,4 +24,5 @@ model User {
   email   String   @unique
   name    String?
   jweets  Jweet[]
+  newUser Boolean?
 }

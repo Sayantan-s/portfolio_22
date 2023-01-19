@@ -10,7 +10,6 @@ const app = express();
 const server = http.createServer(app);
 
 if (process.env.NODE_ENV !== "production") app.use(morgan("dev"));
-
 app.use(express.json());
 app.use(express.urlencoded({ extended: false }));
 app.use(
@@ -19,11 +18,6 @@ app.use(
     credentials: true,
   })
 );
-
-app.post("/test", (req, res) => {
-  console.log(req.body);
-  res.send({ test: "messages" });
-});
 
 app.use("/api", router);
 
