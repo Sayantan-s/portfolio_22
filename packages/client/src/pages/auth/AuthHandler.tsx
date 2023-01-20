@@ -21,6 +21,5 @@ export const AuthHandler = () => {
     }
     authenticate();
   }, []);
-  console.log(params.get("token"));
   return <div>AuthHandler</div>;
 };

@@ -2,6 +2,7 @@ import { CLIENT_ORIGIN, ORIGIN, PORT } from "@config";
 import { User } from "@prisma/client";
 import router from "@routes";
 import { IO } from "@services/io";
+import cookieParser from "cookie-parser";
 import cors from "cors";
 import express from "express";
 import session from "express-session";
@@ -30,6 +31,7 @@ app.use([
     resave: true,
     saveUninitialized: true,
   }),
+  cookieParser(),
 ]);
 
 app.use("/api", router);
