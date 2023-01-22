@@ -5,7 +5,7 @@ import {
   Route,
   RouterProvider,
 } from "react-router-dom";
-import { AuthHandler, Login, Register } from "./auth";
+import { AuthHandler, Login } from "./auth";
 import { Home } from "./home";
 import { Jobs } from "./jobs";
 import { Messages } from "./messages";
@@ -15,7 +15,6 @@ import { Profile } from "./profile";
 const router = createBrowserRouter(
   createRoutesFromElements(
     <Route path="/">
-      <Route path="register" element={<Register />} />
       <Route path="login" element={<Login />} />
       <Route path="auth" element={<AuthHandler />} />
       <Route path="/" element={<RootLayout />}>

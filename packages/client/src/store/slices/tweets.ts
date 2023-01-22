@@ -17,7 +17,7 @@ const initialState: InitialState = {
 };
 
 export const jweetSlice = createSlice({
-  name: "counter",
+  name: "jweets",
   initialState,
   reducers: {
     addJweet: (state, { payload }) => {

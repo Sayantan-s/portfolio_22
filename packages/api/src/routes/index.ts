@@ -6,6 +6,11 @@ const router = express.Router();
 
 router.route("/jweets").get(getJweets);
 router.route("/auth/login").post(auth.loginOrCreate);
-router.get("/auth/verify", auth.tokenVerify);
+router.route("/auth/verify").get(auth.tokenVerify);
+router.route("/test").get((req, res, next) => {
+  console.log(req.session.user);
+  if (req.session.user) res.json({ message: "User in session" });
+  else res.json({ message: "User not in session" });
+});
 
 export default router;

@@ -1,3 +1,4 @@
+import { authApi } from "@store/services/auth";
 import { useState } from "react";
 
 export const Login = () => {
@@ -7,6 +8,7 @@ export const Login = () => {
   });
 
   const [message, setMessage] = useState("");
+  const [login, { isLoading }] = authApi.useLoginMutation();
 
   const onChange: React.ChangeEventHandler<HTMLInputElement> = (eve) => {
     const { name, value } = eve.target;
@@ -15,20 +17,15 @@ export const Login = () => {
 
   const onSubmit: React.FormEventHandler = async (eve) => {
     eve.preventDefault();
-    const res = await fetch(
-      import.meta.env.VITE_SERVER_ORIGIN + "/api/auth/login",
-      {
-        method: "POST",
-        body: JSON.stringify(form),
-        credentials: "include",
-        headers: {
-          "Content-Type": "application/json",
-        },
-      }
-    );
-    console.log(res.status);
+    const res = await login(form).unwrap();
     if (res.status === 201 || res.status === 200)
       setMessage("Please check your entered mail!");
+  };
+
+  const testSession = async () => {
+    const res = await fetch(`${import.meta.env.VITE_SERVER_ORIGIN}/api/test`);
+    const data = await res.json();
+    console.log(data);
   };
 
   return (
@@ -50,9 +47,17 @@ export const Login = () => {
           placeholder={"gavi.fcb@gmail.com"}
           className="p-4 text-lg border border-slate-300"
         />
-        <button>Create user</button>
+        <button
+          disabled={isLoading}
+          className={isLoading ? "bg-yellow-100" : "bg-slate-100"}
+        >
+          Create user
+        </button>
       </form>
-      {message ? <div className="absolute bottom-0">{message}</div> : null}{" "}
+      {message ? <div className="absolute">{message}</div> : null}{" "}
+      <button onClick={testSession} className="z-20 mt-20">
+        TEST
+      </button>
     </div>
   );
 };

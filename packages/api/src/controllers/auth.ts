@@ -4,14 +4,17 @@ import stytchClient from "@services/stytchAuth";
 import { Request, Response } from "express";
 import { LoginOrCreateByEmailRequest } from "stytch/types/lib/magic_links";
 
-export const loginOrCreate = async (req: Request, res: Response) => {
-  const { email } = req.body;
-  const params: LoginOrCreateByEmailRequest = {
+function getParams(email: string): LoginOrCreateByEmailRequest {
+  return {
     email,
     login_magic_link_url: CLIENT_ORIGIN + "/auth",
     signup_magic_link_url: CLIENT_ORIGIN + "/auth",
   };
-  await stytchClient.magicLinks.email.loginOrCreate(params);
+}
+
+export const loginOrCreate = async (req: Request, res: Response) => {
+  const { email } = req.body;
+  await stytchClient.magicLinks.email.loginOrCreate(getParams(email));
   const user = await prisma.user.findUnique({
     where: {
       email,
