@@ -45,7 +45,6 @@ app.use(
     store: new RedisStore({ client: redis }),
   })
 );
-
 app.use("/api", router);
 
 const io = new IO(server);

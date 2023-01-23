@@ -22,14 +22,6 @@ export const Login = () => {
       setMessage("Please check your entered mail!");
   };
 
-  const testSession = async () => {
-    const res = await fetch(`${import.meta.env.VITE_SERVER_ORIGIN}/api/test`, {
-      credentials: "include",
-    });
-    const data = await res.json();
-    console.log(data);
-  };
-
   return (
     <div className="relative">
       <form onSubmit={onSubmit}>
@@ -57,9 +49,6 @@ export const Login = () => {
         </button>
       </form>
       {message ? <div className="absolute">{message}</div> : null}{" "}
-      <button onClick={testSession} className="z-20 mt-20">
-        TEST
-      </button>
     </div>
   );
 };

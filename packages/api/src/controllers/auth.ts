@@ -39,6 +39,7 @@ export const tokenVerify = async (req: Request, res: Response) => {
       await stytchClient.magicLinks.authenticate(token as string, {
         session_duration_minutes: 30,
       });
+    console.log(req.session, "Verify");
     res
       .json({
         data: {

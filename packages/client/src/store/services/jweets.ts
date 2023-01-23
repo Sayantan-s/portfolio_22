@@ -16,7 +16,7 @@ interface IJweetsApiResponse {
 export const jweetsApi = createApi({
   reducerPath: "jweets-api",
   baseQuery: fetchBaseQuery({
-    baseUrl: `${import.meta.env.VITE_SERVER_ORIGIN}/api/jweets`,
+    baseUrl: `/api/jweets`,
     prepareHeaders(headers) {
       if (!cookie.get("session")) return headers;
       const sessionToken = cookie.get("session").session_token || "HEHE";
