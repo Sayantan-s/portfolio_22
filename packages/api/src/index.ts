@@ -39,6 +39,8 @@ app.use(
     cookie: {
       httpOnly: true,
       maxAge: 1000 * 60 * 60 * 24,
+      sameSite: "lax",
+      secure: false,
     },
     store: new RedisStore({ client: redis }),
   })

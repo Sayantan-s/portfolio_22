@@ -9,14 +9,26 @@ export interface TransformedLoginApiResponse {
   status: number | undefined;
 }
 
+export type User = {
+  id: string;
+  email: string;
+  name: string | null;
+  newUser: boolean | null;
+};
+
 export interface TransformedVerifyApiResponse {
-  data: any;
+  data: {
+    session_jwt: string;
+    session_token: string;
+    user: User;
+  };
 }
 
 export const authApi = createApi({
   reducerPath: "auth-api",
   baseQuery: fetchBaseQuery({
-    baseUrl: import.meta.env.VITE_SERVER_ORIGIN + "/api/auth",
+    baseUrl: "/api/auth",
+    credentials: "include",
   }),
   endpoints: (builder) => ({
     login: builder.mutation<TransformedLoginApiResponse, LoginRequest>({
@@ -24,7 +36,6 @@ export const authApi = createApi({
         url: "login",
         method: "POST",
         body: credentials,
-        credentials: "include",
       }),
       transformResponse(_, meta) {
         return { status: meta?.response?.status };

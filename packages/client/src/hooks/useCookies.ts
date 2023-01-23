@@ -1,4 +1,6 @@
 import { useMemo } from "react";
 import Cookies from "universal-cookie";
 
-export const useCookies = () => useMemo(() => new Cookies(), []);
+export const cookie = new Cookies();
+
+export const useCookies = () => useMemo(() => cookie, []);

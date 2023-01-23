@@ -15,33 +15,39 @@ function getParams(email: string): LoginOrCreateByEmailRequest {
 export const loginOrCreate = async (req: Request, res: Response) => {
   const { email } = req.body;
   await stytchClient.magicLinks.email.loginOrCreate(getParams(email));
-  const user = await prisma.user.findUnique({
+  const findUser = await prisma.user.findUnique({
     where: {
       email,
     },
   });
-  if (user) {
-    req.session.user = user;
+  if (findUser) {
+    req.session.user = findUser;
     res.status(200).send();
     return;
   }
-  const newUser = await prisma.user.create({
+  const createNewUser = await prisma.user.create({
     data: req.body,
   });
-  req.session.user = newUser;
+  req.session.user = createNewUser;
   res.status(201).send();
 };
 
 export const tokenVerify = async (req: Request, res: Response) => {
   const token = req.headers["x-magic-token"];
   try {
-    const sessionToken = await stytchClient.magicLinks.authenticate(
-      token as string,
-      {
+    const { session_token, session_jwt } =
+      await stytchClient.magicLinks.authenticate(token as string, {
         session_duration_minutes: 30,
-      }
-    );
-    res.json({ data: sessionToken });
+      });
+    res
+      .json({
+        data: {
+          session_jwt,
+          session_token,
+          user: req.session.user,
+        },
+      })
+      .status(200);
   } catch (err) {
     console.log(err);
   }

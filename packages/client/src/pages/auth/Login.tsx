@@ -23,7 +23,9 @@ export const Login = () => {
   };
 
   const testSession = async () => {
-    const res = await fetch(`${import.meta.env.VITE_SERVER_ORIGIN}/api/test`);
+    const res = await fetch(`${import.meta.env.VITE_SERVER_ORIGIN}/api/test`, {
+      credentials: "include",
+    });
     const data = await res.json();
     console.log(data);
   };

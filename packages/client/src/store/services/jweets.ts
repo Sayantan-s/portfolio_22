@@ -1,3 +1,4 @@
+import { cookie } from "@hooks";
 import { createApi, fetchBaseQuery } from "@reduxjs/toolkit/query/react";
 
 interface IJweet {
@@ -16,9 +17,15 @@ export const jweetsApi = createApi({
   reducerPath: "jweets-api",
   baseQuery: fetchBaseQuery({
     baseUrl: `${import.meta.env.VITE_SERVER_ORIGIN}/api/jweets`,
+    prepareHeaders(headers) {
+      if (!cookie.get("session")) return headers;
+      const sessionToken = cookie.get("session").session_token || "HEHE";
+      headers.set("authorization", `Bearer ${sessionToken}`);
+      return headers;
+    },
   }),
   endpoints: (builder) => ({
-    jweets: builder.query<IJweetsApiResponse, string>({
+    jweets: builder.query<IJweetsApiResponse, void>({
       query: () => "/",
     }),
   }),

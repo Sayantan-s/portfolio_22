@@ -1,4 +1,5 @@
 import { useWebS } from "@context/Ws";
+import { jweetsApi } from "@store/services/jweets";
 import { useEffect, useState } from "react";
 import { PostTool } from "./PostTool";
 
@@ -15,16 +16,7 @@ export const Feed = () => {
 
   const { socket } = useWebS();
 
-  useEffect(() => {
-    async function getJweets() {
-      const res = await fetch(
-        `${import.meta.env.VITE_SERVER_ORIGIN}/api/jweets`
-      );
-      const { data } = await res.json();
-      setJweets(data);
-    }
-    getJweets();
-  }, []);
+  const { isLoading, isSuccess, isError, data } = jweetsApi.useJweetsQuery();
 
   useEffect(() => {
     socket.on("created_jweet", (data) => {
@@ -39,9 +31,13 @@ export const Feed = () => {
       </h1>
       <PostTool />
       <div>
-        {jweets.map((jweet) => (
-          <div key={jweet.id}>{JSON.stringify(jweet)}</div>
-        ))}
+        {isLoading ? (
+          <div className="text-sky-500">loading.....</div>
+        ) : isSuccess ? (
+          data.data.map((jweet) => (
+            <div key={jweet.id}>{JSON.stringify(jweet)}</div>
+          ))
+        ) : null}
       </div>
     </div>
   );
