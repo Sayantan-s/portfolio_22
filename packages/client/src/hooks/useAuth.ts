@@ -1,5 +1,19 @@
-import { cookie } from "./useCookies";
+const decodeJwt = (jwt: string) => JSON.parse(atob(jwt.split(".")[1]));
+
+const getJwtMetaData = () => {
+  const payload = localStorage.getItem("session_jwt");
+  if (payload) {
+    const decoded = decodeJwt(payload);
+    const hasExpired = decoded.exp * 1000 < Date.now();
+    return {
+      hasExpired,
+      metaData: decodeJwt(payload),
+    };
+  }
+  return null;
+};
 
 export const useAuth = () => {
-  const c = cookie.get("session");
+  const metaData = getJwtMetaData();
+  console.log(metaData);
 };

@@ -1,6 +1,5 @@
 import { createSlice } from "@reduxjs/toolkit";
 import { authApi, User } from "@store/services/auth";
-import Cookies from "universal-cookie";
 
 type AuthState = {
   session_jwt: string;
@@ -19,8 +18,9 @@ const authSlice = createSlice({
         state.session_jwt = data.session_jwt;
         state.session_token = data.session_token;
         state.user = data.user;
-        const cookie = new Cookies();
-        cookie.set("session", state);
+        for (let [key, value] of Object.entries(data)) {
+          localStorage.setItem(key, JSON.stringify(value));
+        }
       }
     );
   },

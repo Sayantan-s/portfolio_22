@@ -1,7 +1,7 @@
 import { CLIENT_ORIGIN } from "@config";
 import prisma from "@services/prisma";
 import stytchClient from "@services/stytchAuth";
-import { Request, Response } from "express";
+import { RequestHandler } from "express";
 import { LoginOrCreateByEmailRequest } from "stytch/types/lib/magic_links";
 
 function getParams(email: string): LoginOrCreateByEmailRequest {
@@ -12,7 +12,7 @@ function getParams(email: string): LoginOrCreateByEmailRequest {
   };
 }
 
-export const loginOrCreate = async (req: Request, res: Response) => {
+export const loginOrCreate: RequestHandler = async (req, res) => {
   const { email } = req.body;
   await stytchClient.magicLinks.email.loginOrCreate(getParams(email));
   const findUser = await prisma.user.findUnique({
@@ -32,23 +32,20 @@ export const loginOrCreate = async (req: Request, res: Response) => {
   res.status(201).send();
 };
 
-export const tokenVerify = async (req: Request, res: Response) => {
+export const tokenVerify: RequestHandler = async (req, res) => {
   const token = req.headers["x-magic-token"];
   try {
     const { session_token, session_jwt } =
       await stytchClient.magicLinks.authenticate(token as string, {
         session_duration_minutes: 30,
       });
-    console.log(req.session, "Verify");
-    res
-      .json({
-        data: {
-          session_jwt,
-          session_token,
-          user: req.session.user,
-        },
-      })
-      .status(200);
+    res.status(200).json({
+      data: {
+        session_jwt,
+        session_token,
+        user: req.session.user,
+      },
+    });
   } catch (err) {
     console.log(err);
   }

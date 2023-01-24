@@ -1,11 +1,7 @@
 import stytchClient from "@services/stytchAuth";
-import { NextFunction, Request, Response } from "express";
+import { RequestHandler } from "express";
 
-export const withAuth = async (
-  req: Request,
-  res: Response,
-  next: NextFunction
-) => {
+export const withAuth: RequestHandler = async (req, res, next) => {
   const authHeaders = req.headers.authorization;
   if (authHeaders) {
     const [_, token] = authHeaders.split(" ");

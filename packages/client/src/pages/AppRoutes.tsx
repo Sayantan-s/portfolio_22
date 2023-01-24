@@ -6,6 +6,7 @@ import {
   RouterProvider,
 } from "react-router-dom";
 import { AuthHandler, Login, RequireAuth } from "./auth";
+import { ErrorPage } from "./error";
 import { Home } from "./home";
 import { Jobs } from "./jobs";
 import { Messages } from "./messages";
@@ -26,6 +27,7 @@ const router = createBrowserRouter(
           <Route path="notifications" element={<Notifications />} />
         </Route>
       </Route>
+      <Route path="*" element={<ErrorPage />} />
     </Route>
   )
 );
