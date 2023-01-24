@@ -1,4 +1,5 @@
 import { configureStore } from "@reduxjs/toolkit";
+import * as rr from "react-redux";
 import { authApi } from "./services/auth";
 import { jweetsApi } from "./services/jweets";
 import authReducer from "./slices/auth";
@@ -15,7 +16,11 @@ export const store = configureStore({
   },
   middleware: (getDefaultMiddleware) =>
     getDefaultMiddleware().concat(...middlewares),
+  devTools: true,
 });
 
 export type RootState = ReturnType<typeof store.getState>;
 export type AppDispatch = typeof store.dispatch;
+
+export const useDispatch: () => AppDispatch = rr.useDispatch;
+export const useSelector: rr.TypedUseSelectorHook<RootState> = rr.useSelector;

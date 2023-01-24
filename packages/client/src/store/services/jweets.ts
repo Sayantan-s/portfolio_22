@@ -20,7 +20,7 @@ export const jweetsApi = createApi({
       if (localStorage.getItem("session_token")) {
         headers.set(
           "authorization",
-          `Bearer ${JSON.parse(localStorage.getItem("session_token"))}`
+          `Bearer ${JSON.parse(localStorage.getItem("session_token")!)}`
         );
       }
       return headers;

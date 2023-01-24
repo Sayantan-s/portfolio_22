@@ -16,11 +16,16 @@ export type User = {
   newUser: boolean | null;
 };
 
+export interface Session {
+  expires_at: Date;
+}
+
 export interface TransformedVerifyApiResponse {
   data: {
     session_jwt: string;
     session_token: string;
     user: User;
+    session?: Session;
   };
 }
 
@@ -47,6 +52,15 @@ export const authApi = createApi({
         credentials: "include",
         headers: {
           "X-Magic-Token": token,
+        },
+      }),
+    }),
+    reauth: builder.query<TransformedVerifyApiResponse, void>({
+      query: () => ({
+        url: "reauth",
+        credentials: "include",
+        headers: {
+          "X-Session-Token": JSON.parse(localStorage.getItem("session_token")!),
         },
       }),
     }),

@@ -8,5 +8,6 @@ const router = express.Router();
 router.route("/jweets").get(withAuth, getJweets);
 router.route("/auth/login").post(auth.loginOrCreate);
 router.route("/auth/verify").get(auth.tokenVerify);
+router.route("/auth/reauth").get(auth.reAuth);
 
 export default router;

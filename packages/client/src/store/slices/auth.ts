@@ -1,15 +1,21 @@
 import { createSlice } from "@reduxjs/toolkit";
-import { authApi, User } from "@store/services/auth";
+import { authApi, Session, User } from "@store/services/auth";
 
-type AuthState = {
-  session_jwt: string;
-  session_token: string;
+export type AuthState = {
+  session_jwt: string | null;
+  session_token: string | null;
   user: User | null;
+  session?: Session | null;
 };
 
-const authSlice = createSlice({
+export const authSlice = createSlice({
   name: "auth",
-  initialState: { session_jwt: "", session_token: "", user: null } as AuthState,
+  initialState: {
+    session_jwt: null || JSON.parse(localStorage.getItem("session_jwt")!),
+    session_token: null || JSON.parse(localStorage.getItem("session_token")!),
+    user: null || JSON.parse(localStorage.getItem("user")!),
+    session: null || JSON.parse(localStorage.getItem("session")!),
+  } as AuthState,
   reducers: {},
   extraReducers: (builder) => {
     builder.addMatcher(
@@ -18,6 +24,7 @@ const authSlice = createSlice({
         state.session_jwt = data.session_jwt;
         state.session_token = data.session_token;
         state.user = data.user;
+        state.session = data.session;
         for (let [key, value] of Object.entries(data)) {
           localStorage.setItem(key, JSON.stringify(value));
         }
