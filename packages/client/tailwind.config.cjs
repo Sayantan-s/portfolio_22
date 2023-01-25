@@ -4,7 +4,7 @@ module.exports = {
   content: ["./index.html", "./src/**/*.{js,ts,jsx,tsx}"],
   theme: {
     fontFamily: {
-      display: ["Nunito Sans", "sans-serif"],
+      display: ["Inter", "sans-serif"],
     },
     extend: {},
   },

@@ -1,6 +1,18 @@
-export const Logo = () => {
+import { classNames } from "@helpers/classNames";
+import { useMemo } from "react";
+
+interface ILogoProps {
+  className?: string;
+}
+
+export const Logo = ({ className }: ILogoProps) => {
+  const styles = useMemo(
+    () => classNames(`flex items-center space-x-3 w-max`, className),
+    [className]
+  );
+
   return (
-    <div className="flex items-center space-x-3 w-max">
+    <div className={styles}>
       <svg
         width={28}
         height={28}
