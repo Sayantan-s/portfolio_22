@@ -51,7 +51,6 @@ export const tokenVerify: RequestHandler = async (req, res) => {
 
 export const reAuth: RequestHandler = async (req, res) => {
   const sessionToken = req.headers["x-session-token"];
-  console.log(sessionToken, "SESSION TOKEN");
   try {
     const { session_token, session_jwt, session } =
       await stytchClient.sessions.authenticate({
