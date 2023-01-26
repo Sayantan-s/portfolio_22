@@ -20,8 +20,10 @@ export const Login = () => {
   const onSubmit: React.FormEventHandler = async (eve) => {
     eve.preventDefault();
     const res = await login(form).unwrap();
-    if (res.status === 201 || res.status === 200)
+    if (res.statusCode === 201 || res.statusCode === 200) {
       setMessage("Please check your entered mail!");
+      setForm((prevState) => ({ ...prevState, name: "", email: "" }));
+    }
   };
 
   return (

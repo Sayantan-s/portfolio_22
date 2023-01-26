@@ -8,3 +8,17 @@ interface ImportMetaEnv {
 interface ImportMeta {
   readonly env: ImportMetaEnv;
 }
+
+declare module Api {
+  interface SuccessResponse<TData> {
+    requestId: string;
+    statusCode: number;
+    success: true;
+    data: TData;
+  }
+  interface SuccessResponseNoPayload {
+    requestId: string;
+    statusCode: number;
+    success: true;
+  }
+}

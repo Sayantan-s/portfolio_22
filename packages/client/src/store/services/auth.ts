@@ -18,15 +18,14 @@ export type User = {
 
 export interface Session {
   expires_at: Date;
+  session_id: string;
 }
 
-export interface TransformedVerifyApiResponse {
-  data: {
-    session_jwt: string;
-    session_token: string;
-    user: User;
-    session?: Session;
-  };
+export interface VerifyApiPayload {
+  session_jwt: string;
+  session_token: string;
+  user: User;
+  session?: Session;
 }
 
 export const authApi = createApi({
@@ -36,17 +35,14 @@ export const authApi = createApi({
     credentials: "include",
   }),
   endpoints: (builder) => ({
-    login: builder.mutation<TransformedLoginApiResponse, LoginRequest>({
+    login: builder.mutation<Api.SuccessResponseNoPayload, LoginRequest>({
       query: (credentials) => ({
         url: "login",
         method: "POST",
         body: credentials,
       }),
-      transformResponse(_, meta) {
-        return { status: meta?.response?.status };
-      },
     }),
-    verify: builder.query<TransformedVerifyApiResponse, string>({
+    verify: builder.query<Api.SuccessResponse<VerifyApiPayload>, string>({
       query: (token) => ({
         url: "verify",
         credentials: "include",
@@ -55,12 +51,19 @@ export const authApi = createApi({
         },
       }),
     }),
-    reauth: builder.query<TransformedVerifyApiResponse, void>({
+    logOut: builder.mutation<Api.SuccessResponseNoPayload, void>({
       query: () => ({
-        url: "reauth",
+        method: "DELETE",
+        url: "logout",
         credentials: "include",
         headers: {
-          "X-Session-Token": JSON.parse(localStorage.getItem("session_token")!),
+          Authorization: `Bearer ${JSON.parse(
+            localStorage.getItem("session_token")!
+          )}`,
+        },
+        body: {
+          session_id:
+            JSON.parse(localStorage.getItem("session")!).session_id || "",
         },
       }),
     }),

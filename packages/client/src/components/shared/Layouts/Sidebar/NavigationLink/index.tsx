@@ -21,13 +21,13 @@ export const NavigationLink = ({
       classNames("flex", "hover:bg-slate-100", "p-2", {
         "opacity-50": disabled,
       }),
-    []
+    [disabled]
   );
 
   const stylesDiv = useMemo(
     () =>
       classNames(
-        "flex space-x-4 w-48 relative left-1/2 transform -translate-x-1/2",
+        "flex space-x-4 w-44 relative left-1/2 transform -translate-x-1/2",
         {
           "after:w-2": disabled,
           "after:h-2": disabled,
@@ -35,7 +35,7 @@ export const NavigationLink = ({
           "after:bg-yellow-400": disabled,
         }
       ),
-    []
+    [disabled]
   );
 
   return (
@@ -50,7 +50,7 @@ export const NavigationLink = ({
         <span
           className={`${
             isActive ? "text-slate-800" : "text-slate-400"
-          } text-lg`}
+          } text-base`}
         >
           {name}
         </span>

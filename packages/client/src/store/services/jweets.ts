@@ -8,10 +8,6 @@ interface IJweet {
   userId: string;
 }
 
-interface IJweetsApiResponse {
-  data: IJweet[];
-}
-
 export const jweetsApi = createApi({
   reducerPath: "jweets-api",
   baseQuery: fetchBaseQuery({
@@ -27,7 +23,7 @@ export const jweetsApi = createApi({
     },
   }),
   endpoints: (builder) => ({
-    jweets: builder.query<IJweetsApiResponse, void>({
+    jweets: builder.query<Api.SuccessResponse<IJweet[]>, void>({
       query: () => "/",
     }),
   }),

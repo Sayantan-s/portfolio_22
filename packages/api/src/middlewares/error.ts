@@ -1,7 +1,6 @@
 import H from "@helpers/ResponseHelper";
-import { NextFunction, Request, Response } from "express";
-
-import { RequestHandler } from "express";
+import { NextFunction, Request, RequestHandler, Response } from "express";
+import { StytchError } from "stytch";
 
 export default class ErrorHandler extends Error {
   statusCode?: number;
@@ -26,6 +25,18 @@ export default class ErrorHandler extends Error {
     res: Response,
     next: NextFunction
   ) {
+    if (err instanceof StytchError) {
+      H.error(res, {
+        statusCode: err.status_code || 404,
+        success: false,
+        data: {
+          type: err.error_type,
+          name: err.name,
+          message: err.error_message,
+        },
+      });
+      return;
+    }
     H.error(res, {
       statusCode: err.statusCode || 404,
       success: false,

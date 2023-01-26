@@ -5,7 +5,7 @@ import {
   Route,
   RouterProvider,
 } from "react-router-dom";
-import { AuthHandler, Login, RequireAuth } from "./auth";
+import { AuthHandler, Login, RequireAuth, UnProtectedRoutes } from "./auth";
 import { ErrorPage } from "./error";
 import { Home } from "./home";
 import { Jobs } from "./jobs";
@@ -16,9 +16,11 @@ import { Profile } from "./profile";
 const router = createBrowserRouter(
   createRoutesFromElements(
     <Route path="/">
-      <Route path="login" element={<Login />} />
-      <Route path="auth" element={<AuthHandler />} />
-      <Route path="/" element={<RootLayout />}>
+      <Route element={<UnProtectedRoutes />}>
+        <Route path="login" element={<Login />} />
+        <Route path="auth" element={<AuthHandler />} />
+      </Route>
+      <Route element={<RootLayout />}>
         <Route element={<RequireAuth />}>
           <Route index element={<Home />} />
           <Route path="profile" element={<Profile />} />

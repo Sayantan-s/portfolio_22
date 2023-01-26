@@ -1,4 +1,5 @@
 import { configureStore } from "@reduxjs/toolkit";
+import { ToolkitStore } from "@reduxjs/toolkit/dist/configureStore";
 import * as rr from "react-redux";
 import { authApi } from "./services/auth";
 import { jweetsApi } from "./services/jweets";
@@ -24,3 +25,4 @@ export type AppDispatch = typeof store.dispatch;
 
 export const useDispatch: () => AppDispatch = rr.useDispatch;
 export const useSelector: rr.TypedUseSelectorHook<RootState> = rr.useSelector;
+export const getStore = (): ToolkitStore<RootState> => store;

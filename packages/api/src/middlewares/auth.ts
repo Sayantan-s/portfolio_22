@@ -8,6 +8,7 @@ export const withAuth: RequestHandler = async (req, _, next) => {
   const token = authHeaders.split(" ")[1];
   await stytchClient.sessions.authenticate({
     session_token: token,
+    session_duration_minutes: 60 * 24 * 30,
   });
   next();
 };

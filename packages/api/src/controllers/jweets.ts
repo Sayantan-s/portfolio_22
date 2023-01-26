@@ -1,3 +1,4 @@
+import H from "@helpers/ResponseHelper";
 import { Jweet } from "@prisma/client";
 import prisma from "@services/prisma";
 import { Request, Response } from "express";
@@ -11,5 +12,9 @@ export const getJweets = async (
   res: Response<IGetAllJweetsResponse>
 ) => {
   const jweets = await prisma.jweet.findMany();
-  res.status(200).send({ data: jweets });
+  H.success(res, {
+    success: true,
+    statusCode: 200,
+    data: jweets,
+  });
 };

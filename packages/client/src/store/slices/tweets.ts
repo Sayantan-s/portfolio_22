@@ -1,4 +1,5 @@
-import { createSlice } from "@reduxjs/toolkit";
+import { createSlice, PayloadAction } from "@reduxjs/toolkit";
+import { jweetsApi } from "@store/services/jweets";
 
 interface IJweet {
   id: string;
@@ -23,6 +24,18 @@ export const jweetSlice = createSlice({
     addJweet: (state, { payload }) => {
       state.jweets.unshift(payload);
     },
+    getJweets: (
+      state,
+      { payload: { data } }: PayloadAction<Api.SuccessResponse<IJweet[]>>
+    ) => {
+      state.jweets = data;
+    },
+  },
+  extraReducers: (builder) => {
+    builder.addMatcher(
+      jweetsApi.endpoints.jweets.matchFulfilled,
+      jweetSlice.caseReducers.getJweets
+    );
   },
 });
 

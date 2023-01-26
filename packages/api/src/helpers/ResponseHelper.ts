@@ -3,7 +3,7 @@ import { Response } from "express";
 
 interface ISuccessResponseMetaData<TResponse> {
   statusCode?: number;
-  data: TResponse;
+  data?: TResponse;
   success: true;
 }
 
