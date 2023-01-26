@@ -44,7 +44,7 @@ export const PostTool = () => {
       <div className="p-3 flex justify-between">
         <div />
         <button
-          className="bg-gradient-to-br from-sky-400 to-teal-400 disabled:opacity-75 text-slate-50 font-medium w-16 shadow-lg shadow-teal-400/30 p-2 rounded-full"
+          className="bg-gradient-to-br from-sky-400 to-teal-400 disabled:opacity-75 text-slate-50 font-medium shadow-lg shadow-teal-400/30 p-2.5 w-24 rounded-full"
           disabled={!allowToPost}
           onClick={handleCreateTweet}
         >

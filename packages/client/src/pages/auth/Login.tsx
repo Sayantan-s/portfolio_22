@@ -29,9 +29,9 @@ export const Login = () => {
       <div className="relative top-1/2 transform -translate-y-1/2">
         <div>
           <Logo className="mx-auto" />
-          <p className="text-4xl text-center mt-6 text-transparent bg-clip-text bg-gradient-to-b from-slate-500 via-slate-600 to-slate-800">
+          <p className="text-4xl text-center mt-6 text-transparent bg-clip-text bg-gradient-to-b from-slate-600 via-slate-700 to-slate-800">
             Getting hired is as easy as{" "}
-            <span className=" block leading-relaxed text-4xl text-transparent bg-clip-text bg-gradient-to-b from-sky-100 via-emerald-300 to-sky-400">
+            <span className=" block leading-relaxed text-4xl text-transparent bg-clip-text bg-gradient-to-br from-sky-400 to-teal-300">
               Tweeting!
             </span>
           </p>
@@ -44,7 +44,7 @@ export const Login = () => {
               value={form.name}
               onChange={onChange}
               placeholder={"Pablo G..."}
-              className="py-2.5 px-3.5 text-base border border-slate-300 rounded-lg"
+              className="py-2.5 px-3.5 text-base border border-slate-300 rounded-lg focus:outline-none focus:border-slate-400"
             />
             <input
               type={"email"}
@@ -52,12 +52,12 @@ export const Login = () => {
               value={form.email}
               onChange={onChange}
               placeholder={"gavi.fcb@gmail.com"}
-              className="py-2.5 px-3.5 text-base border border-slate-300 rounded-lg"
+              className="py-2.5 px-3.5 text-base border border-slate-300 rounded-lg focus:outline-none focus:border-slate-400"
             />
             <button
               disabled={isLoading}
               className={
-                "p-3.5 bg-slate-800 text-slate-50 disabled:opacity-50 rounded-xl font-medium"
+                "p-3.5 bg-slate-800 text-slate-50 disabled:opacity-50 rounded-xl font-medium border border-slate-400"
               }
             >
               Let's gowww

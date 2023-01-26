@@ -12,7 +12,7 @@ export const Sidebar = () => {
   return (
     <aside className="flex-[0.2] border-r border-r-slate-100">
       <div className="mt-6">
-        <div className="w-40 relative left-1/2 transform -translate-x-1/2">
+        <div className="w-48 relative left-1/2 transform -translate-x-1/2">
           <Logo />
         </div>
         <div className="mt-14 space-y-10">

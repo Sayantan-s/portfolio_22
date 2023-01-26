@@ -4,7 +4,7 @@
 
 @layer base {
   * {
-    @apply text-slate-400 font-display text-sm box-border;
+    @apply text-slate-400 font-display text-sm box-border font-light;
     font-display: optional;
   }
   #root {

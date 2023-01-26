@@ -1,4 +1,5 @@
 import { CLIENT_ORIGIN, ORIGIN, PORT, SESSION_SECRET } from "@config";
+import ErrorHandler from "@middlewares/error";
 import { User } from "@prisma/client";
 import router from "@routes";
 import { IO } from "@services/io";
@@ -45,7 +46,9 @@ app.use(
     store: new RedisStore({ client: redis }),
   })
 );
+
 app.use("/api", router);
+app.use(ErrorHandler.handle);
 
 const io = new IO(server);
 
