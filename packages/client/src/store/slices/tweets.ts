@@ -22,7 +22,7 @@ export const jweetSlice = createSlice({
   initialState,
   reducers: {
     addJweet: (state, { payload }) => {
-      state.jweets.unshift(payload);
+      state.jweets.push(payload);
     },
     getJweets: (
       state,

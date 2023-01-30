@@ -1,5 +1,7 @@
 import { useWebS } from "@context/Ws";
+import { useDispatch } from "@store";
 import { jweetsApi } from "@store/services/jweets";
+import { addJweet } from "@store/slices/tweets";
 import { useEffect, useState } from "react";
 import { PostTool } from "./PostTool";
 
@@ -16,11 +18,13 @@ export const Feed = () => {
 
   const { socket } = useWebS();
 
-  const { isLoading, isSuccess, isError, data } = jweetsApi.useJweetsQuery();
+  const { isLoading, isSuccess, data } = jweetsApi.useJweetsQuery();
+  const dispatch = useDispatch();
 
   useEffect(() => {
     socket.on("created_jweet", (data) => {
-      setJweets((prevState) => [data, ...prevState]);
+      console.log("DATA");
+      dispatch(addJweet(data));
     });
   }, []);
 

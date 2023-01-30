@@ -11,7 +11,8 @@ declare const global: CustomNodeJsGlobal;
 const stytchClient = new stytch.Client({
   project_id: STYTCH_PROJECT_ID!,
   secret: STYTCH_SECRET!,
-  env: stytch.envs.test,
+  env:
+    process.env.NODE_ENV === "production" ? stytch.envs.live : stytch.envs.test,
 });
 
 if (process.env.NODE_ENV === "development") global.stytchClient = stytchClient;
