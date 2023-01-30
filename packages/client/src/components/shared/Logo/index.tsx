@@ -50,7 +50,7 @@ export const Logo = ({ className }: ILogoProps) => {
         />
       </svg>
       <blockquote className="text-xl text-slate-800 font-semibold">
-        Jwitter<span className="text-xl text-slate-300">.app</span>
+        UpShot<span className="text-xl text-slate-300">.app</span>
       </blockquote>
     </div>
   );

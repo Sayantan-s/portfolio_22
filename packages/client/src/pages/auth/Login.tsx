@@ -32,22 +32,14 @@ export const Login = () => {
         <div>
           <Logo className="mx-auto" />
           <p className="text-4xl text-center mt-6 text-transparent bg-clip-text bg-gradient-to-b from-slate-600 via-slate-700 to-slate-800">
-            Getting hired is as easy as{" "}
+            One stop platform for your
             <span className=" block leading-relaxed text-4xl text-transparent bg-clip-text bg-gradient-to-br from-sky-400 to-teal-300">
-              Tweeting!
+              product promotions!
             </span>
           </p>
         </div>
         <div className="max-w-lg mx-auto">
           <form onSubmit={onSubmit} className="flex flex-col space-y-4 mt-8">
-            <input
-              type={"text"}
-              name="name"
-              value={form.name}
-              onChange={onChange}
-              placeholder={"Pablo G..."}
-              className="py-2.5 px-3.5 text-base border border-slate-300 rounded-lg focus:outline-none focus:border-slate-400"
-            />
             <input
               type={"email"}
               name="email"

@@ -1,3 +1,4 @@
+import { useUser } from "@hooks";
 import {
   createContext,
   PropsWithChildren,
@@ -19,21 +20,24 @@ const WSContext = createContext<IContextProps | null>(null);
 
 export const WsProvider = ({ children }: PropsWithChildren) => {
   const [isConnected, setIsConnected] = useState(false);
+  const user = useUser();
 
   useEffect(() => {
-    socket.connect();
-    socket.on("connect", () => {
-      console.log(`${socket.id} connected to socket server...`);
-      setIsConnected(true);
-    });
-    socket.on("disconnect", () => {
-      console.log(`${socket.id} Disconnected from socket server...`);
-      setIsConnected(false);
-    });
-    return () => {
-      socket.disconnect();
-    };
-  }, []);
+    if (user) {
+      socket.connect();
+      socket.on("connect", () => {
+        console.log(`${socket.id} connected to socket server...`);
+        setIsConnected(true);
+      });
+      socket.on("disconnect", () => {
+        console.log(`${socket.id} Disconnected from socket server...`);
+        setIsConnected(false);
+      });
+      return () => {
+        socket.disconnect();
+      };
+    }
+  }, [user]);
 
   return (
     <WSContext.Provider value={{ isConnected, socket }}>

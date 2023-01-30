@@ -37,7 +37,10 @@ export const authSlice = createSlice({
       for (let key of Object.keys(state)) {
         localStorage.removeItem(key);
       }
-      state = initialState;
+      state.session = null;
+      state.session_jwt = null;
+      state.session_token = null;
+      state.user = null;
     },
   },
   extraReducers: (builder) => {
