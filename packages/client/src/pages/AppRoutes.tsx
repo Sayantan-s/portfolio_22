@@ -5,10 +5,10 @@ import {
   Route,
   RouterProvider,
 } from "react-router-dom";
+import { BoughtArtifacts, SoldArtifacts } from "./Artifacts";
 import { AuthHandler, Login, RequireAuth, UnProtectedRoutes } from "./auth";
 import { ErrorPage } from "./error";
 import { Home } from "./home";
-import { Jobs } from "./jobs";
 import { Messages } from "./messages";
 import { Notifications } from "./notifications";
 import { Profile } from "./profile";
@@ -24,7 +24,8 @@ const router = createBrowserRouter(
         <Route element={<RequireAuth />}>
           <Route index element={<Home />} />
           <Route path="profile" element={<Profile />} />
-          <Route path="myjobs" element={<Jobs />} />
+          <Route path="soldart" element={<SoldArtifacts />} />
+          <Route path="boughtart" element={<BoughtArtifacts />} />
           <Route path="messages" element={<Messages />} />
           <Route path="notifications" element={<Notifications />} />
         </Route>

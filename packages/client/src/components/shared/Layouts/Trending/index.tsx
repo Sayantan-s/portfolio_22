@@ -13,13 +13,9 @@ export const Trending = () => {
   };
 
   return (
-    <div className="flex-[0.3] bg-red-100">
+    <div className="flex-[0.3]">
       <div className="mt-6">Trending</div>
-      <button
-        disabled={isLoading}
-        onClick={onLogOut}
-        className="bg-red-400 text-white"
-      >
+      <button disabled={isLoading} onClick={onLogOut} className="text-black">
         Logout
       </button>
     </div>

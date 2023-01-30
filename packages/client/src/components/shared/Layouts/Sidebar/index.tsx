@@ -25,8 +25,14 @@ export const Sidebar = () => {
               disabled
             />
             <NavigationLink
-              to="/myjobs"
-              name="My Jobs"
+              to="/soldart"
+              name="Sold"
+              icon={Briefcase}
+              disabled
+            />
+            <NavigationLink
+              to="/boughtart"
+              name="Bought"
               icon={Briefcase}
               disabled
             />
