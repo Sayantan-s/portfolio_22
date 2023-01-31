@@ -1,27 +1,19 @@
 import { useWebS } from "@context/Ws";
 import { useDispatch } from "@store";
-import { jweetsApi } from "@store/services/jweets";
-import { addJweet } from "@store/slices/tweets";
+import { postsApi } from "@store/services/posts";
+import { addPost } from "@store/slices/posts";
 import { useEffect } from "react";
 import { PostTool } from "./PostTool";
-
-interface IJweet {
-  id: string;
-  slug: string;
-  title: string;
-  body: string;
-  userId: string;
-}
 
 export const Feed = () => {
   const { socket } = useWebS();
 
-  const { isLoading, isSuccess, data } = jweetsApi.useJweetsQuery();
+  const { isLoading, isSuccess, data } = postsApi.usePostsQuery();
   const dispatch = useDispatch();
 
   useEffect(() => {
     socket.on("created_jweet", (data) => {
-      dispatch(addJweet(data));
+      dispatch(addPost(data));
     });
   }, []);
 
@@ -35,9 +27,9 @@ export const Feed = () => {
         {isLoading ? (
           <div className="text-sky-500">loading.....</div>
         ) : isSuccess ? (
-          data.data.map((jweet) => (
-            <div key={jweet.id}>
-              <p dangerouslySetInnerHTML={{ __html: jweet.body }} />
+          data.data.map((post) => (
+            <div key={post.id}>
+              <p dangerouslySetInnerHTML={{ __html: post.details.body }} />
             </div>
           ))
         ) : null}

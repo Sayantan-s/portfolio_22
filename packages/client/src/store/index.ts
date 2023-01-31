@@ -2,18 +2,18 @@ import { configureStore } from "@reduxjs/toolkit";
 import { ToolkitStore } from "@reduxjs/toolkit/dist/configureStore";
 import * as rr from "react-redux";
 import { authApi } from "./services/auth";
-import { jweetsApi } from "./services/jweets";
+import { postsApi } from "./services/posts";
 import authReducer from "./slices/auth";
-import jweetsReducer from "./slices/tweets";
+import jweetsReducer from "./slices/posts";
 
-const middlewares = [authApi.middleware, jweetsApi.middleware];
+const middlewares = [authApi.middleware, postsApi.middleware];
 
 export const store = configureStore({
   reducer: {
     jweets: jweetsReducer,
     auth: authReducer,
     [authApi.reducerPath]: authApi.reducer,
-    [jweetsApi.reducerPath]: jweetsApi.reducer,
+    [postsApi.reducerPath]: postsApi.reducer,
   },
   middleware: (getDefaultMiddleware) =>
     getDefaultMiddleware().concat(...middlewares),

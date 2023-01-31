@@ -10,18 +10,31 @@ datasource db {
   url      = env("DATABASE_URL")
 }
 
-model Jweet {
-  id       String    @id @default(auto()) @map("_id") @db.ObjectId
-  slug     String    @unique
-  title    String
-  body     String
-  user     User      @relation(fields: [userId], references: [id])
-  userId   String    @db.ObjectId
+enum Activity {
+  promote
+  sell
+}
+
+type PostDetails {
+  heading String
+  body    String
+  images  String[]
+}
+
+model Post {
+  id         String      @id @default(auto()) @map("_id") @db.ObjectId
+  activity   Activity
+  user       User        @relation(fields: [userId], references: [id])
+  details    PostDetails
+  userId     String      @db.ObjectId
+  updated_at DateTime    @default(now())
+  created_at DateTime   @updatedAt
 }
 
 model User {
-  id      String   @id @default(auto()) @map("_id") @db.ObjectId
-  email   String   @unique
+  id      String  @id @default(auto()) @map("_id") @db.ObjectId
+  email   String  @unique
   name    String?
-  jweets  Jweet[]
+  newUser Boolean
+  posts  Post[]
 }

@@ -1,17 +1,10 @@
 import { createApi, fetchBaseQuery } from "@reduxjs/toolkit/query/react";
+import { IPost, TCreatePost } from "@store/types/posts";
 
-interface IJweet {
-  id: string;
-  slug: string;
-  title: string;
-  body: string;
-  userId: string;
-}
-
-export const jweetsApi = createApi({
-  reducerPath: "jweets-api",
+export const postsApi = createApi({
+  reducerPath: "posts-api",
   baseQuery: fetchBaseQuery({
-    baseUrl: `/api/jweets`,
+    baseUrl: `/api/posts`,
     prepareHeaders(headers) {
       if (localStorage.getItem("session_token")) {
         headers.set(
@@ -23,7 +16,10 @@ export const jweetsApi = createApi({
     },
   }),
   endpoints: (builder) => ({
-    jweets: builder.query<Api.SuccessResponse<IJweet[]>, void>({
+    posts: builder.query<Api.SuccessResponse<IPost[]>, void>({
+      query: () => "/",
+    }),
+    createPost: builder.mutation<Api.SuccessResponseNoPayload, TCreatePost>({
       query: () => "/",
     }),
   }),

@@ -60,3 +60,13 @@ export const logOut: RequestHandler = async (req, res) => {
     statusCode: 200,
   });
 };
+
+export const easyAccess: RequestHandler = async (req, res) => {
+  const { user_id } = req.body;
+  const session = await stytchClient.sessions.get({ user_id });
+  H.success(res, {
+    success: true,
+    statusCode: session.status_code,
+    data: session,
+  });
+};

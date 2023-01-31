@@ -28,12 +28,14 @@ export class IO {
   static execute(socket: Socket) {
     console.log(`${socket.id} Connected to client server...`);
     socket.on("create_jweet", async (data: ICreateTweetRequestPayload) => {
-      const res = await prisma.jweet.create({
+      const res = await prisma.post.create({
         data: {
-          title: "For Job",
-          body: data.payload,
-          slug: "xyz",
           userId: "63c4ff90ce1d2b18238a5ddb",
+          activity: "promote",
+          details: {
+            heading: "body",
+            body: "BOrm",
+          },
         },
       });
       socket.emit("created_jweet", res);
