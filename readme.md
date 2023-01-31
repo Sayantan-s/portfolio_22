@@ -2,13 +2,6 @@
 
 <b>Upshot</b> is a platform for creators to promote or sell their products. It can be a designer selling a design system he created in Figma or a dev promoting his upcoming product.
 
-### 👋 Hi, I’m Sayantan Samanta
-
-- 💼 I work as a Sofware Engineer at Hoggy.
-- 👀 I’m interested in Web/Mobile Engineering, Blockchain and Web3.
-- 🌱 I’m currently learning Web Tooling and Javascript Testing.
-- 📫 How to reach me: [instagram](https://www.instagram.com/sayantan__s/) [linkedin](https://www.linkedin.com/in/sayantan-samanta-554bb117a/) [website](https://portfolio-22-smoky.vercel.app)
-
 ### 🛠️ Languages and Tools
 
 <img src="https://cdn.svgporn.com/logos/typescript-icon.svg" width="48">&nbsp;<img src="https://cdn.svgporn.com/logos/react.svg" width="48">
