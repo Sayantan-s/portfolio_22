@@ -11,23 +11,7 @@
 
 ### 🛠️ Languages and Tools
 
-<img src="https://cdn.svgporn.com/logos/javascript.svg" width="48">&nbsp;<img src="https://cdn.svgporn.com/logos/typescript-icon.svg" width="48">
-&nbsp;<img src="./react.svg" width="48">
-&nbsp;<img src="https://cdn.svgporn.com/logos/nodejs-icon.svg" width="45">
-&nbsp;<img src="https://cdn.svgporn.com/logos/mongodb-icon.svg" width="24">
-&nbsp;<img src="https://cdn.svgporn.com/logos/postgresql.svg" width="48">
-&nbsp;<img src="https://cdn.svgporn.com/logos/firebase.svg" width="36">
-&nbsp;<img src="https://cdn.svgporn.com/logos/npm-icon.svg" width="48">
-&nbsp;<img src="https://cdn.svgporn.com/logos/yarn.svg" width="48">
-&nbsp;<img src="https://vitejs.dev/logo.svg" width="48">
-&nbsp;<img src="https://cdn.svgporn.com/logos/webpack.svg" width="48">
-&nbsp;<img src="https://cdn.svgporn.com/logos/github-actions.svg" width="48">
-
-<!--
-### 🛠️ Languages and Tools
-
-<img src="https://cdn.svgporn.com/logos/typescript-icon.svg" width="48">
-&nbsp;<img src="https://cdn.svgporn.com/logos/react.svg" width="48">
+<img src="https://cdn.svgporn.com/logos/typescript-icon.svg" width="48">&nbsp;<img src="https://cdn.svgporn.com/logos/react.svg" width="48">
 &nbsp;<img src="https://cdn.svgporn.com/logos/vitejs.svg" width="48">
 &nbsp;<img src="https://cdn.svgporn.com/logos/redux.svg" width="48">
 &nbsp;<img src="https://cdn.svgporn.com/logos/tailwindcss-icon.svg" width="64">
@@ -36,4 +20,4 @@
 &nbsp;<img src="https://cdn.svgporn.com/logos/mongodb-icon.svg" width="24">
 &nbsp;<img src="https://cdn.svgporn.com/logos/socket.io.svg" width="48">
 &nbsp;<img src="https://cdn.svgporn.com/logos/yarn.svg" width="48">
-&nbsp;<img src="https://cdn.svgporn.com/logos/lerna.svg" width="48"> -->
+&nbsp;<img src="https://cdn.svgporn.com/logos/lerna.svg" width="48">
