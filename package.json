@@ -6,11 +6,9 @@
     "packages/*"
   ],
   "devDependencies": {
-    "concurrently": "^7.6.0",
-    "lerna": "^6.4.1",
-    "wsrun": "^5.2.4"
+    "lerna": "^6.4.1"
   },
   "scripts": {
-    "start": "concurrently \"wsrun --parallel dev\""
+    "dev": "lerna run dev"
   }
 }
