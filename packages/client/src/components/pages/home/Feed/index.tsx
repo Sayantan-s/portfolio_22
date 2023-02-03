@@ -1,21 +1,11 @@
-import { useWebS } from "@context/Ws";
-import { useDispatch } from "@store";
 import { postsApi } from "@store/services/posts";
-import { addPost } from "@store/slices/posts";
-import { useEffect } from "react";
 import { PostTool } from "./PostTool";
 
 export const Feed = () => {
-  const { socket } = useWebS();
-
-  const { isLoading, isSuccess, data } = postsApi.usePostsQuery();
-  const dispatch = useDispatch();
-
-  useEffect(() => {
-    socket.on("created_jweet", (data) => {
-      dispatch(addPost(data));
-    });
-  }, []);
+  const { isLoading, isSuccess, data } = postsApi.usePostsQuery(undefined, {
+    pollingInterval: 3000 * 10,
+    refetchOnFocus: true,
+  });
 
   return (
     <div className="mt-6">
