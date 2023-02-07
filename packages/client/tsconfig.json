@@ -20,6 +20,6 @@
       "@*": ["src/*"]
     }
   },
-  "include": ["src", "env.d.ts"],
+  "include": ["src", "env.d.ts", "node_modules"],
   "references": [{ "path": "./tsconfig.node.json" }]
 }
