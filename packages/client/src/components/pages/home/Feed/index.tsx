@@ -1,11 +1,26 @@
+import { sseEvents } from "@helpers/httpClient";
 import { postsApi } from "@store/services/posts";
+import { useEffect } from "react";
 import { PostTool } from "./PostTool";
 
 export const Feed = () => {
-  const { isLoading, isSuccess, data } = postsApi.usePostsQuery(undefined, {
-    pollingInterval: 3000 * 10,
-    refetchOnFocus: true,
-  });
+  const { isLoading, isSuccess, data } = postsApi.usePostsQuery();
+
+  useEffect(() => {
+    sseEvents.addEventListener("post", (eve) => {
+      console.log(eve);
+    });
+
+    sseEvents.onmessage = (eve) => {
+      console.log(eve.data);
+    };
+    sseEvents.onerror = (eve) => {
+      console.log(eve);
+    };
+    return () => {
+      // sseEvents.close();
+    };
+  }, []);
 
   return (
     <div className="mt-6">

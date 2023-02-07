@@ -1,7 +1,6 @@
 import { CLIENT_ORIGIN } from "@config";
 import http from "http";
 import { Server, Socket } from "socket.io";
-import prisma from "./prisma";
 
 interface ICreateTweetRequestPayload {
   _id: string;
@@ -27,20 +26,6 @@ export class IO {
 
   static execute(socket: Socket) {
     console.log(`${socket.id} Connected to client server...`);
-    socket.on("create_jweet", async (data: ICreateTweetRequestPayload) => {
-      const res = await prisma.post.create({
-        data: {
-          userId: "63c4ff90ce1d2b18238a5ddb",
-          activity: "promote",
-          details: {
-            heading: "body",
-            body: "BOrm",
-          },
-        },
-      });
-      socket.emit("created_jweet", res);
-      socket.broadcast.emit("created_jweet", res);
-    });
     socket.on("disconnect", () => {
       console.log(`${socket.id} Disconnected from client server...`);
     });

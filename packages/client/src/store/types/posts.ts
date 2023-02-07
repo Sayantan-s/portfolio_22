@@ -3,7 +3,7 @@ export type Activity = "promote" | "sell";
 export type PostDetails = {
   heading: string;
   body: string;
-  images: string[];
+  images?: string[];
 };
 
 export interface IPost {

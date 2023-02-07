@@ -11,6 +11,7 @@ export const postsSlice = createSlice({
   initialState,
   reducers: {
     addPost: (state, { payload }) => {
+      console.log(payload);
       state.posts.push(payload);
     },
     getPosts: (
@@ -24,6 +25,10 @@ export const postsSlice = createSlice({
     builder.addMatcher(
       postsApi.endpoints.posts.matchFulfilled,
       postsSlice.caseReducers.getPosts
+    );
+    builder.addMatcher(
+      postsApi.endpoints.createPost.matchFulfilled,
+      postsSlice.caseReducers.addPost
     );
   },
 });

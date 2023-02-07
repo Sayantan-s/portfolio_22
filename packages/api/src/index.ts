@@ -2,6 +2,7 @@ import { CLIENT_ORIGIN, ORIGIN, PORT, SESSION_SECRET } from "@config";
 import ErrorHandler from "@middlewares/error";
 import { User } from "@prisma/client";
 import router from "@routes";
+import sseRouter from "@routes/sse.route";
 import { IO } from "@services/io";
 import redis from "@services/redis";
 import connectRedis from "connect-redis";
@@ -9,6 +10,7 @@ import cookieParser from "cookie-parser";
 import cors from "cors";
 import express from "express";
 import session from "express-session";
+import helmet from "helmet";
 import http from "http";
 import morgan from "morgan";
 declare module "express-session" {
@@ -32,6 +34,8 @@ app.use(
   })
 );
 app.use(cookieParser());
+// app.use(compression());
+app.use(helmet());
 app.use(
   session({
     secret: SESSION_SECRET!,
@@ -48,6 +52,7 @@ app.use(
 );
 
 app.use("/api", router);
+app.use(sseRouter);
 app.use(ErrorHandler.handle);
 
 const io = new IO(server);

@@ -1,11 +1,13 @@
-import { useWebS } from "@context/Ws";
+import { useUser } from "@hooks";
+import { postsApi } from "@store/services/posts";
 import { BubbleMenu, EditorContent, useEditor } from "@tiptap/react";
 import StarterKit from "@tiptap/starter-kit";
 import { useState } from "react";
 
 export const PostTool = () => {
   const [allowToPost, setAllowToPost] = useState(false);
-  const { isConnected, socket } = useWebS();
+  const [createPost, { isLoading }] = postsApi.useCreatePostMutation();
+  const user = useUser();
 
   const editor = useEditor({
     extensions: [StarterKit],
@@ -20,13 +22,15 @@ export const PostTool = () => {
     },
   });
 
-  const handleCreateTweet = () => {
-    if (isConnected) {
-      socket.emit("create_jweet", {
-        _id: socket.id,
-        payload: editor?.getHTML(),
-      });
-    }
+  const handleCreateTweet = async () => {
+    await createPost({
+      userId: user?.id!,
+      details: {
+        heading: "Ahora! Baila",
+        body: editor?.getHTML()!,
+      },
+      activity: "promote",
+    }).unwrap;
   };
 
   return (
@@ -45,7 +49,7 @@ export const PostTool = () => {
         <div />
         <button
           className="bg-gradient-to-br from-sky-400 to-teal-400 disabled:opacity-75 text-slate-50 font-medium shadow-lg shadow-teal-400/30 p-2.5 w-24 rounded-full"
-          disabled={!allowToPost}
+          disabled={!allowToPost || isLoading}
           onClick={handleCreateTweet}
         >
           Jweet
