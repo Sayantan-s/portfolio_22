@@ -5,6 +5,7 @@ import router from "@routes";
 import sseRouter from "@routes/sse.route";
 import { IO } from "@services/io";
 import redis from "@services/redis";
+import chalk from "chalk";
 import connectRedis from "connect-redis";
 import cookieParser from "cookie-parser";
 import cors from "cors";
@@ -52,7 +53,7 @@ app.use(
 );
 
 app.use("/api", router);
-app.use(sseRouter);
+app.use("/stream", sseRouter);
 app.use(ErrorHandler.handle);
 
 const io = new IO(server);
@@ -60,7 +61,7 @@ const io = new IO(server);
 io.init(IO.execute);
 
 server.listen(PORT, () => {
-  console.log(`SERVER RUNNING ON ${ORIGIN}`);
+  console.log(chalk.bgGray.bold.redBright(`SERVER RUNNING ON ${ORIGIN}`));
 });
 
 process.on("SIGINT", () => {

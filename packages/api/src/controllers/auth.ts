@@ -17,12 +17,14 @@ function getParams(email: string): LoginOrCreateByEmailRequest {
 
 export const loginOrCreate: RequestHandler = async (req, res) => {
   const { email } = req.body;
-  await stytchClient.magicLinks.email.loginOrCreate(getParams(email));
   const user = await prisma.user.upsert({
     where: { email },
-    update: {},
+    update: {
+      newUser: false,
+    },
     create: req.body,
   });
+  await stytchClient.magicLinks.email.loginOrCreate(getParams(email));
   req.session.user = user;
   H.success(res, {
     success: true,

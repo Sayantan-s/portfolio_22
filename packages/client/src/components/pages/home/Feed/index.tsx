@@ -1,26 +1,19 @@
-import { sseEvents } from "@helpers/httpClient";
+import { useSSE } from "@hooks";
+import { useDispatch } from "@store";
 import { postsApi } from "@store/services/posts";
-import { useEffect } from "react";
+import { addPost } from "@store/slices/posts";
 import { PostTool } from "./PostTool";
 
 export const Feed = () => {
   const { isLoading, isSuccess, data } = postsApi.usePostsQuery();
 
-  useEffect(() => {
-    sseEvents.addEventListener("post", (eve) => {
-      console.log(eve);
-    });
+  const dispatch = useDispatch();
 
-    sseEvents.onmessage = (eve) => {
-      console.log(eve.data);
-    };
-    sseEvents.onerror = (eve) => {
-      console.log(eve);
-    };
-    return () => {
-      // sseEvents.close();
-    };
-  }, []);
+  useSSE("posts", {
+    onSuccess: (eve) => {
+      dispatch(addPost(JSON.parse(eve.data)));
+    },
+  });
 
   return (
     <div className="mt-6">

@@ -1,7 +1,7 @@
 import H from "@helpers/ResponseHelper";
+import { SSEEmitter } from "@helpers/SSEEmitter";
 import { Post } from "@prisma/client";
 import prisma from "@services/prisma";
-import sse from "@services/sse";
 import { Request, RequestHandler, Response } from "express";
 
 interface IGetAllJweetsResponse {
@@ -28,10 +28,9 @@ export const createPost: RequestHandler<unknown, unknown, Post> = async (
   req,
   res
 ) => {
-  console.log(req.body);
   const data = req.body;
   const post = await prisma.post.create({ data });
-  sse.send(JSON.stringify(post), "post");
+  SSEEmitter.emit("stream_posts", JSON.stringify(post));
   H.success(res, {
     success: true,
     statusCode: 201,

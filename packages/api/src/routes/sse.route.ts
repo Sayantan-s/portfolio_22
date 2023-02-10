@@ -1,16 +1,10 @@
+import { streamPosts } from "@controllers/stream";
+import ErrorHandler from "@middlewares/error";
+import { sseMiddleware } from "@middlewares/sseMiddleware";
 import express from "express";
 
 const sseRouter = express.Router();
-
-sseRouter.get("/stream", (req, res) => {
-  res.setHeader("Cache-Control", "no-cache");
-  res.setHeader("connection", "keep-alive");
-  res.setHeader("Content-Type", "text/event-stream");
-
-  const data = JSON.stringify({ ticker: "HELLO" });
-  setTimeout(() => {
-    res.write(`id: ${new Date().toLocaleTimeString()}\ndata: ${data}\n\n`);
-  }, 3000);
-});
+sseRouter.use(ErrorHandler.tryCatch(sseMiddleware));
+sseRouter.get("/posts", ErrorHandler.tryCatch(streamPosts));
 
 export default sseRouter;

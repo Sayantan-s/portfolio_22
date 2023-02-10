@@ -16,25 +16,45 @@ enum Activity {
 }
 
 type PostDetails {
-  heading String
-  body    String
-  images  String[]
+  heading   String
+  body      String
+  images    String[] @default([])
+  salePrice Float? @default(0)
+}
+
+model Comment {
+  id         String    @id @default(auto()) @map("_id") @db.ObjectId
+  postId     String    @db.ObjectId
+  post       Post      @relation(fields: [postId], references: [id])
+  updated_at DateTime  @default(now())
+  created_at DateTime  @updatedAt
+  replies    Replies[]
+}
+
+model Replies {
+  id         String   @id @default(auto()) @map("_id") @db.ObjectId
+  commentId  String   @db.ObjectId
+  comment    Comment  @relation(fields: [commentId], references: [id])
+  updated_at DateTime @default(now())
+  created_at DateTime @updatedAt
 }
 
 model Post {
   id         String      @id @default(auto()) @map("_id") @db.ObjectId
   activity   Activity
   user       User        @relation(fields: [userId], references: [id])
-  details    PostDetails
   userId     String      @db.ObjectId
+  details    PostDetails
   updated_at DateTime    @default(now())
-  created_at DateTime   @updatedAt
+  created_at DateTime    @updatedAt
+  likes      Int         @default(0)
+  comments   Comment[]
 }
 
 model User {
   id      String  @id @default(auto()) @map("_id") @db.ObjectId
   email   String  @unique
-  name    String?
-  newUser Boolean
-  posts  Post[]
+  name    String? 
+  newUser Boolean @default(true)
+  posts   Post[]
 }
