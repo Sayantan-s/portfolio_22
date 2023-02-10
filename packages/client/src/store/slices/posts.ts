@@ -11,7 +11,6 @@ export const postsSlice = createSlice({
   initialState,
   reducers: {
     addPost: (state, { payload }) => {
-      console.log(payload, "PAYLOAD");
       state.posts.unshift(payload);
     },
     getPosts: (

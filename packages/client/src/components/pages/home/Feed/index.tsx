@@ -1,19 +1,8 @@
-import { useSSE } from "@hooks";
-import { useDispatch } from "@store";
 import { postsApi } from "@store/services/posts";
-import { addPost } from "@store/slices/posts";
 import { PostTool } from "./PostTool";
 
 export const Feed = () => {
   const { isLoading, isSuccess, data } = postsApi.usePostsQuery();
-
-  const dispatch = useDispatch();
-
-  useSSE("posts", {
-    onSuccess: (eve) => {
-      dispatch(addPost(JSON.parse(eve.data)));
-    },
-  });
 
   return (
     <div className="mt-6">
