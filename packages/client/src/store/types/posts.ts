@@ -1,3 +1,5 @@
+import { User } from "./auth";
+
 export type Activity = "promote" | "sell";
 
 export type PostDetails = {
@@ -13,6 +15,8 @@ export interface IPost {
   userId: string;
   updated_at: Date;
   created_at: Date;
+  likes: number;
+  user?: User;
 }
 
 export interface InitialStateOfPosts {

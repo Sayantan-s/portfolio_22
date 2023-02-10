@@ -31,6 +31,7 @@ export const PostTool = () => {
       },
       activity: "promote",
     }).unwrap;
+    editor?.commands.setContent("");
   };
 
   return (
@@ -52,7 +53,7 @@ export const PostTool = () => {
           disabled={!allowToPost || isLoading}
           onClick={handleCreateTweet}
         >
-          Jweet
+          Shoot
         </button>
       </div>
     </div>

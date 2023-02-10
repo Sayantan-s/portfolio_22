@@ -12,15 +12,18 @@ export const getPosts = async (
   _: Request,
   res: Response<IGetAllJweetsResponse>
 ) => {
-  const jweets = await prisma.post.findMany({
+  const posts = await prisma.post.findMany({
     orderBy: {
       created_at: "desc",
+    },
+    include: {
+      user: true,
     },
   });
   H.success(res, {
     success: true,
     statusCode: 200,
-    data: jweets,
+    data: posts,
   });
 };
 
@@ -29,7 +32,7 @@ export const createPost: RequestHandler<unknown, unknown, Post> = async (
   res
 ) => {
   const data = req.body;
-  const post = await prisma.post.create({ data });
+  const post = await prisma.post.create({ data, include: { user: true } });
   SSEEmitter.emit("stream_posts", JSON.stringify(post));
   H.success(res, {
     success: true,

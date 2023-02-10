@@ -48,7 +48,7 @@ export const Sidebar = () => {
           </div>
           <div className="space-y-6 px-8">
             <button className="w-full bg-gradient-to-br text-base from-sky-400 to-teal-400 disabled:opacity-75 text-slate-50 font-medium shadow-lg shadow-teal-400/30 p-2.5 rounded-full">
-              Jweet
+              Shoot
             </button>
           </div>
         </div>

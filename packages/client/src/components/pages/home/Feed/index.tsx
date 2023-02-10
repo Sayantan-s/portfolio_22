@@ -1,4 +1,6 @@
 import { postsApi } from "@store/services/posts";
+import { AnimatePresence, motion } from "framer-motion";
+import Post from "./Post";
 import { PostTool } from "./PostTool";
 
 export const Feed = () => {
@@ -10,17 +12,15 @@ export const Feed = () => {
         Hey, <span className="text-xl text-slate-300">Sayantan</span>
       </h1>
       <PostTool />
-      <div>
-        {isLoading ? (
-          <div className="text-sky-500">loading.....</div>
-        ) : isSuccess ? (
-          data.data.map((post) => (
-            <div key={post.id}>
-              <p dangerouslySetInnerHTML={{ __html: post.details.body }} />
-            </div>
-          ))
-        ) : null}
-      </div>
+      <motion.div className="mt-4 space-y-3">
+        <AnimatePresence>
+          {isLoading ? (
+            <div className="text-sky-500">loading.....</div>
+          ) : isSuccess ? (
+            data.data.map((post) => <Post key={post.id} {...post} />)
+          ) : null}
+        </AnimatePresence>
+      </motion.div>
     </div>
   );
 };
