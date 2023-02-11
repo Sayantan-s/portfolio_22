@@ -77,7 +77,7 @@ const Post = ({ details, activity, id, updated_at }: IPost) => {
           >
             <img
               className={`absolute w-full h-full object-cover ${
-                imgs.length - 1 === index ? "blur-md" : ""
+                imgs.length > 2 && imgs.length - 1 === index ? "blur-md" : ""
               }`}
               alt={`avatar_${id}`}
               src={

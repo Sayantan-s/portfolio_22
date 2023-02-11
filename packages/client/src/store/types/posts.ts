@@ -23,4 +23,4 @@ export interface InitialStateOfPosts {
   posts: IPost[];
 }
 
-export type TCreatePost = Pick<IPost, "activity" | "details" | "userId">;
+export type TCreatePost = Pick<IPost, "activity" | "details">;
