@@ -1,6 +1,6 @@
 import { useUser } from "@hooks";
 import { postsApi } from "@store/services/posts";
-import { BubbleMenu, EditorContent, useEditor } from "@tiptap/react";
+import { useEditor } from "@tiptap/react";
 import StarterKit from "@tiptap/starter-kit";
 import { useState } from "react";
 
@@ -31,12 +31,12 @@ export const PostTool = () => {
       },
       activity: "promote",
     }).unwrap;
-    editor?.commands.setContent("");
+    // editor?.commands.setContent("");
   };
 
   return (
-    <div className="bg-slate-100 rounded-xl mt-4">
-      {editor ? (
+    <div className="bg-slate-100 rounded-xl mt-4 overflow-hidden">
+      {/* {editor ? (
         <BubbleMenu
           className="bg-slate-50 shadow-md p-1 flex"
           editor={editor}
@@ -45,7 +45,12 @@ export const PostTool = () => {
           <button>B</button>
         </BubbleMenu>
       ) : null}
-      <EditorContent editor={editor} />
+      <EditorContent editor={editor} /> */}
+      <textarea
+        placeholder="Hey what's cooking!!"
+        className="w-full h-full resize-none bg-transparent p-3 placeholder:text-slate-300"
+        rows={1}
+      />
       <div className="p-3 flex justify-between">
         <div />
         <button
