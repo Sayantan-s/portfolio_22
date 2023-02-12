@@ -11,3 +11,11 @@
     @apply h-screen w-full;
   }
 }
+
+.ProseMirror h1.is-editor-empty:first-child::before,
+p.is-editor-empty:first-child::before {
+  content: attr(data-placeholder);
+  float: left;
+  height: 0;
+  pointer-events: none;
+}

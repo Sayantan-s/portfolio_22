@@ -90,21 +90,38 @@ const Post = ({ details, activity, id, updated_at }: IPost) => {
       </div>
       <div className="mt-3 flex justify-between">
         <div className="flex space-x-1.5">
-          <button>
-            <Heart className={"w-6 h-6 stroke-slate-300"} variant="Broken" />
+          <button className="bg-rose-50 hover:bg-rose-100 flex items-center p-1.5 space-x-1 rounded-full">
+            <Heart
+              className={"w-5 h-5"}
+              color="rgb(244 63 94)"
+              variant="Broken"
+            />
           </button>
           {activity === "promote" ? (
-            <button className="text-red-400">
-              <Messages2 className={"w-6 h-6"} variant="Broken" />
+            <button className="bg-teal-50 hover:bg-teal-100 flex items-center p-1.5 space-x-1 rounded-full">
+              <Messages2
+                className={"w-5 h-5"}
+                color=" rgb(20 184 166)"
+                variant="Broken"
+              />
             </button>
           ) : (
-            <button>
-              <Send2 className={"w-6 h-6"} variant={"Broken"} />
+            <button className="bg-sky-50 hover:bg-sky-100 flex items-center p-1.5 space-x-1 rounded-full">
+              <Send2
+                className={"w-5 h-5"}
+                color="rgb(14 165 233)"
+                variant={"Broken"}
+              />
             </button>
           )}
         </div>
         {activity === "sell" ? (
-          <button>Buy</button>
+          <button className="space-x-1 bg-slate-900 px-4 py-1.5 disabled:opacity-75 ring-1 ring-slate-900/10 shadow shadow-slate-700/10 rounded-full">
+            <span className="text-yellow-200">$</span>
+            <span className="text-sky-50 font-normal text-xs">
+              {details.salePrice}
+            </span>
+          </button>
         ) : (
           <div className="flex items-end space-x-1 opacity-50">
             {" "}

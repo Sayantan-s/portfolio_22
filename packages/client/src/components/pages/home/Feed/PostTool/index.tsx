@@ -1,6 +1,5 @@
-import React, { lazy, Reducer, Suspense, useReducer } from "react";
-
-const Tool = lazy(() => import("./Tool"));
+import React, { Reducer, useReducer } from "react";
+import Tool from "./Tool";
 
 export const PostTool = () => {
   const [show, showToggler] = useReducer<Reducer<boolean, "show" | "hide">>(
@@ -27,13 +26,11 @@ export const PostTool = () => {
         </div>
       </div>
       {show && (
-        <Suspense fallback={<div>Loading...</div>}>
-          <Tool
-            onRemove={() => {
-              showToggler("hide");
-            }}
-          />
-        </Suspense>
+        <Tool
+          onRemove={() => {
+            showToggler("hide");
+          }}
+        />
       )}
     </React.Fragment>
   );

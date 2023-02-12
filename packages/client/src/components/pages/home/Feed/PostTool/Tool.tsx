@@ -1,8 +1,12 @@
-import { useUser } from "@hooks";
+import { useMultiStep } from "@hooks";
 import { postsApi } from "@store/services/posts";
-import { useEditor } from "@tiptap/react";
-import { StarterKit } from "@tiptap/starter-kit";
+import { Activity, TCreatePost } from "@store/types/posts";
+import { EditorEvents } from "@tiptap/react";
+import { lazy, Suspense, useState } from "react";
 import { createPortal } from "react-dom";
+import { ChooseActivity } from "./ChooseActivity";
+
+const FillPostInfo = lazy(() => import("./FillPostInfo"));
 
 interface IProps {
   onRemove?: () => void;
@@ -19,32 +23,66 @@ export default Tool;
 
 const PostToolUI = ({ onRemove }: IProps) => {
   const [createPost, { isLoading }] = postsApi.useCreatePostMutation();
-  const user = useUser();
-
-  const editor = useEditor({
-    extensions: [StarterKit],
-    content: "<p>Hey what's cooking!!!</p>",
-    editorProps: {
-      attributes: {
-        class: "focus:outline-none h-16 max-w-2xl p-4",
-      },
+  const [finalPostSchema, setFinalPostSchema] = useState<TCreatePost>({
+    activity: "",
+    details: {
+      heading: "",
+      body: "",
+      images: [],
     },
   });
 
-  const handleCreateTweet = async () => {
-    await createPost({
+  const onHandleChangeHeading = ({ editor: e }: EditorEvents["update"]) => {
+    setFinalPostSchema((prevState) => ({
+      ...prevState,
       details: {
-        heading: "Ahora! Baila",
-        body: editor?.getHTML()!,
+        ...prevState.details,
+        heading: e.getHTML(),
       },
-      activity: "promote",
-    }).unwrap;
-    editor?.commands.setContent("");
+    }));
   };
+
+  const onHandleChangeBody = ({ editor: e }: EditorEvents["update"]) => {
+    setFinalPostSchema((prevState) => ({
+      ...prevState,
+      details: {
+        ...prevState.details,
+        body: e.getHTML(),
+      },
+    }));
+  };
+
+  const onChooseActivity = (activity: Activity) => {
+    setFinalPostSchema((prevState) => ({
+      ...prevState,
+      activity,
+    }));
+    setTimeout(next, 0);
+  };
+
+  const handlePost = async () => {
+    await createPost(finalPostSchema).unwrap;
+    setTimeout(() => {
+      onRemove?.();
+    }, 0);
+  };
+
+  const { step, next } = useMultiStep([
+    <ChooseActivity onChoose={onChooseActivity} />,
+    <Suspense fallback={<div>Loading...</div>}>
+      <FillPostInfo
+        activity={finalPostSchema.activity}
+        onPost={handlePost}
+        onChangeHeading={onHandleChangeHeading}
+        onChangeBody={onHandleChangeBody}
+      />
+    </Suspense>,
+  ]);
+
   return (
     <>
-      <div className="w-5/12 h-[600px] fixed top-1/2 left-1/2 transform -translate-x-1/2 -translate-y-1/2 bg-white z-30">
-        Tool
+      <div className="rounded-xl p-4 w-[520px] h-[300px] fixed top-1/2 left-1/2 transform -translate-x-1/2 -translate-y-1/2 bg-white z-30">
+        {step}
       </div>
       <div
         className="w-full h-full bg-slate-900/50 fixed top-0 left-0 z-20 backdrop-blur-xl"

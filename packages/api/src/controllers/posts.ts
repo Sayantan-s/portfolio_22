@@ -16,8 +16,10 @@ export const getPosts = async (
     orderBy: {
       created_at: "desc",
     },
-    include: {
+    select: {
       user: true,
+      details: true,
+      activity: true,
     },
   });
   H.success(res, {

@@ -1,6 +1,5 @@
 import { CLIENT_ORIGIN, ORIGIN, PORT, SESSION_SECRET } from "@config";
 import ErrorHandler from "@middlewares/error";
-import { User } from "@prisma/client";
 import router from "@routes";
 import sseRouter from "@routes/sse.route";
 import { IO } from "@services/io";
@@ -14,9 +13,10 @@ import session from "express-session";
 import helmet from "helmet";
 import http from "http";
 import morgan from "morgan";
+import { AuthenticateResponse } from "stytch/types/lib/magic_links";
 declare module "express-session" {
   interface SessionData {
-    user: User;
+    authMetaData: AuthenticateResponse;
   }
 }
 

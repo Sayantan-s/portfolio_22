@@ -1,12 +1,6 @@
 import * as Toolbar from "@radix-ui/react-toolbar";
-import {
-  TextalignCenter,
-  TextalignLeft,
-  TextalignRight,
-  TextBlock,
-  TextBold,
-  TextItalic,
-} from "iconsax-react";
+import { BubbleMenu } from "@tiptap/react";
+import { TextBold, TextItalic, TextUnderline } from "iconsax-react";
 import { IEditorControls } from "./types";
 
 export const EditorControls: IEditorControls = ({ editor }) => {
@@ -14,79 +8,54 @@ export const EditorControls: IEditorControls = ({ editor }) => {
     editor?.chain().focus().toggleBold().run();
   };
 
+  const handleItalic = () => {
+    editor?.chain().focus().toggleItalic().run();
+  };
+
+  const handleColor = () => {};
+
   if (!editor) return <div>Loading...</div>;
 
   return (
-    <div>
-      <Toolbar.Root className="ToolbarRoot" aria-label="Formatting options">
-        <Toolbar.ToggleGroup type="multiple" aria-label="Text formatting">
+    <BubbleMenu
+      editor={editor}
+      tippyOptions={{ duration: 100 }}
+      className="bg-slate-50 rounded-md"
+    >
+      <Toolbar.Root
+        className="ToolbarRoot flex p-1"
+        aria-label="Formatting options"
+      >
+        <Toolbar.ToggleGroup
+          className="flex space-x-2"
+          type="multiple"
+          aria-label="Text formatting"
+        >
           <Toolbar.ToggleItem
-            className="ToolbarToggleItem"
+            className="ToolbarToggleItem p-1 hover:bg-slate-200 rounded-sm"
             value="bold"
             aria-label="Bold"
             onClick={handleBold}
           >
-            <TextBold />
+            <TextBold className="w-4 h-4" color="rgb(71 85 105)" />
           </Toolbar.ToggleItem>
           <Toolbar.ToggleItem
-            className="ToolbarToggleItem"
+            className="ToolbarToggleItem p-1 hover:bg-slate-200 rounded-sm"
             value="italic"
             aria-label="Italic"
           >
-            <TextItalic />
+            <TextItalic className="w-4 h-4" color="rgb(71 85 105)" />
           </Toolbar.ToggleItem>
           <Toolbar.ToggleItem
-            className="ToolbarToggleItem"
-            value="strikethrough"
-            aria-label="Strike through"
+            className="ToolbarToggleItem p-1 hover:bg-slate-200 rounded-sm"
+            value="italic"
+            aria-label="Italic"
           >
-            <TextBlock />
+            <TextUnderline className="w-4 h-4" color="rgb(71 85 105)" />
           </Toolbar.ToggleItem>
         </Toolbar.ToggleGroup>
         <Toolbar.Separator className="ToolbarSeparator" />
-        <Toolbar.ToggleGroup
-          type="single"
-          defaultValue="center"
-          aria-label="Text alignment"
-        >
-          <Toolbar.ToggleItem
-            className="ToolbarToggleItem"
-            value="left"
-            aria-label="Left aligned"
-          >
-            <TextalignLeft />
-          </Toolbar.ToggleItem>
-          <Toolbar.ToggleItem
-            className="ToolbarToggleItem"
-            value="center"
-            aria-label="Center aligned"
-          >
-            <TextalignCenter />
-          </Toolbar.ToggleItem>
-          <Toolbar.ToggleItem
-            className="ToolbarToggleItem"
-            value="right"
-            aria-label="Right aligned"
-          >
-            <TextalignRight />
-          </Toolbar.ToggleItem>
-        </Toolbar.ToggleGroup>
-        <Toolbar.Separator className="ToolbarSeparator" />
-        <Toolbar.Link
-          className="ToolbarLink"
-          href="#"
-          target="_blank"
-          style={{ marginRight: 10 }}
-        >
-          Edited 2 hours ago
-        </Toolbar.Link>
-        <Toolbar.Button
-          className="ToolbarButton"
-          style={{ marginLeft: "auto" }}
-        >
-          Share
-        </Toolbar.Button>
       </Toolbar.Root>
-    </div>
+    </BubbleMenu>
   );
 };
