@@ -2,7 +2,7 @@ import { useMultiStep } from "@hooks";
 import { postsApi } from "@store/services/posts";
 import { Activity, TCreatePost } from "@store/types/posts";
 import { EditorEvents } from "@tiptap/react";
-import { lazy, Suspense, useState } from "react";
+import React, { lazy, Suspense, useState } from "react";
 import { createPortal } from "react-dom";
 import { ChooseActivity } from "./ChooseActivity";
 
@@ -32,12 +32,14 @@ const PostToolUI = ({ onRemove }: IProps) => {
     },
   });
 
-  const onHandleChangeHeading = ({ editor: e }: EditorEvents["update"]) => {
+  const onHandleChangeHeading: React.ChangeEventHandler<HTMLInputElement> = (
+    eve
+  ) => {
     setFinalPostSchema((prevState) => ({
       ...prevState,
       details: {
         ...prevState.details,
-        heading: e.getHTML(),
+        heading: eve.target.value,
       },
     }));
   };
@@ -81,7 +83,7 @@ const PostToolUI = ({ onRemove }: IProps) => {
 
   return (
     <>
-      <div className="rounded-xl p-4 w-[520px] h-[300px] fixed top-1/2 left-1/2 transform -translate-x-1/2 -translate-y-1/2 bg-white z-30">
+      <div className="rounded-xl p-4 w-[580px] h-[500px] fixed top-1/2 left-1/2 transform -translate-x-1/2 -translate-y-1/2 bg-white z-30">
         {step}
       </div>
       <div
