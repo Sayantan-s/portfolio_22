@@ -6,6 +6,7 @@ export type PostDetails = {
   heading: string;
   body: string;
   images?: string[];
+  salePrice?: number;
 };
 
 export interface IPost {
@@ -23,4 +24,7 @@ export interface InitialStateOfPosts {
   posts: IPost[];
 }
 
-export type TCreatePost = Pick<IPost, "activity" | "details" | "userId">;
+export type TCreatePost = {
+  activity: Activity | "";
+  details: PostDetails;
+};

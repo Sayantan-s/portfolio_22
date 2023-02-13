@@ -13,11 +13,13 @@ export const Trending = () => {
   };
 
   return (
-    <div className="flex-[0.3] sticky overflow-auto top-0">
-      <div className="mt-6">Trending</div>
-      <button disabled={isLoading} onClick={onLogOut} className="text-black">
-        Logout
-      </button>
+    <div className="flex-[0.3]">
+      <div className="py-4 sticky top-0">
+        <div>Trending</div>
+        <button disabled={isLoading} onClick={onLogOut} className="text-black">
+          Logout
+        </button>
+      </div>
     </div>
   );
 };

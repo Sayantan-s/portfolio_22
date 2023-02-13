@@ -25,7 +25,6 @@ export const loginOrCreate: RequestHandler = async (req, res) => {
     create: req.body,
   });
   await stytchClient.magicLinks.email.loginOrCreate(getParams(email));
-  req.session.user = user;
   H.success(res, {
     success: true,
     statusCode: user.newUser ? 201 : 200,
@@ -34,19 +33,14 @@ export const loginOrCreate: RequestHandler = async (req, res) => {
 
 export const tokenVerify: RequestHandler = async (req, res) => {
   const token = req.headers["x-magic-token"];
-  const { session_token, session_jwt, session } =
-    await stytchClient.magicLinks.authenticate(token as string, {
-      session_duration_minutes: 60 * 24 * 30,
-    });
+  const metaData = await stytchClient.magicLinks.authenticate(token as string, {
+    session_duration_minutes: 60 * 24 * 30,
+  });
+  req.session.authMetaData = metaData!;
   H.success(res, {
     success: true,
     statusCode: 200,
-    data: {
-      session_jwt,
-      session_token,
-      session,
-      user: req.session.user,
-    },
+    data: metaData,
   });
 };
 

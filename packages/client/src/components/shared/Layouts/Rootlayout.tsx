@@ -14,7 +14,7 @@ const RootLayout = ({
   rightLayout,
 }: PropsWithChildren<ILayoutProps>) => {
   return (
-    <Page className="flex gap-6 max-w-7xl mx-auto">
+    <Page className="flex max-w-7xl mx-auto">
       {leftLayout ? leftLayout : <Sidebar />}
       <main className="flex-[0.5]">
         <Outlet />
