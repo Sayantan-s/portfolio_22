@@ -25,6 +25,7 @@ export default class ErrorHandler extends Error {
     res: Response,
     next: NextFunction
   ) {
+    console.log(err);
     if (err instanceof StytchError) {
       H.error(res, {
         statusCode: err.status_code || 404,
