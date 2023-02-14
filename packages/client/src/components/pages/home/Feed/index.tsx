@@ -8,7 +8,7 @@ export const Feed = () => {
 
   return (
     <div>
-      <h1 className="p-4 text-slate-800 text-xl font-semibold top-0 sticky z-10 bg-white-400/50 backdrop-blur-xl">
+      <h1 className="p-4 text-slate-800 text-xl font-semibold top-0 sticky z-10 bg-white/90 backdrop-blur-xl">
         Hey, <span className="text-xl text-slate-300">Sayantan</span>
       </h1>
       <PostTool />
