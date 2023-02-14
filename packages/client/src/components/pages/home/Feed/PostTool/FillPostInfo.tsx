@@ -1,12 +1,19 @@
+import { Button } from "@components/ui";
 import { TCreatePost } from "@store/types/posts";
 import CharacterCount from "@tiptap/extension-character-count";
 import { Color } from "@tiptap/extension-color";
-import Heading from "@tiptap/extension-heading";
 import Placeholder from "@tiptap/extension-placeholder";
 import Text from "@tiptap/extension-text";
 import TextStyle from "@tiptap/extension-text-style";
 import { EditorContent, EditorEvents, useEditor } from "@tiptap/react";
 import { StarterKit } from "@tiptap/starter-kit";
+import {
+  ArrowLeft2,
+  AttachCircle,
+  Happyemoji,
+  Image,
+  Trash,
+} from "iconsax-react";
 import React, { useMemo } from "react";
 import { EditorControls } from "./EditorControls";
 
@@ -14,26 +21,15 @@ type IFillSchemaInfoProps = Pick<TCreatePost, "activity"> & {
   onPost: () => void;
   onChangeHeading: React.ChangeEventHandler<HTMLInputElement>;
   onChangeBody: (props: EditorEvents["update"]) => void;
+  onBack?: () => void;
 };
-
-const CustomParagraph = Heading.extend({
-  addCommands() {
-    return {
-      ...this.parent?.(),
-      toggleClassName:
-        (className: any) =>
-        ({ commands }: any) => {
-          return commands.updateAttributes("paragraph", { class: className });
-        },
-    };
-  },
-});
 
 const FillPostInfo = ({
   activity,
   onPost,
   onChangeHeading,
   onChangeBody,
+  onBack,
 }: IFillSchemaInfoProps) => {
   const editor = useEditor({
     extensions: [
@@ -42,9 +38,8 @@ const FillPostInfo = ({
       Text,
       Color,
       TextStyle,
-      CustomParagraph,
       CharacterCount.configure({
-        limit: 1000,
+        limit: 700,
       }),
       Placeholder.configure({
         placeholder:
@@ -101,26 +96,69 @@ const FillPostInfo = ({
   return (
     <div className="flex flex-col justify-between h-full">
       <div>
-        <input
-          type="text"
-          className="focus:outline-none w-full p-2 text-3xl font-semibold text-slate-700 placeholder:text-slate-500/40"
-          placeholder={
-            activity === "promote"
-              ? "What's cooking?!!!"
-              : "New Dollars $oon!!!"
-          }
-          onChange={onChangeHeading}
-        />
-        {memoizedEditor}
+        <div className="flex justify-between">
+          <button
+            className="p-1.5 rounded-full bg-slate-50 hover:bg-slate-100"
+            onClick={onBack}
+          >
+            <ArrowLeft2
+              variant="Broken"
+              className="w-5 h-5"
+              color="rgb(148 163 184)"
+            />
+          </button>
+          <div className="space-x-1 flex items-center justify-end">
+            <button className="rounded-xl p-1">
+              <Image
+                className="w-6 h-6"
+                color="rgb(148 163 184)"
+                variant="Bulk"
+              />
+            </button>
+            <button className="rounded-xl p-1">
+              <AttachCircle
+                className="w-6 h-6"
+                color="rgb(148 163 184)"
+                variant="Broken"
+              />
+            </button>
+          </div>
+        </div>
+        <div className="mt-4">
+          <input
+            maxLength={40}
+            type="text"
+            className="focus:outline-none w-full p-2 text-3xl font-semibold text-slate-700 placeholder:text-slate-500/40"
+            placeholder={
+              activity === "promote"
+                ? "What's cooking?!!!"
+                : "New Dollars $oon!!!"
+            }
+            onChange={onChangeHeading}
+          />
+          {memoizedEditor}
+        </div>
       </div>
-      <div className="flex justify-between">
-        <div></div>
-        <button
-          onClick={handlePost}
-          className="bg-teal-400 px-6 py-2.5 disabled:opacity-75 text-teal-50 font-medium ring-1 ring-teal-900/10 shadow shadow-teal-700/10 rounded-full"
-        >
+      <div className="flex justify-between items-center">
+        <div className="space-x-2 flex items-center">
+          <button className="bg-sky-100/70 rounded-xl p-2 hover:bg-sky-200/70">
+            <Happyemoji
+              className="w-6 h-6"
+              color="rgb(14 165 233)"
+              variant="Bulk"
+            />
+          </button>
+          <button className="bg-red-100/70 rounded-xl p-2 hover:bg-red-200/70">
+            <Trash
+              className="w-6 h-6"
+              color="rgb(248 113 113)"
+              variant="Bulk"
+            />
+          </button>
+        </div>
+        <Button onClick={handlePost} variant="gradient" size="lg">
           Shoot
-        </button>
+        </Button>
       </div>
     </div>
   );

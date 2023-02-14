@@ -62,6 +62,8 @@ const PostToolUI = ({ onRemove }: IProps) => {
     setTimeout(next, 0);
   };
 
+  const onBack = () => back();
+
   const handlePost = async () => {
     await createPost(finalPostSchema).unwrap;
     setTimeout(() => {
@@ -69,7 +71,7 @@ const PostToolUI = ({ onRemove }: IProps) => {
     }, 0);
   };
 
-  const { step, next } = useMultiStep([
+  const { step, next, back } = useMultiStep([
     <ChooseActivity onChoose={onChooseActivity} />,
     <Suspense fallback={<div>Loading...</div>}>
       <FillPostInfo
@@ -77,13 +79,14 @@ const PostToolUI = ({ onRemove }: IProps) => {
         onPost={handlePost}
         onChangeHeading={onHandleChangeHeading}
         onChangeBody={onHandleChangeBody}
+        onBack={onBack}
       />
     </Suspense>,
   ]);
 
   return (
     <>
-      <div className="rounded-xl p-4 w-[580px] h-[500px] fixed top-1/2 left-1/2 transform -translate-x-1/2 -translate-y-1/2 bg-white z-30">
+      <div className="rounded-xl p-4 w-[580px] h-[400px] fixed top-1/2 left-1/2 transform -translate-x-1/2 -translate-y-1/2 bg-white z-30">
         {step}
       </div>
       <div

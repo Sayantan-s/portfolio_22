@@ -1,3 +1,4 @@
+import { Button } from "@components/ui";
 import React, { Reducer, useReducer } from "react";
 import Tool from "./Tool";
 
@@ -19,9 +20,7 @@ export const PostTool = () => {
           />
           <div className="p-3 flex justify-between">
             <div />
-            <button className="bg-gradient-to-br from-sky-400 to-teal-400 disabled:opacity-75 text-slate-50 font-medium p-2.5 w-24 rounded-full ring-1 ring-teal-700/10 shadow-teal-400/30">
-              Shoot
-            </button>
+            <Button variant={"gradient"}>Shoot</Button>
           </div>
         </div>
       </div>

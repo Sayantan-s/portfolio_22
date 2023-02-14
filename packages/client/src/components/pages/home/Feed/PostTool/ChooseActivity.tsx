@@ -1,3 +1,4 @@
+import { Button, Heading } from "@components/ui";
 import { Activity } from "@store/types/posts";
 
 interface IChooseActivityProps {
@@ -5,20 +6,25 @@ interface IChooseActivityProps {
 }
 export const ChooseActivity = ({ onChoose }: IChooseActivityProps) => {
   return (
-    <div className="flex items-center justify-center space-x-3 h-full w-full">
-      <button
-        onClick={() => onChoose("promote")}
-        className="w-40 text-white font-normal px-6 py-3 rounded-full flex items-center justify-center bg-teal-500 highlight-white/20 hover:bg-teal-400"
-      >
-        Promote
-      </button>
-      <span>or</span>
-      <button
-        onClick={() => onChoose("sell")}
-        className="w-40 text-white font-normal px-6 py-3 rounded-full flex items-center justify-center bg-sky-500 highlight-white/20 hover:bg-sky-400"
-      >
-        Sell
-      </button>
+    <div className="flex flex-col items-center justify-center h-full w-full">
+      {/* <h1 className="mb-10 text-3xl font-bold text-slate-700">
+        Choose your next gig!
+      </h1> */}
+      <Heading level={"2"} weight={"semibold"} className="text-slate-700 mb-10">
+        Choose your next gig!
+      </Heading>
+      <div className="flex items-center justify-center space-x-3">
+        <Button onClick={() => onChoose("sell")} size="xl">
+          Sell
+        </Button>
+        <Button
+          variant={"teal-secondary"}
+          size="xl"
+          onClick={() => onChoose("promote")}
+        >
+          Promote
+        </Button>
+      </div>
     </div>
   );
 };

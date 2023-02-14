@@ -1,4 +1,5 @@
 import { Logo } from "@components/shared";
+import { Button } from "@components/ui";
 import {
   Briefcase,
   Home,
@@ -47,9 +48,9 @@ export const Sidebar = () => {
             <NavigationLink to="/messages" name="Messages" icon={Messages1} />
           </div>
           <div className="space-y-6 px-8">
-            <button className="w-full bg-gradient-to-br text-base from-sky-400 to-teal-400 disabled:opacity-75 text-slate-50 font-medium ring-1 ring-teal-700/10 shadow-teal-400/30 p-2.5 rounded-full">
+            <Button variant={"gradient"} size="full">
               Shoot
-            </button>
+            </Button>
           </div>
         </div>
       </div>
