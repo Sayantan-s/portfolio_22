@@ -27,6 +27,7 @@ const router = createBrowserRouter(
         <Route path="login" element={<Login />} />
         <Route path="auth" element={<AuthHandler />} />
       </Route>
+      <Route path="details" element={<UserDetails />} />
       <Route element={<RootLayout />}>
         <Route element={<RequireAuth />}>
           <Route element={<RequireUserDetails />}>
@@ -39,7 +40,6 @@ const router = createBrowserRouter(
           </Route>
         </Route>
       </Route>
-      <Route path="details" element={<UserDetails />} />
       <Route path="*" element={<ErrorPage />} />
     </Route>
   )

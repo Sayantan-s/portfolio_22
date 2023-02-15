@@ -1,5 +1,5 @@
 import H from "@helpers/ResponseHelper";
-import { PrismaClientExtensionError } from "@prisma/client/runtime";
+import { PrismaClientKnownRequestError } from "@prisma/client/runtime";
 import { NextFunction, Request, RequestHandler, Response } from "express";
 import { StytchError } from "stytch";
 
@@ -26,14 +26,15 @@ export default class ErrorHandler extends Error {
     res: Response,
     next: NextFunction
   ) {
-    if (err instanceof PrismaClientExtensionError) {
+    if (err instanceof PrismaClientKnownRequestError) {
+      console.log(err);
       H.error(res, {
-        statusCode: 400,
+        statusCode: 404,
         success: false,
         data: {
           type: "Prisma Error",
-          name: err.extensionName,
-          message: err.message,
+          name: err.name,
+          message: err.meta?.message,
         },
       });
       return;

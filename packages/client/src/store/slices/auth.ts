@@ -1,5 +1,6 @@
 import { createSlice, PayloadAction } from "@reduxjs/toolkit";
 import { authApi } from "@store/services/auth";
+import { userApi } from "@store/services/user";
 import { Session, User, VerifyApiPayload } from "@store/types/auth";
 
 export interface AuthState {
@@ -43,6 +44,13 @@ export const authSlice = createSlice({
       state.session_token = null;
       state.user = null;
     },
+    updateUser: (
+      state,
+      { payload: { data } }: PayloadAction<Api.SuccessResponse<User>>
+    ) => {
+      state.user = data;
+      localStorage.setItem("user", JSON.stringify(data));
+    },
   },
   extraReducers: (builder) => {
     builder.addMatcher(
@@ -52,6 +60,10 @@ export const authSlice = createSlice({
     builder.addMatcher(
       authApi.endpoints.logOut.matchFulfilled,
       authSlice.caseReducers.removeCredentials
+    );
+    builder.addMatcher(
+      userApi.endpoints.updateUserDetails.matchFulfilled,
+      authSlice.caseReducers.updateUser
     );
   },
 });

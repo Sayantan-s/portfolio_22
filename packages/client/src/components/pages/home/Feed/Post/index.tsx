@@ -3,12 +3,13 @@ import { motion } from "framer-motion";
 import { AlignBottom, Heart, Messages2, Send2 } from "iconsax-react";
 import moment from "moment";
 
-const Post = ({ details, activity, id, updated_at }: IPost) => {
+const Post = ({ details, activity, id, updated_at, user }: IPost) => {
   const styles =
     activity === "promote"
       ? "bg-teal-100/50 text-teal-400"
       : "bg-sky-100/50 text-sky-400";
 
+  const bgColor = activity === "promote" ? "bg-teal-100/60" : "bg-sky-100/60";
   const imgs = details.images?.length
     ? details.images
     : new Array(3).fill(false);
@@ -27,18 +28,16 @@ const Post = ({ details, activity, id, updated_at }: IPost) => {
       <div className="flex space-x-2">
         <div className="w-16 h-16 rounded-full overflow-hidden relative">
           <img
-            className="absolute w-full h-full object-cover"
+            className={`absolute w-full h-full object-cover ${bgColor}`}
             alt={`avatar_${id}`}
-            src={
-              "https://images.unsplash.com/photo-1570295999919-56ceb5ecca61?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=1480&q=80"
-            }
+            src={user?.details?.profile_pic}
           />
         </div>
         <div>
           <h1 className="flex space-x-2 items-center">
             <span className="text-sm font-normal text-slate-500">
               {" "}
-              David Lucca{" "}
+              {user?.details?.first_name} {user?.details?.last_name}
             </span>
             <span> &middot;</span>
             <span
@@ -48,8 +47,7 @@ const Post = ({ details, activity, id, updated_at }: IPost) => {
             </span>
           </h1>
           <p className="text-xs max-w-sm truncate text-slate-400 mt-1">
-            Software Engineer at Hoggy | NSEC'22 | Actively looking for Frontend
-            roles
+            {user?.details?.headline}
           </p>
           <span className="block text-xs text-slate-300 mt-0.5">
             {" "}

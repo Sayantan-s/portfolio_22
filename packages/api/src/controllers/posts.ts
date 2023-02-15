@@ -17,7 +17,18 @@ export const getPosts = async (
       created_at: "desc",
     },
     include: {
-      user: true,
+      user: {
+        select: {
+          details: {
+            select: {
+              first_name: true,
+              last_name: true,
+              profile_pic: true,
+              headline: true,
+            },
+          },
+        },
+      },
     },
   });
   H.success(res, {

@@ -33,6 +33,7 @@ export function extractAuthPayload(
 
 export const loginOrCreate: RequestHandler = async (req, res) => {
   const { email } = req.body;
+  console.log(req.body);
   await stytchClient.magicLinks.email.loginOrCreate(getParams(email));
   const user = await prisma.user.upsert({
     where: { email },
@@ -78,11 +79,19 @@ export const logOut: RequestHandler = async (req, res) => {
 };
 
 export const updateUser: RequestHandler = async (req, res) => {
-  const { user_id } = req.body;
-  const session = await stytchClient.sessions.get({ user_id });
+  const { userId } = req.params;
+  const data = await prisma.user.update({
+    where: {
+      id: userId,
+    },
+    data: {
+      ...req.body,
+      newUser: false,
+    },
+  });
   H.success(res, {
     success: true,
-    statusCode: session.status_code,
-    data: session,
+    statusCode: 200,
+    data,
   });
 };

@@ -7,11 +7,11 @@ export interface TransformedLoginApiResponse {
 }
 
 export type ProfileLinks = {
-  instgram: string | null;
+  instgram?: string | null;
   linkedin: string;
-  github: string | null;
+  github?: string | null;
   dribble: string;
-  behance: string | null;
+  behance?: string | null;
   website: string;
 };
 

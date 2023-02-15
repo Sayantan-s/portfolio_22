@@ -3,10 +3,15 @@ import { ToolkitStore } from "@reduxjs/toolkit/dist/configureStore";
 import * as rr from "react-redux";
 import { authApi } from "./services/auth";
 import { postsApi } from "./services/posts";
+import { userApi } from "./services/user";
 import authReducer from "./slices/auth";
 import jweetsReducer from "./slices/posts";
 
-const middlewares = [authApi.middleware, postsApi.middleware];
+const middlewares = [
+  authApi.middleware,
+  postsApi.middleware,
+  userApi.middleware,
+];
 
 export const store = configureStore({
   reducer: {
@@ -14,6 +19,7 @@ export const store = configureStore({
     auth: authReducer,
     [authApi.reducerPath]: authApi.reducer,
     [postsApi.reducerPath]: postsApi.reducer,
+    [userApi.reducerPath]: userApi.reducer,
   },
   middleware: (getDefaultMiddleware) =>
     getDefaultMiddleware().concat(...middlewares),
