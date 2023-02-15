@@ -6,7 +6,14 @@ import {
   RouterProvider,
 } from "react-router-dom";
 import { BoughtArtifacts, SoldArtifacts } from "./Artifacts";
-import { AuthHandler, Login, RequireAuth, UnProtectedRoutes } from "./auth";
+import {
+  AuthHandler,
+  Login,
+  RequireAuth,
+  RequireUserDetails,
+  UnProtectedRoutes,
+  UserDetails,
+} from "./auth";
 import { ErrorPage } from "./error";
 import { Home } from "./home";
 import { Messages } from "./messages";
@@ -22,14 +29,17 @@ const router = createBrowserRouter(
       </Route>
       <Route element={<RootLayout />}>
         <Route element={<RequireAuth />}>
-          <Route index element={<Home />} />
-          <Route path="profile" element={<Profile />} />
-          <Route path="soldart" element={<SoldArtifacts />} />
-          <Route path="boughtart" element={<BoughtArtifacts />} />
-          <Route path="messages" element={<Messages />} />
-          <Route path="notifications" element={<Notifications />} />
+          <Route element={<RequireUserDetails />}>
+            <Route index element={<Home />} />
+            <Route path="profile" element={<Profile />} />
+            <Route path="soldart" element={<SoldArtifacts />} />
+            <Route path="boughtart" element={<BoughtArtifacts />} />
+            <Route path="messages" element={<Messages />} />
+            <Route path="notifications" element={<Notifications />} />
+          </Route>
         </Route>
       </Route>
+      <Route path="details" element={<UserDetails />} />
       <Route path="*" element={<ErrorPage />} />
     </Route>
   )

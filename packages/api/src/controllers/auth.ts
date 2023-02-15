@@ -1,10 +1,16 @@
 import { CLIENT_ORIGIN } from "@config";
 import H from "@helpers/ResponseHelper";
+import UtilityFuncs from "@helpers/UtilityFuncs";
 import ErrorHandler from "@middlewares/error";
+import { User } from "@prisma/client";
 import prisma from "@services/prisma";
 import stytchClient from "@services/stytchAuth";
 import { RequestHandler } from "express";
-import { LoginOrCreateByEmailRequest } from "stytch/types/lib/magic_links";
+import {
+  AuthenticateResponse,
+  LoginOrCreateByEmailRequest,
+} from "stytch/types/lib/magic_links";
+import { AuthenticateResponse as SessionAuthenticate } from "stytch/types/lib/sessions";
 
 function getParams(email: string): LoginOrCreateByEmailRequest {
   return {
@@ -15,16 +21,26 @@ function getParams(email: string): LoginOrCreateByEmailRequest {
   };
 }
 
+function extractUser(user: User) {
+  return UtilityFuncs.pick(user, "newUser", "email", "details", "id");
+}
+
+export function extractAuthPayload(
+  metaData: AuthenticateResponse | SessionAuthenticate
+) {
+  return UtilityFuncs.pick(metaData, "session", "session_token", "session_jwt");
+}
+
 export const loginOrCreate: RequestHandler = async (req, res) => {
   const { email } = req.body;
+  await stytchClient.magicLinks.email.loginOrCreate(getParams(email));
   const user = await prisma.user.upsert({
     where: { email },
-    update: {
-      newUser: false,
-    },
+    update: {},
     create: req.body,
   });
-  await stytchClient.magicLinks.email.loginOrCreate(getParams(email));
+  req.session.user = user;
+  req.session.save();
   H.success(res, {
     success: true,
     statusCode: user.newUser ? 201 : 200,
@@ -36,11 +52,15 @@ export const tokenVerify: RequestHandler = async (req, res) => {
   const metaData = await stytchClient.magicLinks.authenticate(token as string, {
     session_duration_minutes: 60 * 24 * 30,
   });
-  req.session.authMetaData = metaData!;
+  req.session.auth = extractAuthPayload(metaData);
+  req.session.save();
   H.success(res, {
     success: true,
     statusCode: 200,
-    data: metaData,
+    data: {
+      ...extractAuthPayload(metaData),
+      user: extractUser(req.session.user!),
+    },
   });
 };
 
@@ -49,7 +69,7 @@ export const logOut: RequestHandler = async (req, res) => {
   if (!session_id) throw new ErrorHandler(401, "Not Authorized");
   await stytchClient.sessions.revoke({ session_id });
   req.session.destroy((err) => {
-    if (err) throw new Error(`Serverside session could'nt be removed.`);
+    if (err) throw new ErrorHandler(400, `Session could'nt be removed.`);
   });
   H.success(res, {
     success: true,
@@ -57,7 +77,7 @@ export const logOut: RequestHandler = async (req, res) => {
   });
 };
 
-export const easyAccess: RequestHandler = async (req, res) => {
+export const updateUser: RequestHandler = async (req, res) => {
   const { user_id } = req.body;
   const session = await stytchClient.sessions.get({ user_id });
   H.success(res, {

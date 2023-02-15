@@ -15,6 +15,6 @@ router.route("/auth/verify").get(ErrorHandler.tryCatch(auth.tokenVerify));
 router
   .route("/auth/logout")
   .delete(ErrorHandler.tryCatch(withAuth), ErrorHandler.tryCatch(auth.logOut));
-router.route("/auth/easyaccess").post(ErrorHandler.tryCatch(auth.easyAccess));
+router.route("/auth/update/:user").post(ErrorHandler.tryCatch(auth.updateUser));
 
 export default router;

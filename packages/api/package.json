@@ -36,5 +36,8 @@
   },
   "scripts": {
     "dev": "nodemon"
+  },
+  "prisma": {
+    "seed": "ts-node ./prisma/seed.ts"
   }
 }

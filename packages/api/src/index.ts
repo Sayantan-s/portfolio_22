@@ -1,10 +1,13 @@
 import { CLIENT_ORIGIN, ORIGIN, PORT, SESSION_SECRET } from "@config";
 import ErrorHandler from "@middlewares/error";
+import { User } from "@prisma/client";
 import router from "@routes";
 import sseRouter from "@routes/sse.route";
 import { IO } from "@services/io";
 import redis from "@services/redis";
+import { SESSION_AGE } from "@services/stytchAuth";
 import chalk from "chalk";
+import compression from "compression";
 import connectRedis from "connect-redis";
 import cookieParser from "cookie-parser";
 import cors from "cors";
@@ -14,9 +17,14 @@ import helmet from "helmet";
 import http from "http";
 import morgan from "morgan";
 import { AuthenticateResponse } from "stytch/types/lib/magic_links";
+
 declare module "express-session" {
   interface SessionData {
-    authMetaData: AuthenticateResponse;
+    auth: Pick<
+      AuthenticateResponse,
+      "session" | "session_jwt" | "session_token"
+    >;
+    user: User;
   }
 }
 
@@ -35,7 +43,7 @@ app.use(
   })
 );
 app.use(cookieParser());
-// app.use(compression());
+app.use(compression());
 app.use(helmet());
 app.use(
   session({
@@ -44,7 +52,7 @@ app.use(
     saveUninitialized: false,
     cookie: {
       httpOnly: true,
-      maxAge: 1000 * 60 * 60 * 24,
+      maxAge: 1000 * 60 * SESSION_AGE,
       sameSite: "lax",
       secure: false,
     },

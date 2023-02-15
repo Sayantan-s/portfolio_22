@@ -6,7 +6,6 @@ import { useState } from "react";
 export const Login = () => {
   const [form, setForm] = useState({
     email: "",
-    name: "",
   });
 
   const [message, setMessage] = useState("");

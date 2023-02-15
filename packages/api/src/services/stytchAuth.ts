@@ -1,6 +1,8 @@
 import { STYTCH_PROJECT_ID, STYTCH_SECRET } from "@config";
 import * as stytch from "stytch";
 
+export const SESSION_AGE = 60 * 24 * 30;
+
 type G = typeof globalThis;
 interface CustomNodeJsGlobal extends G {
   stytchClient: stytch.Client;

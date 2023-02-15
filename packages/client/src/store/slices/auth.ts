@@ -1,5 +1,6 @@
 import { createSlice, PayloadAction } from "@reduxjs/toolkit";
-import { authApi, Session, User, VerifyApiPayload } from "@store/services/auth";
+import { authApi } from "@store/services/auth";
+import { Session, User, VerifyApiPayload } from "@store/types/auth";
 
 export interface AuthState {
   session_jwt: string | null;
@@ -27,8 +28,8 @@ export const authSlice = createSlice({
     ) => {
       state.session_jwt = data.session_jwt;
       state.session_token = data.session_token;
-      state.user = data.user;
       state.session = data.session;
+      state.user = data.user;
       for (let [key, value] of Object.entries(data)) {
         localStorage.setItem(key, JSON.stringify(value));
       }
