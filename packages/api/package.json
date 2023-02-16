@@ -1,5 +1,5 @@
 {
-  "name": "api",
+  "name": "@upshot/api",
   "version": "1.0.0",
   "main": "index.js",
   "license": "MIT",
@@ -19,6 +19,7 @@
   },
   "dependencies": {
     "@prisma/client": "^4.8.1",
+    "@upshot/shared": "^1.0.0",
     "body-parser": "^1.20.1",
     "compression": "^1.7.4",
     "connect-redis": "^6.1.3",

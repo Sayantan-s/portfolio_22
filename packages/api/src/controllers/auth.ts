@@ -33,7 +33,6 @@ export function extractAuthPayload(
 
 export const loginOrCreate: RequestHandler = async (req, res) => {
   const { email } = req.body;
-  console.log(req.body);
   await stytchClient.magicLinks.email.loginOrCreate(getParams(email));
   const user = await prisma.user.upsert({
     where: { email },

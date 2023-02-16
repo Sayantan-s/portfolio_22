@@ -1,6 +1,6 @@
 import * as auth from "@controllers/auth";
 import { createPost, getPosts } from "@controllers/posts";
-import { withAuth } from "@middlewares/auth";
+import { validateCredentials, withAuth } from "@middlewares/auth";
 import ErrorHandler from "@middlewares/error";
 import express from "express";
 
@@ -10,7 +10,12 @@ router
   .route("/posts")
   .get(ErrorHandler.tryCatch(withAuth), ErrorHandler.tryCatch(getPosts))
   .post(ErrorHandler.tryCatch(withAuth), ErrorHandler.tryCatch(createPost));
-router.route("/auth/login").post(ErrorHandler.tryCatch(auth.loginOrCreate));
+router
+  .route("/auth/login")
+  .post(
+    ErrorHandler.tryCatch(validateCredentials),
+    ErrorHandler.tryCatch(auth.loginOrCreate)
+  );
 router.route("/auth/verify").get(ErrorHandler.tryCatch(auth.tokenVerify));
 router
   .route("/auth/logout")

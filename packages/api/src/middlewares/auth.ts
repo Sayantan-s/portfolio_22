@@ -16,4 +16,7 @@ export const withAuth: RequestHandler = async (req, _, next) => {
   next();
 };
 
-export const validateCredentials: RequestHandler = async () => {};
+export const validateCredentials: RequestHandler = async (req, _, next) => {
+  // await loginSignUp.validate(req.body);
+  next();
+};
