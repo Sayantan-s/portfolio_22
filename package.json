@@ -9,6 +9,7 @@
     "lerna": "^6.4.1"
   },
   "scripts": {
-    "dev": "lerna run dev"
+    "dev": "lerna run dev",
+    "dev:shared": "lerna run dev --scope=@upshot/shared"
   }
 }

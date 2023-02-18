@@ -1,5 +1,6 @@
 import { extractAuthPayload } from "@controllers/auth";
 import stytchClient, { SESSION_AGE } from "@services/stytchAuth";
+import { loginSignUp } from "@upshot/shared";
 import { RequestHandler } from "express";
 import ErrorHandler from "./error";
 
@@ -17,6 +18,6 @@ export const withAuth: RequestHandler = async (req, _, next) => {
 };
 
 export const validateCredentials: RequestHandler = async (req, _, next) => {
-  // await loginSignUp.validate(req.body);
+  await loginSignUp.validate(req.body);
   next();
 };

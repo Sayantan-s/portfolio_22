@@ -1,17 +1,18 @@
 {
   "compilerOptions": {
-    "target": "es2018",
     "experimentalDecorators": true,
     "emitDecoratorMetadata": true,
-    "module": "commonjs",
     "esModuleInterop": true,
     "forceConsistentCasingInFileNames": true,
     "strict": true,
     "strictPropertyInitialization": false,
     "skipLibCheck": true,
-    "baseUrl": ".",
-    "rootDir": ".",
-    "outDir": "build"
+    "outDir": "lib",
+    "module": "CommonJS",
+    "target": "esnext",
+    "declaration": true,
+    "moduleResolution": "node",
+    "allowSyntheticDefaultImports": true
   },
-  "exclude": ["node_modules"]
+  "exclude": ["node_modules", "lib"]
 }

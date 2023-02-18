@@ -1,5 +1,7 @@
-import Yup from "yup";
+import * as Yup from "yup";
 
 export const loginSignUp = Yup.object({
-  email: Yup.string().email("email shouldn't be empty").required(),
+  email: Yup.string()
+    .email("Enter a proper email")
+    .required("Email shouldn't be empty"),
 });
