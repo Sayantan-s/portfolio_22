@@ -77,6 +77,20 @@ export const logOut: RequestHandler = async (req, res) => {
   });
 };
 
+export const getUser: RequestHandler = async (req, res) => {
+  const { name } = req.params;
+  const data = await prisma.user.findMany({
+    where: {
+      details: {},
+    },
+  });
+  H.success(res, {
+    success: true,
+    statusCode: 200,
+    data,
+  });
+};
+
 export const updateUser: RequestHandler = async (req, res) => {
   const { userId } = req.params;
   const data = await prisma.user.update({

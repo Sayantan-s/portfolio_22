@@ -41,7 +41,7 @@ const Post = ({ details, activity, id, updated_at, user }: IPost) => {
             </span>
             <span> &middot;</span>
             <span
-              className={`block w-max bg-teal-100/50 text-teal-400 px-3 py-1 capitalize rounded-full text-xs ${styles}`}
+              className={`block w-max px-3 py-1 capitalize rounded-full text-xs ${styles}`}
             >
               {activity}
             </span>

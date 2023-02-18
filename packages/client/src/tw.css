@@ -33,3 +33,11 @@ p.is-editor-empty:first-child::before {
     radial-gradient(at 39% 70%, rgb(45, 212, 191) 0, transparent 71%),
     radial-gradient(at 48% 6%, rgb(14, 165, 233) 0, transparent 70%);
 }
+
+* {
+  -ms-overflow-style: none; /* Internet Explorer 10+ */
+  scrollbar-width: none; /* Firefox */
+}
+*::-webkit-scrollbar {
+  display: none; /* Safari and Chrome */
+}

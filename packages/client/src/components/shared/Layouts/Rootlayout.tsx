@@ -14,9 +14,9 @@ const RootLayout = ({
   rightLayout,
 }: PropsWithChildren<ILayoutProps>) => {
   return (
-    <Page className="flex max-w-7xl mx-auto">
+    <Page className="flex max-w-7xl mx-auto overflow-hidden">
       {leftLayout ? leftLayout : <Sidebar />}
-      <main className="flex-[0.5]">
+      <main className="flex-[0.5] overflow-y-scroll">
         <Outlet />
       </main>
       {rightLayout ? rightLayout : <Trending />}

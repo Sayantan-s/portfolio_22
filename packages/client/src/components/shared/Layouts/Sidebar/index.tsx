@@ -11,8 +11,8 @@ import { NavigationLink } from "./NavigationLink";
 
 export const Sidebar = () => {
   return (
-    <aside className="flex-[0.2] border-r border-r-slate-100">
-      <div className="py-4 sticky top-0">
+    <aside className="flex-[0.2] h-full">
+      <div className="py-4 border-r h-full border-r-slate-100">
         <div className="w-48 relative left-1/2 transform -translate-x-1/2">
           <Logo />
         </div>
