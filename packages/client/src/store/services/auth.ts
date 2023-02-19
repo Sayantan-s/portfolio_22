@@ -1,9 +1,5 @@
 import { createApi } from "@reduxjs/toolkit/query/react";
-import {
-  EasyAccessPayload,
-  LoginRequest,
-  VerifyApiPayload,
-} from "@store/types/auth";
+import { LoginRequest, VerifyApiPayload } from "@store/types/auth";
 import { baseQuery } from ".";
 
 export const authApi = createApi({
@@ -28,11 +24,15 @@ export const authApi = createApi({
         },
       }),
     }),
-    easy: builder.query<Api.SuccessResponse<EasyAccessPayload>, void>({
-      query: () => ({
-        url: "easy",
-      }),
-    }),
+    easy: builder.mutation<Api.SuccessResponse<VerifyApiPayload>, LoginRequest>(
+      {
+        query: (data) => ({
+          url: "easy",
+          body: data,
+          method: "POST",
+        }),
+      }
+    ),
     logOut: builder.mutation<Api.SuccessResponseNoPayload, void>({
       query: () => ({
         method: "DELETE",

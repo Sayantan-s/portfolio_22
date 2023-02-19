@@ -8,13 +8,17 @@ export interface AuthState {
   session_token: string | null;
   user: User | null;
   session?: Session | null;
+  access_token: string | null;
 }
 
+const parser = (val: string) => JSON.parse(localStorage.getItem(val)!);
+
 const initialState: AuthState = {
-  session_jwt: null || JSON.parse(localStorage.getItem("session_jwt")!),
-  session_token: null || JSON.parse(localStorage.getItem("session_token")!),
-  user: null || JSON.parse(localStorage.getItem("user")!),
-  session: null || JSON.parse(localStorage.getItem("session")!),
+  session_jwt: parser("session_jwt"),
+  session_token: parser("session_token"),
+  user: parser("user"),
+  session: parser("session"),
+  access_token: parser("access_token"),
 };
 
 export const authSlice = createSlice({
@@ -27,21 +31,31 @@ export const authSlice = createSlice({
         payload: { data },
       }: PayloadAction<Api.SuccessResponse<VerifyApiPayload>>
     ) => {
-      state.session_jwt = data.session_jwt;
-      state.session_token = data.session_token;
-      state.session = data.session;
-      state.user = data.user;
-      for (let [key, value] of Object.entries(data)) {
-        localStorage.setItem(key, JSON.stringify(value));
+      if (data.access_token) {
+        console.log("JWT");
+        state.access_token = data.access_token;
+      } else {
+        console.log("SESSION");
+        state.session_jwt = data.session_jwt;
+        state.session_token = data.session_token;
+        state.session = data.session;
       }
+      for (let [key, value] of Object.entries(data)) {
+        value && localStorage.setItem(key, JSON.stringify(value));
+      }
+      state.user = data.user;
     },
     removeCredentials: (state) => {
-      for (let key of Object.keys(state)) {
+      if (state.access_token) {
+        state.access_token = null;
+      } else {
+        state.session = null;
+        state.session_jwt = null;
+        state.session_token = null;
+      }
+      for (let key in state) {
         localStorage.removeItem(key);
       }
-      state.session = null;
-      state.session_jwt = null;
-      state.session_token = null;
       state.user = null;
     },
     updateUser: (
@@ -64,6 +78,10 @@ export const authSlice = createSlice({
     builder.addMatcher(
       userApi.endpoints.updateUserDetails.matchFulfilled,
       authSlice.caseReducers.updateUser
+    );
+    builder.addMatcher(
+      authApi.endpoints.easy.matchFulfilled,
+      authSlice.caseReducers.saveCredentials
     );
   },
 });

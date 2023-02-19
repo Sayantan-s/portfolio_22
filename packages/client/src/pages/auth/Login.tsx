@@ -2,6 +2,7 @@ import { Logo } from "@components/shared";
 import { Page } from "@components/ui";
 import { authApi } from "@store/services/auth";
 import { useState } from "react";
+import { useNavigate } from "react-router";
 
 export const Login = () => {
   const [form, setForm] = useState({
@@ -9,7 +10,9 @@ export const Login = () => {
   });
 
   const [message, setMessage] = useState("");
-  const [login, { isLoading }] = authApi.useLoginMutation();
+  const [login, loginState] = authApi.useLoginMutation();
+  const [dummyLogin, dummyLoginState] = authApi.useEasyMutation();
+  const navigate = useNavigate();
 
   const onChange: React.ChangeEventHandler<HTMLInputElement> = (eve) => {
     const { name, value } = eve.target;
@@ -23,6 +26,14 @@ export const Login = () => {
       setMessage("Please check your entered mail!");
       setForm((prevState) => ({ ...prevState, name: "", email: "" }));
     }
+  };
+
+  const onDummyLogin = async () => {
+    console.log("DUMMY LOGGINN");
+    const res = await dummyLogin({
+      email: import.meta.env.VITE_FREE_ACCESS_EMAIL,
+    }).unwrap();
+    console.log(res);
   };
 
   return (
@@ -48,7 +59,7 @@ export const Login = () => {
               className="py-2.5 px-3.5 text-base border border-slate-300 rounded-lg focus:outline-none focus:border-slate-400"
             />
             <button
-              disabled={isLoading}
+              disabled={loginState.isLoading || dummyLoginState.isLoading}
               className={
                 "p-3.5 bg-slate-800 text-slate-50 disabled:opacity-50 rounded-xl font-medium border border-slate-400"
               }
@@ -60,10 +71,11 @@ export const Login = () => {
             OR
           </p>
           <button
-            disabled={isLoading}
+            disabled={loginState.isLoading || dummyLoginState.isLoading}
             className={
               "p-3.5 w-full text-slate-900 border-2 border-slate-100 disabled:opacity-50 rounded-xl font-medium"
             }
+            onClick={onDummyLogin}
           >
             Try for free
           </button>

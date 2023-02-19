@@ -5,8 +5,8 @@ import ErrorHandler from "@middlewares/error";
 import { User } from "@prisma/client";
 import prisma from "@services/prisma";
 import stytchClient from "@services/stytchAuth";
-import crypto from "crypto";
 import { RequestHandler } from "express";
+import jwt from "jsonwebtoken";
 import {
   AuthenticateResponse,
   LoginOrCreateByEmailRequest,
@@ -61,6 +61,7 @@ export const tokenVerify: RequestHandler = async (req, res) => {
     data: {
       ...extractAuthPayload(metaData),
       user: extractUser(req.session.user!),
+      access_token: null,
     },
   });
 };
@@ -119,16 +120,18 @@ export const easyAccess: RequestHandler = async (req, res) => {
     update: {},
     create: req.body,
   });
-  const easyAccessKey = crypto.randomBytes(64).toString("hex");
-  req.session.easyAccessKey = easyAccessKey;
-  req.session.user = user;
-  req.session.save();
+  const access_token = jwt.sign({ email, id: user.id }, "secret", {
+    expiresIn: "7d",
+  });
   H.success(res, {
     success: true,
     statusCode: 200,
     data: {
-      easyAccessKey,
       user,
+      access_token,
+      session: null,
+      session_jwt: null,
+      session_token: null,
     },
   });
 };

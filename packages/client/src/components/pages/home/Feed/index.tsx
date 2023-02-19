@@ -8,11 +8,11 @@ export const Feed = () => {
 
   return (
     <div>
-      <h1 className="p-4 text-slate-800 text-xl font-semibold top-0 sticky z-10 bg-white/90 backdrop-blur-xl">
+      <h1 className="p-4 text-slate-800 text-xl font-semibold top-0 sticky z-10 bg-white/50 backdrop-blur-xl">
         Hey, <span className="text-xl text-slate-300">Sayantan</span>
       </h1>
       <PostTool />
-      <motion.div className="mt-4 space-y-3 overflow-y-scroll px-4">
+      <motion.div className="mt-4 space-y-3 px-4">
         <AnimatePresence initial={false}>
           {isLoading ? (
             <div className="text-sky-500">loading.....</div>

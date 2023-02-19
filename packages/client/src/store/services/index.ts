@@ -20,6 +20,12 @@ export const baseQuery = ({ url, authHeaders = false, ...rest }: QueryArgs) =>
     ...(authHeaders
       ? {
           prepareHeaders: (headers) => {
+            if (localStorage.getItem("access_token")) {
+              headers.set(
+                "X-ACCESS-TOKEN",
+                localStorage.getItem("access_token")!
+              );
+            }
             if (localStorage.getItem("session_token")) {
               headers.set(
                 "authorization",

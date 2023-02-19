@@ -4,6 +4,7 @@ interface ImportMetaEnv {
   readonly VITE_PORT: string;
   readonly VITE_SERVER_ORIGIN: string;
   readonly VITE_API_KEY: string;
+  readonly VITE_FREE_ACCESS_EMAIL: string;
 }
 
 interface ImportMeta {

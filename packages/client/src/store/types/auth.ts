@@ -39,13 +39,9 @@ export interface Session {
 }
 
 export interface VerifyApiPayload {
-  session_jwt: string;
-  session_token: string;
-  session: Session;
+  session_jwt: string | null;
+  session_token: string | null;
+  session: Session | null;
   user: User;
-}
-
-export interface EasyAccessPayload {
-  easyAccessKey: string;
-  user: User;
+  access_token: string | null;
 }
