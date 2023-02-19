@@ -14,6 +14,8 @@ const {
   REDIS_HOST,
   REDIS_PASSWORD,
   REDIS_PORT,
+  API_KEY,
+  FREE_ACCESS_EMAIL,
 } = process.env;
 
 export {
@@ -27,4 +29,6 @@ export {
   REDIS_HOST,
   REDIS_PASSWORD,
   REDIS_PORT,
+  API_KEY,
+  FREE_ACCESS_EMAIL,
 };

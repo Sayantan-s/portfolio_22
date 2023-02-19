@@ -1,4 +1,6 @@
 import RootLayout from "@components/shared/Layouts/Rootlayout";
+import { useUser } from "@hooks";
+import { useTitle } from "@hooks/useTitle";
 import {
   createBrowserRouter,
   createRoutesFromElements,
@@ -46,5 +48,7 @@ const router = createBrowserRouter(
 );
 
 export const AppRoutes = () => {
+  const user = useUser();
+  useTitle(user?.details?.first_name);
   return <RouterProvider router={router} />;
 };

@@ -65,7 +65,7 @@ export const Login = () => {
               "p-3.5 w-full text-slate-900 border-2 border-slate-100 disabled:opacity-50 rounded-xl font-medium"
             }
           >
-            Easy join
+            Try for free
           </button>
         </div>
         <div className="relative">

@@ -16,6 +16,12 @@ router
     ErrorHandler.tryCatch(validateCredentials),
     ErrorHandler.tryCatch(auth.loginOrCreate)
   );
+router
+  .route("/auth/easy")
+  .post(
+    ErrorHandler.tryCatch(validateCredentials),
+    ErrorHandler.tryCatch(auth.easyAccess)
+  );
 router.route("/auth/verify").get(ErrorHandler.tryCatch(auth.tokenVerify));
 router
   .route("/auth/logout")

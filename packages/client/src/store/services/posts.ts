@@ -1,20 +1,13 @@
 import { sseStream } from "@helpers/httpClient";
-import { createApi, fetchBaseQuery } from "@reduxjs/toolkit/query/react";
+import { createApi } from "@reduxjs/toolkit/query/react";
 import { IPost, TCreatePost } from "@store/types/posts";
+import { baseQuery } from ".";
 
 export const postsApi = createApi({
   reducerPath: "posts-api",
-  baseQuery: fetchBaseQuery({
-    baseUrl: `/api/posts`,
-    prepareHeaders(headers) {
-      if (localStorage.getItem("session_token")) {
-        headers.set(
-          "authorization",
-          `Bearer ${JSON.parse(localStorage.getItem("session_token")!)}`
-        );
-      }
-      return headers;
-    },
+  baseQuery: baseQuery({
+    url: "/posts",
+    authHeaders: true,
   }),
   endpoints: (builder) => ({
     posts: builder.query<Api.SuccessResponse<IPost[]>, void>({
@@ -27,7 +20,6 @@ export const postsApi = createApi({
         try {
           await cacheDataLoaded;
           postSSEStream = sseStream("posts", {
-            // Need to handle errors
             onSuccess: (eve) => {
               updateCachedData((draft) => {
                 draft.data.unshift(JSON.parse(eve.data));

@@ -44,3 +44,8 @@ export interface VerifyApiPayload {
   session: Session;
   user: User;
 }
+
+export interface EasyAccessPayload {
+  easyAccessKey: string;
+  user: User;
+}

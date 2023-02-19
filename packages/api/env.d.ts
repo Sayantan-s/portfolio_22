@@ -12,6 +12,8 @@ declare global {
       REDIS_HOST: string;
       REDIS_PORT: string;
       REDIS_PASSWORD: string;
+      API_KEY: string;
+      FREE_ACCESS_EMAIL: string;
     }
 
     interface Global {}

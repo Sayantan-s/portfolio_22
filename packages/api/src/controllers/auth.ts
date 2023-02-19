@@ -1,10 +1,11 @@
-import { CLIENT_ORIGIN } from "@config";
+import { CLIENT_ORIGIN, FREE_ACCESS_EMAIL } from "@config";
 import H from "@helpers/ResponseHelper";
 import UtilityFuncs from "@helpers/UtilityFuncs";
 import ErrorHandler from "@middlewares/error";
 import { User } from "@prisma/client";
 import prisma from "@services/prisma";
 import stytchClient from "@services/stytchAuth";
+import crypto from "crypto";
 import { RequestHandler } from "express";
 import {
   AuthenticateResponse,
@@ -106,5 +107,28 @@ export const updateUser: RequestHandler = async (req, res) => {
     success: true,
     statusCode: 200,
     data,
+  });
+};
+
+export const easyAccess: RequestHandler = async (req, res) => {
+  const { email } = req.body;
+  if (email !== FREE_ACCESS_EMAIL)
+    throw new ErrorHandler(403, "Denied for easy access");
+  const user = await prisma.user.upsert({
+    where: { email },
+    update: {},
+    create: req.body,
+  });
+  const easyAccessKey = crypto.randomBytes(64).toString("hex");
+  req.session.easyAccessKey = easyAccessKey;
+  req.session.user = user;
+  req.session.save();
+  H.success(res, {
+    success: true,
+    statusCode: 200,
+    data: {
+      easyAccessKey,
+      user,
+    },
   });
 };

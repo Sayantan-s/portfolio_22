@@ -1,11 +1,15 @@
-import { createApi, fetchBaseQuery } from "@reduxjs/toolkit/query/react";
-import { LoginRequest, VerifyApiPayload } from "@store/types/auth";
+import { createApi } from "@reduxjs/toolkit/query/react";
+import {
+  EasyAccessPayload,
+  LoginRequest,
+  VerifyApiPayload,
+} from "@store/types/auth";
+import { baseQuery } from ".";
 
 export const authApi = createApi({
   reducerPath: "auth-api",
-  baseQuery: fetchBaseQuery({
-    baseUrl: "/api/auth",
-    credentials: "include",
+  baseQuery: baseQuery({
+    url: "/auth",
   }),
   endpoints: (builder) => ({
     login: builder.mutation<Api.SuccessResponseNoPayload, LoginRequest>({
@@ -22,6 +26,11 @@ export const authApi = createApi({
         headers: {
           "X-Magic-Token": token,
         },
+      }),
+    }),
+    easy: builder.query<Api.SuccessResponse<EasyAccessPayload>, void>({
+      query: () => ({
+        url: "easy",
       }),
     }),
     logOut: builder.mutation<Api.SuccessResponseNoPayload, void>({
