@@ -4,7 +4,7 @@ import UtilityFuncs from "@helpers/UtilityFuncs";
 import ErrorHandler from "@middlewares/error";
 import { User } from "@prisma/client";
 import prisma from "@services/prisma";
-import stytchClient from "@services/stytchAuth";
+import stytchClient, { SESSION_AGE } from "@services/stytchAuth";
 import { RequestHandler } from "express";
 import jwt from "jsonwebtoken";
 import {
@@ -121,7 +121,7 @@ export const easyAccess: RequestHandler = async (req, res) => {
     create: req.body,
   });
   const access_token = jwt.sign({ email, id: user.id }, JWT_SECRET!, {
-    expiresIn: "7d",
+    expiresIn: 1000 * 60 * SESSION_AGE,
   });
   H.success(res, {
     success: true,

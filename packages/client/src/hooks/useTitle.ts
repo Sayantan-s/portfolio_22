@@ -4,7 +4,7 @@ export const useTitle = (value: string | undefined) => {
   useEffect(() => {
     const title = document.querySelector("title");
     if (title) {
-      title.textContent = value ? `Upshot@${value}` : "Upshot.app";
+      title.textContent = value ? `Upshot@${value}` : title.textContent;
     }
   }, [value]);
 };

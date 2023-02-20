@@ -15,6 +15,7 @@ interface IContextProps {
 
 const socket = io(import.meta.env.VITE_SERVER_ORIGIN, {
   withCredentials: true,
+  autoConnect: false,
 });
 const WSContext = createContext<IContextProps | null>(null);
 
@@ -33,8 +34,12 @@ export const WsProvider = ({ children }: PropsWithChildren) => {
         console.log(`${socket.id} Disconnected from socket server...`);
         setIsConnected(false);
       });
+      socket.on("connect_error", (err) => {
+        console.log(`connect_error due to ${err.message}`);
+      });
       return () => {
         socket.disconnect();
+        socket.off("connect_error");
       };
     }
   }, [user]);
