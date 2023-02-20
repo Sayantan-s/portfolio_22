@@ -9,9 +9,10 @@ interface IGetAllJweetsResponse {
 }
 
 export const getPosts = async (
-  _: Request,
+  req: Request,
   res: Response<IGetAllJweetsResponse>
 ) => {
+  const apikey = req.headers["x-api-key"];
   const posts = await prisma.post.findMany({
     orderBy: {
       created_at: "desc",

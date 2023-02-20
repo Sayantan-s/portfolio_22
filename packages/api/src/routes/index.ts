@@ -8,8 +8,8 @@ const router = express.Router();
 
 router
   .route("/posts")
-  .get(ErrorHandler.tryCatch(withAuth), ErrorHandler.tryCatch(getPosts))
-  .post(ErrorHandler.tryCatch(withAuth), ErrorHandler.tryCatch(createPost));
+  .post(ErrorHandler.tryCatch(withAuth), ErrorHandler.tryCatch(createPost))
+  .get(ErrorHandler.tryCatch(withAuth), ErrorHandler.tryCatch(getPosts));
 router
   .route("/auth/login")
   .post(

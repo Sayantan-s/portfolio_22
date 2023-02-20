@@ -32,10 +32,8 @@ export const authSlice = createSlice({
       }: PayloadAction<Api.SuccessResponse<VerifyApiPayload>>
     ) => {
       if (data.access_token) {
-        console.log("JWT");
         state.access_token = data.access_token;
       } else {
-        console.log("SESSION");
         state.session_jwt = data.session_jwt;
         state.session_token = data.session_token;
         state.session = data.session;

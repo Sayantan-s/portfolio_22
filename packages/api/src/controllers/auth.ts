@@ -1,4 +1,4 @@
-import { CLIENT_ORIGIN, FREE_ACCESS_EMAIL } from "@config";
+import { CLIENT_ORIGIN, FREE_ACCESS_EMAIL, JWT_SECRET } from "@config";
 import H from "@helpers/ResponseHelper";
 import UtilityFuncs from "@helpers/UtilityFuncs";
 import ErrorHandler from "@middlewares/error";
@@ -120,7 +120,7 @@ export const easyAccess: RequestHandler = async (req, res) => {
     update: {},
     create: req.body,
   });
-  const access_token = jwt.sign({ email, id: user.id }, "secret", {
+  const access_token = jwt.sign({ email, id: user.id }, JWT_SECRET!, {
     expiresIn: "7d",
   });
   H.success(res, {

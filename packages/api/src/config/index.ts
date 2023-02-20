@@ -16,6 +16,7 @@ const {
   REDIS_PORT,
   API_KEY,
   FREE_ACCESS_EMAIL,
+  JWT_SECRET,
 } = process.env;
 
 export {
@@ -31,4 +32,5 @@ export {
   REDIS_PORT,
   API_KEY,
   FREE_ACCESS_EMAIL,
+  JWT_SECRET,
 };

@@ -62,7 +62,7 @@ const Post = ({ details, activity, id, updated_at, user }: IPost) => {
             dangerouslySetInnerHTML={{ __html: details.heading }}
           />
           <p
-            className="line-clamp-2"
+            className="line-clamp-2 mt-1.5"
             dangerouslySetInnerHTML={{ __html: details.body }}
           />
         </div>

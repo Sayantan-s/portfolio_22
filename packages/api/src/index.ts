@@ -1,4 +1,5 @@
 import { CLIENT_ORIGIN, ORIGIN, PORT, SESSION_SECRET } from "@config";
+import { withApiKeys } from "@middlewares/auth";
 import ErrorHandler from "@middlewares/error";
 import { User } from "@prisma/client";
 import router from "@routes";
@@ -7,7 +8,6 @@ import { IO } from "@services/io";
 import redis from "@services/redis";
 import { SESSION_AGE } from "@services/stytchAuth";
 import chalk from "chalk";
-import compression from "compression";
 import connectRedis from "connect-redis";
 import cookieParser from "cookie-parser";
 import cors from "cors";
@@ -44,7 +44,7 @@ app.use(
   })
 );
 app.use(cookieParser());
-app.use(compression());
+// app.use(compression());
 app.use(helmet());
 app.use(
   session({
@@ -61,8 +61,8 @@ app.use(
   })
 );
 
-app.use("/api", router);
-app.use("/stream", sseRouter);
+app.use("/api", withApiKeys, router);
+app.use("/stream", withApiKeys, sseRouter);
 app.use(ErrorHandler.handle);
 
 const io = new IO(server);

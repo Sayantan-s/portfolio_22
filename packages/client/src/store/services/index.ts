@@ -23,7 +23,7 @@ export const baseQuery = ({ url, authHeaders = false, ...rest }: QueryArgs) =>
             if (localStorage.getItem("access_token")) {
               headers.set(
                 "X-ACCESS-TOKEN",
-                localStorage.getItem("access_token")!
+                JSON.parse(localStorage.getItem("access_token")!)
               );
             }
             if (localStorage.getItem("session_token")) {

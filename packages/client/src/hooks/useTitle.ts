@@ -6,5 +6,5 @@ export const useTitle = (value: string | undefined) => {
     if (title) {
       title.textContent = value ? `Upshot@${value}` : "Upshot.app";
     }
-  }, []);
+  }, [value]);
 };

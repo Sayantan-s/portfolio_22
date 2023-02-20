@@ -2,7 +2,6 @@ import { Logo } from "@components/shared";
 import { Page } from "@components/ui";
 import { authApi } from "@store/services/auth";
 import { useState } from "react";
-import { useNavigate } from "react-router";
 
 export const Login = () => {
   const [form, setForm] = useState({
@@ -12,7 +11,6 @@ export const Login = () => {
   const [message, setMessage] = useState("");
   const [login, loginState] = authApi.useLoginMutation();
   const [dummyLogin, dummyLoginState] = authApi.useEasyMutation();
-  const navigate = useNavigate();
 
   const onChange: React.ChangeEventHandler<HTMLInputElement> = (eve) => {
     const { name, value } = eve.target;
@@ -29,11 +27,9 @@ export const Login = () => {
   };
 
   const onDummyLogin = async () => {
-    console.log("DUMMY LOGGINN");
-    const res = await dummyLogin({
+    await dummyLogin({
       email: import.meta.env.VITE_FREE_ACCESS_EMAIL,
     }).unwrap();
-    console.log(res);
   };
 
   return (

@@ -26,10 +26,10 @@ export const authApi = createApi({
     }),
     easy: builder.mutation<Api.SuccessResponse<VerifyApiPayload>, LoginRequest>(
       {
-        query: (data) => ({
+        query: (credentials) => ({
           url: "easy",
-          body: data,
           method: "POST",
+          body: credentials,
         }),
       }
     ),

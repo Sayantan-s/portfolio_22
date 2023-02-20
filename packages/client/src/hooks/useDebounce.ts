@@ -7,7 +7,6 @@ export const useDebounce = <T>(value: T, fn: () => void, delay: number) => {
       timerRef.current = setTimeout(fn, delay);
     }
     return () => {
-      console.log("Removing timer...");
       clearTimeout(timerRef.current);
     };
   }, [value]);

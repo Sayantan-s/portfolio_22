@@ -14,6 +14,7 @@ declare global {
       REDIS_PASSWORD: string;
       API_KEY: string;
       FREE_ACCESS_EMAIL: string;
+      JWT_SECRET: string;
     }
 
     interface Global {}

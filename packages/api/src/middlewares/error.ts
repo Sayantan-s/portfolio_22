@@ -1,6 +1,7 @@
 import H from "@helpers/ResponseHelper";
 import { PrismaClientKnownRequestError } from "@prisma/client/runtime";
 import { NextFunction, Request, RequestHandler, Response } from "express";
+import { JsonWebTokenError } from "jsonwebtoken";
 import { StytchError } from "stytch";
 
 export default class ErrorHandler extends Error {
@@ -26,8 +27,18 @@ export default class ErrorHandler extends Error {
     res: Response,
     next: NextFunction
   ) {
+    if (err instanceof JsonWebTokenError) {
+      H.error(res, {
+        statusCode: 401,
+        success: false,
+        data: {
+          name: err.name,
+          message: err.message,
+        },
+      });
+      return;
+    }
     if (err instanceof PrismaClientKnownRequestError) {
-      console.log(err);
       H.error(res, {
         statusCode: 404,
         success: false,
