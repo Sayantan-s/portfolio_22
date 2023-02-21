@@ -1,53 +1,65 @@
+import legacy from "@vitejs/plugin-legacy";
 import react from "@vitejs/plugin-react-swc";
-import path from "path";
-import { defineConfig } from "vite";
+import { resolve } from "path";
+import { defineConfig, loadEnv } from "vite";
+import autoAlias from "vite-plugin-auto-alias";
 
-// https://vitejs.dev/config/
-export default defineConfig({
-  base: "",
-  plugins: [react()],
-  server: {
-    open: true,
-    hmr: true,
-    strictPort: true,
-    port: 3000,
-    host: "localhost",
-    force: true,
-    proxy: {
-      "/api": {
-        target: "http://127.0.0.1:8080/api",
-        changeOrigin: true,
-        secure: false,
-        rewrite: (path) => path.replace(/^\/api/, ""),
-        configure: (proxy, _options) => {
-          proxy.on("error", (err, _req, _res) => {
-            console.log("proxy error", err.name, err.message);
-          });
-          proxy.on("proxyReq", (_, req, _res) => {
-            console.log("Sending Request to the Target:", req.method, req.url);
-          });
-          proxy.on("proxyRes", (proxyRes, req, _res) => {
-            console.log(
-              "Received Response from the Target:",
-              proxyRes.statusCode,
-              req.url
-            );
-          });
+export default ({ mode }) => {
+  process.env = { ...process.env, ...loadEnv(mode, process.cwd()) };
+  return defineConfig({
+    plugins: [
+      react(),
+      autoAlias({
+        root: resolve(__dirname, "./src"),
+        prefix: "@",
+        jsonPath: resolve(__dirname, "./tsconfig.json"),
+      }),
+      legacy({
+        targets: ["defaults", "not IE 11"],
+        polyfills: ["es.promise.finally", "es/map", "es/set"],
+        modernPolyfills: ["es.promise.finally"],
+      }),
+    ],
+    server: {
+      open: true,
+      hmr: true,
+      strictPort: true,
+      port: 3000,
+      host: "localhost",
+      proxy: {
+        "/api": {
+          target: `${process.env.VITE_SERVER_ORIGIN}/api`,
+          changeOrigin: true,
+          secure: false,
+          rewrite: (path) => path.replace(/^\/api/, ""),
+          configure: (proxy, _options) => {
+            proxy.on("error", (err, _req, _res) => {
+              console.log("proxy error", err.name, err.message);
+            });
+            proxy.on("proxyReq", (_, req, _res) => {
+              console.log(
+                "Sending Request to the Target:",
+                req.method,
+                req.url
+              );
+            });
+            proxy.on("proxyRes", (proxyRes, req, _res) => {
+              console.log(
+                "Received Response from the Target:",
+                proxyRes.statusCode,
+                req.url
+              );
+            });
+          },
         },
       },
     },
-  },
-  resolve: {
-    alias: {
-      "@hooks": path.resolve(__dirname, "./src/hooks"),
-      "@components": path.resolve(__dirname, "./src/components"),
-      "@pages": path.resolve(__dirname, "./src/pages"),
-      "@helpers": path.resolve(__dirname, "./src/helpers"),
-      "@context": path.resolve(__dirname, "./src/context"),
-      "@store": path.resolve(__dirname, "./src/store"),
+    build: {
+      minify: "esbuild",
+      cssCodeSplit: true,
     },
-  },
-  build: {
-    minify: "esbuild",
-  },
-});
+    optimizeDeps: {
+      force: true,
+    },
+  });
+};

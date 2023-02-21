@@ -1,5 +1,5 @@
 import { createApi } from "@reduxjs/toolkit/query/react";
-import { LoginRequest, VerifyApiPayload } from "@store/types/auth";
+import { LoginRequest, Session, VerifyApiPayload } from "@store/types/auth";
 import { baseQuery } from ".";
 
 export const authApi = createApi({
@@ -19,9 +19,7 @@ export const authApi = createApi({
       query: (token) => ({
         url: "verify",
         credentials: "include",
-        headers: {
-          "X-Magic-Token": token,
-        },
+        params: { token },
       }),
     }),
     easy: builder.mutation<Api.SuccessResponse<VerifyApiPayload>, LoginRequest>(
@@ -33,20 +31,15 @@ export const authApi = createApi({
         }),
       }
     ),
-    logOut: builder.mutation<Api.SuccessResponseNoPayload, void>({
-      query: () => ({
+    logOut: builder.mutation<
+      Api.SuccessResponseNoPayload,
+      Pick<Session, "session_id">
+    >({
+      query: ({ session_id }) => ({
         method: "DELETE",
         url: "logout",
         credentials: "include",
-        headers: {
-          Authorization: `Bearer ${JSON.parse(
-            localStorage.getItem("session_token")!
-          )}`,
-        },
-        body: {
-          session_id:
-            JSON.parse(localStorage.getItem("session")!).session_id || "",
-        },
+        body: { session_id },
       }),
     }),
   }),

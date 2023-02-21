@@ -25,7 +25,6 @@ declare module "express-session" {
       "session" | "session_jwt" | "session_token"
     >;
     user: User;
-    easyAccessKey: string;
   }
 }
 

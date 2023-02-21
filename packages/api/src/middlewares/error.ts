@@ -27,6 +27,7 @@ export default class ErrorHandler extends Error {
     res: Response,
     next: NextFunction
   ) {
+    console.log(err);
     if (err instanceof JsonWebTokenError) {
       H.error(res, {
         statusCode: 401,

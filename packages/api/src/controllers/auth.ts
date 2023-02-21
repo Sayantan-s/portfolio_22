@@ -49,7 +49,7 @@ export const loginOrCreate: RequestHandler = async (req, res) => {
 };
 
 export const tokenVerify: RequestHandler = async (req, res) => {
-  const token = req.headers["x-magic-token"];
+  const { token } = req.query;
   const metaData = await stytchClient.magicLinks.authenticate(token as string, {
     session_duration_minutes: 60 * 24 * 30,
   });
