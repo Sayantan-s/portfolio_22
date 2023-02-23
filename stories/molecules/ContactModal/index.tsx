@@ -1,5 +1,4 @@
 import supabase from '@lib/services/supabase';
-import { Player } from '@lottiefiles/react-lottie-player';
 import { AnimatePresence, motion } from 'framer-motion';
 import Image from 'next/image';
 import { ChangeEventHandler, FormEventHandler, useEffect, useRef, useState } from 'react';
@@ -57,7 +56,7 @@ const ContactModal = ({ show, onHide }: Props) => {
                 initial={{ y: '-40%', x: '-50%', opacity: 0 }}
                 animate={{ y: '-50%', x: '-50%', opacity: 1 }}
                 exit={{ y: '-40%', x: '-50%', opacity: 0 }}
-                className="max-w-md xs:min-w-[380px] min-w-[300px] overflow-hidden absolute top-1/2 left-1/2 transform -translate-x-1/2 -translate-y-1/2 z-50 bg-white sm:px-8 xs:px-6 px-5 pt-16 sm:pb-12 pb-6 shadow-2xl shadow-gray-900/20 rounded-xl"
+                className="max-w-md xs:min-w-[380px] min-w-[300px] overflow-hidden fixed top-1/2 left-1/2 transform -translate-x-1/2 -translate-y-1/2 z-50 bg-white sm:px-8 xs:px-6 px-5 pt-16 sm:pb-12 pb-6 shadow-2xl shadow-gray-900/20 rounded-xl"
               >
                 <div className="absolute left-0 top-0 w-full h-40 overflow-hidden">
                   <svg
@@ -162,18 +161,43 @@ const ContactModal = ({ show, onHide }: Props) => {
                         onChange={handleChange}
                       />
                       <motion.button
-                        disabled={form.content.trim() === '' || form.email.trim() === ''}
+                        disabled={
+                          form.content.trim() === '' || form.email.trim() === '' || isLoading
+                        }
                         whileTap={{ scale: 0.98 }}
-                        className="relative h-10 bg-slate-900 disabled:bg-slate-800 px-5 py-2 rounded-full w-full font-semibold xs:text-base text-sm"
+                        className={`cursor-pointer relative h-10 bg-slate-900 disabled:bg-slate-800 px-5 py-2 rounded-full w-full font-semibold xs:text-base text-sm ${
+                          isLoading ? 'disabled:opacity-80' : ''
+                        }`}
                       >
-                        <motion.span className="absolute left-1/2 right-1/2 transform -translate-x-1/2 -translate-y-1/2 w-full">
+                        <motion.span className="absolute left-1/2 top-1/2 transform -translate-x-1/2 -translate-y-1/2">
                           {isLoading ? (
-                            <Player
-                              autoplay
-                              loop
-                              src="/loading.json"
-                              style={{ height: '32px', width: '32px' }}
-                            />
+                            <svg
+                              version="1.1"
+                              id="loader-1"
+                              xmlns="http://www.w3.org/2000/svg"
+                              xmlnsXlink="http://www.w3.org/1999/xlink"
+                              x="0px"
+                              y="0px"
+                              width={30}
+                              height={30}
+                              viewBox="0 0 50 50"
+                              xmlSpace="preserve"
+                            >
+                              <path
+                                className="fill-slate-100"
+                                d="M25.251,6.461c-10.318,0-18.683,8.365-18.683,18.683h4.068c0-8.071,6.543-14.615,14.615-14.615V6.461z"
+                              >
+                                <animateTransform
+                                  attributeType="xml"
+                                  attributeName="transform"
+                                  type="rotate"
+                                  from="0 25 25"
+                                  to="360 25 25"
+                                  dur="0.6s"
+                                  repeatCount="indefinite"
+                                />
+                              </path>
+                            </svg>
                           ) : (
                             'Send'
                           )}
