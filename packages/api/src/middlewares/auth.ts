@@ -4,7 +4,10 @@ import stytchClient, { SESSION_AGE } from "@services/stytchAuth";
 import { loginSignUp } from "@upshot/shared";
 import { RequestHandler } from "express";
 import jwt from "jsonwebtoken";
+import { Server } from "socket.io";
 import ErrorHandler from "./error";
+
+type SocketMiddleware = Parameters<Server["use"]>[0];
 
 export const withApiKeys: RequestHandler = ErrorHandler.tryCatch(
   async (req, _, next) => {
@@ -23,17 +26,30 @@ export const withAuth: RequestHandler = async (req, _, next) => {
   if (access_token) {
     jwt.verify(access_token as string, JWT_SECRET!);
   } else {
-    const authHeaders = req.headers.authorization;
-    console.log(authHeaders);
-    if (!authHeaders) throw new ErrorHandler(401, "Not Authorized");
-    const token = authHeaders.split(" ")[1];
-    const metaData = await stytchClient.sessions.authenticate({
-      session_token: token,
-      session_duration_minutes: SESSION_AGE,
-    });
-    req.session.auth = extractAuthPayload(metaData);
-    req.session.save();
+    if (!req.session.isAuthenticated) {
+      const authHeaders = req.headers.authorization;
+      if (!authHeaders) throw new ErrorHandler(401, "Not Authorized");
+      const token = authHeaders.split(" ")[1];
+      const metaData = await stytchClient.sessions.authenticate({
+        session_token: token,
+        session_duration_minutes: SESSION_AGE,
+      });
+      req.session.auth = extractAuthPayload(metaData);
+      req.session.isAuthenticated = true;
+      req.session.save();
+    }
   }
+  next();
+};
+
+export const withApiKeysSocket: SocketMiddleware = async (socket, next) => {
+  const apikey = socket.handshake.auth["X-API-KEY"];
+  if (!apikey || apikey !== API_KEY)
+    throw new ErrorHandler(403, "Access Denied. Invalid API_KEY.");
+  next();
+};
+
+export const withAuthSocket: SocketMiddleware = async (socket, next) => {
   next();
 };
 

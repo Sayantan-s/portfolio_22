@@ -1,4 +1,5 @@
 import { CLIENT_ORIGIN } from "@config";
+import { withApiKeysSocket, withAuthSocket } from "@middlewares/auth";
 import http from "http";
 import { Server, Socket } from "socket.io";
 
@@ -6,6 +7,7 @@ interface ICreateTweetRequestPayload {
   _id: string;
   payload: string;
 }
+
 export class IO {
   instance: Server;
   constructor(
@@ -21,13 +23,15 @@ export class IO {
   }
 
   init(fn: (socket: Socket) => void) {
+    this.instance.use(withApiKeysSocket);
+    this.instance.use(withAuthSocket);
     this.instance.on("connection", fn);
   }
 
-  static execute(socket: Socket) {
-    console.log(`${socket.id} Connected to client server...`);
-    socket.on("disconnect", () => {
-      console.log(`${socket.id} Disconnected from client server...`);
+  static execute(io: Socket) {
+    console.log(`${io.id} Connected to client server...`);
+    io.on("disconnect", () => {
+      console.log(`${io.id} Disconnected from client server...`);
     });
   }
 }

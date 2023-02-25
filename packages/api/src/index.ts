@@ -25,6 +25,7 @@ declare module "express-session" {
       "session" | "session_jwt" | "session_token"
     >;
     user: User;
+    isAuthenticated: boolean;
   }
 }
 

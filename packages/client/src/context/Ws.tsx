@@ -1,3 +1,4 @@
+import { store } from "@/store";
 import { useUser } from "@hooks";
 import {
   createContext,
@@ -13,9 +14,17 @@ interface IContextProps {
   isConnected: boolean;
 }
 
+const auth = store.getState().auth;
+
 const socket = io(import.meta.env.VITE_SERVER_ORIGIN, {
   withCredentials: true,
   autoConnect: false,
+  auth: {
+    "X-API-KEY": import.meta.env.VITE_API_KEY,
+    ...(auth.access_token
+      ? { access_token: auth.access_token }
+      : { session_token: auth.session_token }),
+  },
 });
 const WSContext = createContext<IContextProps | null>(null);
 

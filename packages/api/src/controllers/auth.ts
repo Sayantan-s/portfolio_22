@@ -54,6 +54,7 @@ export const tokenVerify: RequestHandler = async (req, res) => {
     session_duration_minutes: 60 * 24 * 30,
   });
   req.session.auth = extractAuthPayload(metaData);
+  req.session.isAuthenticated = true;
   req.session.save();
   H.success(res, {
     success: true,
