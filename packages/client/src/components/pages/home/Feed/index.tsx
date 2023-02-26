@@ -12,7 +12,7 @@ export const Feed = () => {
         Hey, <span className="text-xl text-slate-300">Sayantan</span>
       </h1>
       <PostTool />
-      <motion.div className="mt-4 space-y-3 px-4">
+      <motion.div className="mt-4 space-y-3 pl-4">
         <AnimatePresence initial={false}>
           {isLoading ? (
             <div className="text-sky-500">loading.....</div>

@@ -29,6 +29,7 @@ export class IO {
   }
 
   static execute(io: Socket) {
+    console.log(io.request.session);
     console.log(`${io.id} Connected to client server...`);
     io.on("disconnect", () => {
       console.log(`${io.id} Disconnected from client server...`);

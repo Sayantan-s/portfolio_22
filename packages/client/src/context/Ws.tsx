@@ -2,6 +2,8 @@ import { store } from "@/store";
 import { useUser } from "@hooks";
 import {
   createContext,
+  createRef,
+  MutableRefObject,
   PropsWithChildren,
   useContext,
   useEffect,
@@ -26,6 +28,11 @@ const socket = io(import.meta.env.VITE_SERVER_ORIGIN, {
       : { session_token: auth.session_token }),
   },
 });
+
+export const socketConnected =
+  createRef<boolean>() as MutableRefObject<boolean>;
+socketConnected.current = false;
+
 const WSContext = createContext<IContextProps | null>(null);
 
 export const WsProvider = ({ children }: PropsWithChildren) => {
@@ -37,11 +44,13 @@ export const WsProvider = ({ children }: PropsWithChildren) => {
       socket.connect();
       socket.on("connect", () => {
         console.log(`${socket.id} connected to socket server...`);
+        socketConnected.current = true;
         setIsConnected(true);
       });
       socket.on("disconnect", () => {
         console.log(`${socket.id} Disconnected from socket server...`);
         setIsConnected(false);
+        socketConnected.current = false;
       });
       socket.on("connect_error", (err) => {
         console.log(`connect_error due to ${err.message}`);

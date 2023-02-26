@@ -11,7 +11,7 @@ export const PostTool = () => {
 
   return (
     <React.Fragment>
-      <div className="px-4" onClick={() => showToggler("show")}>
+      <div className="pl-4" onClick={() => showToggler("show")}>
         <div className="bg-slate-100 rounded-xl overflow-hidden">
           <textarea
             placeholder="Hey what's cooking!!"

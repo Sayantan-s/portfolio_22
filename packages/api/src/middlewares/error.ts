@@ -1,5 +1,6 @@
 import H from "@helpers/ResponseHelper";
 import { PrismaClientKnownRequestError } from "@prisma/client/runtime";
+import chalk from "chalk";
 import { NextFunction, Request, RequestHandler, Response } from "express";
 import { JsonWebTokenError } from "jsonwebtoken";
 import { StytchError } from "stytch";
@@ -27,7 +28,7 @@ export default class ErrorHandler extends Error {
     res: Response,
     next: NextFunction
   ) {
-    console.log(err);
+    console.log(chalk.red(err));
     if (err instanceof JsonWebTokenError) {
       H.error(res, {
         statusCode: 401,

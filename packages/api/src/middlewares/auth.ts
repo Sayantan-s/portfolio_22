@@ -4,10 +4,8 @@ import stytchClient, { SESSION_AGE } from "@services/stytchAuth";
 import { loginSignUp } from "@upshot/shared";
 import { RequestHandler } from "express";
 import jwt from "jsonwebtoken";
-import { Server } from "socket.io";
 import ErrorHandler from "./error";
-
-type SocketMiddleware = Parameters<Server["use"]>[0];
+import { SocketMiddleware } from "./session";
 
 export const withApiKeys: RequestHandler = ErrorHandler.tryCatch(
   async (req, _, next) => {

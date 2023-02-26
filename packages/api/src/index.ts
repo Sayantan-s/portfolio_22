@@ -1,18 +1,17 @@
-import { CLIENT_ORIGIN, ORIGIN, PORT, SESSION_SECRET } from "@config";
+import { CLIENT_ORIGIN, ORIGIN, PORT } from "@config";
 import { withApiKeys } from "@middlewares/auth";
 import ErrorHandler from "@middlewares/error";
+import { sessionMiddleWare, withSession } from "@middlewares/session";
 import { User } from "@prisma/client";
 import router from "@routes";
 import sseRouter from "@routes/sse.route";
 import { IO } from "@services/io";
 import redis from "@services/redis";
-import { SESSION_AGE } from "@services/stytchAuth";
 import chalk from "chalk";
-import connectRedis from "connect-redis";
 import cookieParser from "cookie-parser";
 import cors from "cors";
 import express from "express";
-import session from "express-session";
+import { Session, SessionData } from "express-session";
 import helmet from "helmet";
 import http from "http";
 import morgan from "morgan";
@@ -29,9 +28,14 @@ declare module "express-session" {
   }
 }
 
+declare module "node:http" {
+  interface IncomingMessage {
+    session: Session & SessionData;
+  }
+}
+
 const app = express();
 const server = http.createServer(app);
-const RedisStore = connectRedis(session);
 
 if (process.env.NODE_ENV !== "production") app.use(morgan("dev"));
 
@@ -44,30 +48,18 @@ app.use(
   })
 );
 app.use(cookieParser());
-// app.use(compression());
 app.use(helmet());
-app.use(
-  session({
-    secret: SESSION_SECRET!,
-    resave: false,
-    saveUninitialized: false,
-    cookie: {
-      httpOnly: true,
-      maxAge: 1000 * 60 * SESSION_AGE,
-      sameSite: "lax",
-      secure: false,
-    },
-    store: new RedisStore({ client: redis }),
-  })
-);
+app.use(sessionMiddleWare);
 
-app.use("/api", withApiKeys, router);
-app.use("/stream", withApiKeys, sseRouter);
+app.use(withApiKeys);
+app.use("/api", router);
+app.use("/stream", sseRouter);
 app.use(ErrorHandler.handle);
 
 const io = new IO(server);
 
 io.init(IO.execute);
+io.instance.use(withSession(sessionMiddleWare));
 
 server.listen(PORT, () => {
   console.log(chalk.bgGray.bold.redBright(`SERVER RUNNING ON ${ORIGIN}`));

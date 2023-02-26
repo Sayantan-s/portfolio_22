@@ -8,11 +8,12 @@ import {
   Profile,
 } from "iconsax-react";
 import { NavigationLink } from "./NavigationLink";
+import { ProfilePopper } from "./ProfilePopper";
 
 export const Sidebar = () => {
   return (
     <aside className="flex-[0.2] h-full">
-      <div className="py-4 border-r h-full border-r-slate-100">
+      <div className="flex flex-col py-4 h-full relative">
         <div className="w-48 relative left-1/2 transform -translate-x-1/2">
           <Logo />
         </div>
@@ -53,6 +54,7 @@ export const Sidebar = () => {
             </Button>
           </div>
         </div>
+        <ProfilePopper />
       </div>
     </aside>
   );
