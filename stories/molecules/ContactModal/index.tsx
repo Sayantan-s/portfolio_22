@@ -47,6 +47,19 @@ const ContactModal = ({ show, onHide }: Props) => {
     }));
   };
 
+  useEffect(() => {
+    const body = document.querySelector('body');
+    if (show) {
+      body?.classList.add('fixed');
+      body?.classList.add('overflow-hidden');
+    } else {
+      if (body?.classList.contains('fixed') || body?.classList.contains('overflow-hidden')) {
+        body?.classList.remove('fixed');
+        body?.classList.remove('overflow-hidden');
+      }
+    }
+  }, [show]);
+
   return mounted && ref.current
     ? createPortal(
         <AnimatePresence>
@@ -56,7 +69,7 @@ const ContactModal = ({ show, onHide }: Props) => {
                 initial={{ y: '-40%', x: '-50%', opacity: 0 }}
                 animate={{ y: '-50%', x: '-50%', opacity: 1 }}
                 exit={{ y: '-40%', x: '-50%', opacity: 0 }}
-                className="max-w-md xs:min-w-[380px] min-w-[300px] overflow-hidden fixed top-1/2 left-1/2 transform -translate-x-1/2 -translate-y-1/2 z-50 bg-white sm:px-8 xs:px-6 px-5 pt-16 sm:pb-12 pb-6 shadow-2xl shadow-gray-900/20 rounded-xl"
+                className="content-v-auto z-50 max-w-md xs:min-w-[380px] min-w-[300px] overflow-hidden fixed top-1/2 left-1/2 transform -translate-x-1/2 -translate-y-1/2 bg-white sm:px-8 xs:px-6 px-5 pt-16 sm:pb-12 pb-6 shadow-2xl shadow-gray-900/20 rounded-xl"
               >
                 <div className="absolute left-0 top-0 w-full h-40 overflow-hidden">
                   <svg
