@@ -26,9 +26,8 @@ const ContactModal = ({ show, onHide }: Props) => {
   const handleSubmit: FormEventHandler<HTMLFormElement> = async eve => {
     eve.preventDefault();
     setLoading(true);
-    const { status } = await supabase.from('feedback').insert([form]);
-    setLoading(false);
-    if (status === 201) {
+    try {
+      const { status } = await supabase.from('feedback').insert([form]);
       setForm({
         email: '',
         content: ''
@@ -36,6 +35,11 @@ const ContactModal = ({ show, onHide }: Props) => {
       setTimeout(() => {
         onHide();
       }, 300);
+      // if (status === 201) {
+      // }
+    } catch (err) {
+    } finally {
+      setLoading(false);
     }
   };
 
