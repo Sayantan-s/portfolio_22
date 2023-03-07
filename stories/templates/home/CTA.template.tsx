@@ -380,7 +380,7 @@ export const CTA = ({ onConnectClick }: Props) => {
           >
             <span className="text-gray-50 font-semibold sm:text-base text-sm">Let&apos;s Talk</span>
           </motion.button>
-          <div className="relative flex" ref={ref}>
+          <div className="relative flex h-full" ref={ref}>
             <motion.button
               initial={{ y: 10, opacity: 0 }}
               animate={{
@@ -394,7 +394,7 @@ export const CTA = ({ onConnectClick }: Props) => {
               onClick={() => setHovered(prevState => !prevState)}
               whileTap={{ rotate: 360, transition: { duration: 0.3 } }}
               whileHover={{ rotate: 360, transition: { duration: 0.3 } }}
-              className="w-[40px] h-[40px] rounded-full p-1.5 border border-slate-200/90 z-20 bg-white"
+              className="h-full aspect-square rounded-full p-1.5 border border-slate-200/90 z-20 bg-white"
             >
               <span className="flex items-center justify-center w-full h-full relative">
                 <Image src="/logo.png" width={24} height={24} alt="cta_dp_image" priority />
