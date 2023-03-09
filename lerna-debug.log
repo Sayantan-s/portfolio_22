@@ -1,0 +1,14 @@
+0 silly argv {
+0 silly argv   _: [ 'add' ],
+0 silly argv   scope: '@upshot/client',
+0 silly argv   globs: [],
+0 silly argv   lernaVersion: '6.5.1',
+0 silly argv   '$0': '/Users/sayantansamanta/Documents/work/twitter-v2/node_modules/.bin/lerna',
+0 silly argv   pkg: '@radix-ui/reat-dropdown-menu'
+0 silly argv }
+1 notice cli v6.5.1
+2 verbose rootPath /Users/sayantansamanta/Documents/work/twitter-v2
+3 error HttpErrorGeneral: 404 Not Found - GET https://registry.yarnpkg.com/@radix-ui%2freat-dropdown-menu - Not found
+3 error     at /Users/sayantansamanta/Documents/work/twitter-v2/node_modules/lerna/node_modules/pacote/node_modules/npm-registry-fetch/lib/check-response.js:95:15
+3 error     at processTicksAndRejections (node:internal/process/task_queues:96:5)
+3 error     at async RegistryFetcher.packument (/Users/sayantansamanta/Documents/work/twitter-v2/node_modules/lerna/node_modules/pacote/lib/registry.js:92:19)
