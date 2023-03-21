@@ -20,6 +20,7 @@ export const getPosts: RequestHandler<
     include: {
       user: {
         select: {
+          id: true,
           details: {
             select: {
               first_name: true,

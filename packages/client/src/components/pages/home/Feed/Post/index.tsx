@@ -1,3 +1,4 @@
+import { useAuthor } from "@/hooks";
 import { IPost } from "@store/types/posts";
 import { motion } from "framer-motion";
 import { AlignBottom, Heart, Messages2, Send2 } from "iconsax-react";
@@ -13,6 +14,8 @@ const Post = ({ details, activity, id, updated_at, user }: IPost) => {
   const imgs = details.images?.length
     ? details.images
     : new Array(3).fill(false);
+
+  const isAuthor = useAuthor(user!);
 
   return (
     <motion.div
@@ -103,7 +106,7 @@ const Post = ({ details, activity, id, updated_at, user }: IPost) => {
                 variant="Broken"
               />
             </button>
-          ) : (
+          ) : isAuthor ? (
             <button className="bg-sky-50 hover:bg-sky-100 flex items-center p-1.5 space-x-1 rounded-full">
               <Send2
                 className={"w-5 h-5"}
@@ -111,7 +114,7 @@ const Post = ({ details, activity, id, updated_at, user }: IPost) => {
                 variant={"Broken"}
               />
             </button>
-          )}
+          ) : null}
         </div>
         {activity === "sell" ? (
           <button className="space-x-1 bg-slate-900 px-4 py-1.5 disabled:opacity-75 ring-1 ring-slate-900/10 shadow shadow-slate-700/10 rounded-full">

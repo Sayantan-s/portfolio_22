@@ -45,12 +45,14 @@ export const ProfilePopper = () => {
               Darkmode
               <Switch.Root
                 onCheckedChange={setIsChecked}
-                className="w-[42px] h-[25px] bg-sky-300 rounded-full relative"
+                className={`w-[42px] h-[25px] ${
+                  isChecked ? "bg-sky-300" : "bg-slate-200"
+                } rounded-full relative`}
                 id="airplane-mode"
               >
                 <Switch.Thumb
                   className={`w-[21px] h-[21px] shadow-md transition-transform duration-150 transform ${
-                    isChecked ? "translate-x-[2px]" : "translate-x-[19px]"
+                    isChecked ? "translate-x-[19px]" : "translate-x-[2px]"
                   } rounded-full bg-white block`}
                 />
               </Switch.Root>

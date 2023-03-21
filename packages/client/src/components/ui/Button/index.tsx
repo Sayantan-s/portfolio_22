@@ -12,7 +12,7 @@ const styles = cva("font-medium rounded-full", {
       "teal-secondary": "bg-teal-100 ring-teal-900/10 text-teal-400",
       "sky-secondary": "bg-sky-100 ring-sky-900/10 text-sky-400",
       gradient:
-        "gradient_1 text-white ring-teal-900/10 shadow-teal-900/10 shadow-md ring-1 active:shadow",
+        "gradient_1 text-white ring-teal-900/10 shadow-teal-900/10 shadow-sm ring-1 active:shadow",
     },
     disabled: {
       true: "disabled:opacity-75",
