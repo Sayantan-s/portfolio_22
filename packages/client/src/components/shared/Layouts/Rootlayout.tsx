@@ -1,5 +1,5 @@
 import { Page } from "@components/ui";
-import { PropsWithChildren } from "react";
+import { PropsWithChildren, createRef } from "react";
 import { Outlet } from "react-router";
 import { Sidebar } from "./Sidebar";
 import Trending from "./Trending";
@@ -9,6 +9,8 @@ interface ILayoutProps {
   rightLayout?: JSX.Element;
 }
 
+export const feedRef = createRef<HTMLElement>();
+
 const RootLayout = ({
   leftLayout,
   rightLayout,
@@ -16,7 +18,7 @@ const RootLayout = ({
   return (
     <Page className="flex max-w-7xl mx-auto overflow-hidden">
       {leftLayout ? leftLayout : <Sidebar />}
-      <main className="flex-[0.5] px-4 overflow-y-scroll">
+      <main className="flex-[0.5] px-4 overflow-y-scroll" ref={feedRef}>
         <div className="border-l border-l-slate-100">
           <Outlet />
         </div>

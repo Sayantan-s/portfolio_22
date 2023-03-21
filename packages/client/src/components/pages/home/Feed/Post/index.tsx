@@ -19,8 +19,8 @@ const Post = ({ details, activity, id, updated_at, user }: IPost) => {
 
   return (
     <motion.div
-      initial={{ y: -5, opacity: 0.4 }}
-      animate={{ y: 0, opacity: 1, transition: { duration: 0.4 } }}
+      // initial={{ y: -5, opacity: 0.4 }}
+      // animate={{ y: 0, opacity: 1, transition: { duration: 0.4 } }}
       className="p-3 rounded-xl bg-slate-50/70"
     >
       <button className="float-right flex flex-col space-y-0.5">
@@ -106,7 +106,7 @@ const Post = ({ details, activity, id, updated_at, user }: IPost) => {
                 variant="Broken"
               />
             </button>
-          ) : isAuthor ? (
+          ) : !isAuthor ? (
             <button className="bg-sky-50 hover:bg-sky-100 flex items-center p-1.5 space-x-1 rounded-full">
               <Send2
                 className={"w-5 h-5"}
