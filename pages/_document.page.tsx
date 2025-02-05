@@ -1,4 +1,6 @@
 import NextDocument, { Head, Html, Main, NextScript } from 'next/document';
+import { felix } from '@styles/font';
+import { twMerge } from 'tailwind-merge';
 
 export default class Document extends NextDocument {
   render() {
@@ -6,7 +8,7 @@ export default class Document extends NextDocument {
       <Html lang="en">
         <Head></Head>
         <body>
-          <div id="modals" />
+          <div id="modals" className={twMerge(felix.className, 'relative')} />
           <Main />
           <NextScript />
         </body>
