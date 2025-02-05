@@ -109,7 +109,7 @@ const ContactModal = ({ show, onHide }: Props) => {
                     />
                   </svg>
                 </div>
-                <div className="bg-gradient-to-b absolute left-0 top-0 w-full h-40 p-4 overflow-hidden from-white/20 to-white">
+                <div className="bg-linear-to-b absolute left-0 top-0 w-full h-40 p-4 overflow-hidden from-white/20 to-white">
                   <motion.button
                     onClick={onHide}
                     whileTap={{ scale: 0.9 }}
@@ -163,14 +163,14 @@ const ContactModal = ({ show, onHide }: Props) => {
                     </div>
                     <form className="flex-[0.5] xs:mt-8 mt-5 space-y-3" onSubmit={handleSubmit}>
                       <input
-                        className="font-normal xs:text-sm text-xs w-full bg-white px-4 py-2 border border-slate-200/80 rounded-xl placeholder-slate-300 focus:outline-none focus:border-slate-200 text-slate-600"
+                        className="font-normal xs:text-sm text-xs w-full bg-white px-4 py-2 border border-slate-200/80 rounded-xl placeholder-slate-300 focus:outline-hidden focus:border-slate-200 text-slate-600"
                         placeholder={`Ken Adams...`}
                         name="email"
                         value={form.email}
                         onChange={handleChange}
                       />
                       <textarea
-                        className="font-normal xs:text-sm text-xs w-full resize-none bg-white px-4 py-2 border border-slate-200/80 rounded-xl placeholder-slate-300 focus:outline-none focus:border-slate-200 text-slate-600"
+                        className="font-normal xs:text-sm text-xs w-full resize-none bg-white px-4 py-2 border border-slate-200/80 rounded-xl placeholder-slate-300 focus:outline-hidden focus:border-slate-200 text-slate-600"
                         placeholder={`They don't know that we know that they know!`}
                         name="content"
                         rows={3}

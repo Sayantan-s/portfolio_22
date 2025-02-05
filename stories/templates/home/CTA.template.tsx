@@ -131,7 +131,7 @@ export const CTA = ({ onConnectClick }: Props) => {
           'radial-gradient(at 100% 0%, hsla(32, 98%, 83%, 0.4) 0px, transparent 50%),radial-gradient(at 40% 1%, hsla(32, 98%, 83%, 0.2) 0px, transparent 50%),radial-gradient(at 70% 60%, hsla(152, 75%, 80%, 0.3) 0px, transparent 50%),radial-gradient(at 0% 1%, hsla(152, 75%, 80%, 0.4) 0px, transparent 50%),radial-gradient(at 30% 40%, hsla(32, 98%, 83%, 0.3) 0px, transparent 30%)'
       }}
     >
-      <div className="h-full flex items-center justify-center flex-col max-w-screen-2xl relative mx-auto">
+      <div className="h-full flex items-center justify-center flex-col max-w-(--breakpoint-2xl) relative mx-auto">
         <motion.div
           initial={{ y: 25, opacity: 0 }}
           animate={{
@@ -163,7 +163,7 @@ export const CTA = ({ onConnectClick }: Props) => {
               duration: 0.5
             }
           }}
-          className="mt-6 text-gray-400 md:text-base text-sm font-medium text-center bg-gradient-to-br from-white to-slate-50 px-4 py-2 rounded-full shadow-2xl shadow-slate-700/30"
+          className="mt-6 text-gray-400 md:text-base text-sm font-medium text-center bg-linear-to-br from-white to-slate-50 px-4 py-2 rounded-full shadow-2xl shadow-slate-700/30"
         >
           Hi, I am <span className="md:text-xl text-base text-gray-600 font-medium">Sayantan</span>.
           {''}
