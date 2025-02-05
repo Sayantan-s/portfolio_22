@@ -60,7 +60,7 @@ export const svgArr = [
     )
   },
   {
-    link: '/resume.pdf',
+    link: '/Sayantan_Resume_2YOE.pdf',
     download: 'resume_sayantan',
     icon: (
       <svg
