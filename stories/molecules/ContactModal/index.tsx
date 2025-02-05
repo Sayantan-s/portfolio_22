@@ -27,7 +27,7 @@ const ContactModal = ({ show, onHide }: Props) => {
     eve.preventDefault();
     setLoading(true);
     try {
-      const { status } = await supabase.from('feedback').insert([form]);
+      // const { status } = await supabase.from('feedback').insert([form]);
       setForm({
         email: '',
         content: ''

@@ -8,7 +8,7 @@
     "npm": "please-use-yarn"
   },
   "scripts": {
-    "dev": "next dev -p 5001 && open http://localhost:5001",
+    "dev": "next dev --turbopack -p 5001 && open http://localhost:5001",
     "build": "next build",
     "start": "next start",
     "lint": "next lint",
@@ -19,15 +19,17 @@
     "prettier": "prettier --write ."
   },
   "dependencies": {
-    "@mdx-js/loader": "^2.1.2",
-    "@next/mdx": "^12.2.2",
+    "@mdx-js/loader": "^3.1.0",
+    "@mdx-js/react": "^3.1.0",
+    "@next/mdx": "^15.1.6",
     "@supabase/supabase-js": "^2.1.0",
+    "@types/mdx": "^2.0.13",
     "@types/uuid": "^8.3.4",
     "framer-motion": "^6.4.1",
-    "next": "^13.0.3",
+    "next": "15.1.6",
     "next-themes": "^0.2.0",
-    "react": "^18.2.0",
-    "react-dom": "^18.2.0",
+    "react": "19.0.0",
+    "react-dom": "19.0.0",
     "uuid": "^9.0.0"
   },
   "devDependencies": {
@@ -50,14 +52,14 @@
     "@testing-library/react": "^13.3.0",
     "@types/jest": "^28.1.6",
     "@types/node": "18.0.1",
-    "@types/react": "18.0.14",
-    "@types/react-dom": "18.0.5",
+    "@types/react": "19.0.8",
+    "@types/react-dom": "19.0.3",
     "@typescript-eslint/eslint-plugin": "^5.30.6",
     "@typescript-eslint/parser": "^5.30.6",
     "autoprefixer": "^10.4.7",
     "babel-loader": "^8.2.5",
     "eslint": "8.19.0",
-    "eslint-config-next": "^13.0.3",
+    "eslint-config-next": "15.1.6",
     "eslint-plugin-jest": "^26.6.0",
     "eslint-plugin-storybook": "^0.5.13",
     "husky": "^8.0.0",
@@ -71,5 +73,9 @@
     "tailwindcss": "^3.1.4",
     "ts-jest": "^28.0.7",
     "typescript": "^4.7.4"
+  },
+  "resolutions": {
+    "@types/react": "19.0.8",
+    "@types/react-dom": "19.0.3"
   }
 }
